@@ -6,9 +6,13 @@ node_js:
   - 0.10
   - iojs
 
+before_install:
+  npm install -g node-gyp
+
 script:
   nv=$(node -v);
   if [[ $nv != v0.10.36 ]] ; then
+    npm update
     npm test;
   else
     npm run 0.10;
