@@ -1,46 +1,48 @@
 {
-  "name": "gengojs-accept",
-  "version": "0.0.1",
-  "description": "Express and Koa locale parser.",
-  "main": "index.js",
-  "directories": {
-    "test": "tests"
-  },
-  "dependencies": {
-    "cookie": "^0.1.2",
-    "lodash": "^3.3.1",
-    "uberproto": "^1.1.2"
-  },
-  "devDependencies": {
-    "chai": "^2.1.0",
-    "cookie-parser": "^1.3.4",
-    "express": "^4.12.0",
-    "feathers": "^1.0.2",
-    "koa": "^0.18.0",
-    "mocha": "^2.1.0",
-    "subdomain": "^1.2.0",
-    "supertest": "^0.15.0"
-  },
-  "scripts": {
-    "test": "mocha --harmony ./tests/koa/*.js && mocha ./tests/*.js",
-    "0.10": "mocha ./tests/*.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/iwatakeshi/gengojs-accept.git"
-  },
-  "keywords": [
-    "locale",
-    "i18n",
-    "accept-language",
-    "header",
-    "express",
-    "koa"
-  ],
-  "author": "iwatakeshi",
-  "license": "MIT",
-  "bugs": {
-    "url": "https://github.com/iwatakeshi/gengojs-accept/issues"
-  },
-  "homepage": "https://github.com/iwatakeshi/gengojs-accept"
+    "name": "gengojs-accept",
+    "version": "0.0.1",
+    "description": "Express and Koa locale parser.",
+    "main": "index.js",
+    "directories": {
+        "test": "tests"
+    },
+    "dependencies": {
+        "cookie": "^0.1.2",
+        "lodash": "^3.3.1",
+        "uberproto": "^1.1.2"
+    },
+    "devDependencies": {
+        "chai": "^2.1.0",
+        "cookie-parser": "^1.3.4",
+        "express": "^4.12.0",
+        "feathers": "^1.0.2",
+        "koa": "^0.18.0",
+        "mocha": "^2.1.0",
+        "subdomain": "^1.2.0",
+        "supertest": "^0.15.0"
+    },
+    "scripts": {
+        "test": "mocha --harmony ./tests/koa/*.js && mocha ./tests/*.js",
+        "0.10": "mocha ./tests/*.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/iwatakeshi/gengojs-accept.git"
+    },
+    "keywords": [
+        "locale",
+        "i18n",
+        "accept-language",
+        "header",
+        "express",
+        "koa",
+        "international",
+        "accept-header"
+    ],
+    "author": "iwatakeshi",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/iwatakeshi/gengojs-accept/issues"
+    },
+    "homepage": "https://github.com/iwatakeshi/gengojs-accept"
 }
