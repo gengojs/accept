@@ -1,6 +1,6 @@
 {
     "name": "gengojs-accept",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "description": "Express and Koa locale parser.",
     "main": "index.js",
     "directories": {

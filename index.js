@@ -50,15 +50,18 @@ var accept = Proto.extend({
     },
     // From accept-language, `Accept-Language: ja`
     getFromHeader: function(req) {
-        this.getAcceptLanguage();
+        this.getAcceptLanguage(req);
         var reg = /(^|,\s*)([a-z-0-9-]+)/gi,
             match, locale;
         while ((match = reg.exec(this['accept-language']))) {
             if (!locale) locale = match[2];
         }
-        var index = this.opt.supported.indexOf(locale);
-        this.locale = index > -1 ? this.opt.supported[index] : this.opt.default;
-        return this.locale;
+        if (req) return locale;
+        else {
+            var index = this.opt.supported.indexOf(locale);
+            this.locale = index > -1 ? this.opt.supported[index] : this.opt.default;
+            return this.locale;
+        }
     },
     // From query, 'lang=en'
     getFromQuery: function(key, fallback) {
@@ -120,7 +123,8 @@ var accept = Proto.extend({
                     break;
             }
         }, this);
-        return this.locale = this.locale ? this.locale : this.opt.default;
+        this.locale = this.locale ? this.locale : this.opt.default;
+        return this.locale;
     },
     _options: function(opt) {
         this.opt = _.defaults(opt || {}, {
