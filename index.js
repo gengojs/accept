@@ -18,10 +18,10 @@ var accept = Proto.extend({
     init: function(req, opt) {
         //set options
         this._options(opt);
-        if (req) this.set(req, opt);
+        if (req) this.set(req);
         return this;
     },
-    set: function(req, opt) {
+    set: function(req) {
 
         this['accept-language'] = '';
         //koa?
