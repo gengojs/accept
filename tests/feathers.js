@@ -235,6 +235,101 @@ describe('Begin module "accept" tests with feathers', function() {
     });
 
 
+    describe('Test getFromDomain()', function() {
+        describe('with default options', function() {
+            var feathers = require('feathers');
+            var app = feathers();
+            var subdomainOptions = {
+                base: 'localhost.com' //base is required, you'll get an error without it.
+            };
+
+            app.use(require('subdomain')(subdomainOptions));
+            app.use(function(req, res, next) {
+                var result = accept(req, null, true)
+                var filter = {
+                    getFromDomain: result.getFromDomain()
+                };
+                res.send(filter);
+            });
+            app.get('/');
+
+            it('Accept should !== "en"', function(done) {
+                request(app)
+                    .get('/api/:localhost')
+                    .set('Host', 'api.localhost.com')
+                    .set('Accept-Language', 'en-US')
+                    .expect(function(res) {
+                        var result = res.body;
+                        assert.notStrictEqual(result.getFromDomain, 'en');
+
+                    })
+                    .end(done);
+            });
+
+            it('Accept should !== "ja"', function(done) {
+                request(app)
+                    .get('/api/:localhost')
+                    .set('host', 'api.localhost.ja')
+                    .set('Accept-Language', 'en-US')
+
+                .expect(function(res) {
+                        var result = res.body;
+                        assert.notStrictEqual(result.getFromDomain, 'ja');
+
+                    })
+                    .end(done);
+            });
+        });
+        describe('with configured options', function() {
+            var feathers = require('feathers');
+            var app = feathers();
+            var subdomainOptions = {
+                base: 'localhost.com' //base is required, you'll get an error without it.
+            };
+
+            app.use(require('subdomain')(subdomainOptions));
+            app.use(function(req, res, next) {
+                var opt = {
+                    supported: ['en-US', 'ja', 'en']
+                };
+                var result = accept(req, opt);
+
+                var filter = {
+                    getFromDomain: result.getFromDomain()
+                };
+                res.send(filter);
+            });
+            app.get('/');
+
+            it('Accept should === "en"', function(done) {
+                request(app)
+                    .get('/api/:localhost')
+                    .set('Host', 'api.localhost.en')
+                    .set('Accept-Language', 'en-US')
+                    .expect(function(res) {
+                        var result = res.body;
+                        assert.strictEqual(result.getFromDomain, 'en');
+
+                    })
+                    .end(done);
+            });
+
+            it('Accept should === "ja"', function(done) {
+                request(app)
+                    .get('/ja/:localhost')
+                    .set('host', 'ja.localhost.ja')
+                    .set('Accept-Language', 'en-US')
+
+                .expect(function(res) {
+                        var result = res.body;
+                        assert.strictEqual(result.getFromDomain, 'ja');
+
+                    })
+                    .end(done);
+            });
+        });
+    });
+
     describe('Test getFromSubdomain()', function() {
         describe('with default options', function() {
             var feathers = require('feathers');

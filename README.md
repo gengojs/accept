@@ -44,8 +44,9 @@ app.use(function*(next) {
 | Function | Description | Option
 |---                |---                                     |--- |
 |getAcceptLanguage(req)|Returns the Accept-Language from header, otherwise <code>null</code>  | [Object request]   |
-|getFromHeader(req)|Returns the locale by parsing the header, otherwise <code>null</code>      | [Object request]   |
+|getFromHeader(req, fallback)|Returns the locale by parsing the header, otherwise <code>null</code>      | [Object request], [Boolean fallback]   |
 |getFromQuery(key, fallback)|Returns the locale by parsing the query string, otherwise <code>null</code>| [String key],[Boolean fallback]|
+|getFromDomain(fallback) |Returns the locale by parsing the domain in the url, otherwise <code>null</code>|[Boolean fallback]|
 |getFromSubdomain(fallback)|Returns the locale by parsing the subdomain in the url, otherwise <code>null</code> |[Boolean fallback]|
 |getFromCookie(key, fallback)|Returns the locale by parsing the cookies, otherwise <code>null</code> |[String key],[Boolean fallback]|
 |getFromUrl(fallback)|Return the locale by parsing the url, otherwise <code>null</code>|[Boolean fallback]|

@@ -49,18 +49,18 @@ var accept = Proto.extend({
         return this.locale;
     },
     // From accept-language, `Accept-Language: ja`
-    getFromHeader: function(req) {
+    getFromHeader: function(req, fallback) {
         this.getAcceptLanguage(req);
         var reg = /(^|,\s*)([a-z-0-9-]+)/gi,
-            match, locale;
+            match, result;
         while ((match = reg.exec(this['accept-language']))) {
-            if (!locale) locale = match[2];
+            if (!result) result = match[2];
         }
-        if (req) return locale;
+        this.locale = result;
+        if (req) return result || null;
         else {
-            var index = this.opt.supported.indexOf(locale);
-            this.locale = index > -1 ? this.opt.supported[index] : this.opt.default;
-            return this.locale;
+            this.locale = result = this._check(result);
+            return fallback ? result || this.opt.default : (result || null);
         }
     },
     // From query, 'lang=en'
@@ -69,8 +69,16 @@ var accept = Proto.extend({
         var query;
         if (this.isKoa) query = this.request.query;
         else query = url.parse(this.request.url, true).query;
-        result = this._check(!_.isEmpty(query) ? query[key] : null);
-        return fallback ? result || this.getFromHeader() || this.opt.default : result;
+        this.locale = result = this._check(!_.isEmpty(query) ? query[key] : null);
+        return fallback ? result || this.getFromHeader() : (result || null);
+
+    },
+    //From domain
+    getFromDomain: function(fallback) {
+        var result;
+        result = this.request.hostname.toString().toLowerCase().trim().split(':')[0].split(/\./gi).reverse()[0];
+        this.locale = result = this._check(result);
+        return fallback ? result || this.getFromHeader() : (result || null);
 
     },
     // From subdomain, 'en.gengojs.com'
@@ -78,23 +86,23 @@ var accept = Proto.extend({
         var result;
         if (this.isKoa) result = this.request.subdomains[0];
         else result = this.request.headers.host.split('.')[0];
-        result = this._check(result);
-        return fallback ? result || this.getFromHeader() || this.opt.default : result;
+        this.locale = result = this._check(result);
+        return fallback ? result || this.getFromHeader() : (result || null);
 
     },
     // From cookie, 'lang=ja'
     getFromCookie: function(key, fallback) {
         var result;
         result = this.cookie ? cookie.parse(this.cookie)[key] : null;
-        result = this._check(result);
-        return fallback ? result || this.getFromHeader() || this.opt.default : result;
+        this.locale = result = this._check(result);
+        return fallback ? result || this.getFromHeader() : (result || null);
 
     },
     // From URL, 'http://gengojs.com/en'
     getFromUrl: function(fallback) {
         var result;
-        result = this._check(this.request.path.substring(1).split('/').shift());
-        return fallback ? result || this.getFromHeader() || this.opt.default : result;
+        this.locale = result = this._check(this.request.path.substring(1).split('/').shift());
+        return fallback ? result || this.getFromHeader() : (result || null);
 
     },
     //From all, when specified in opt
@@ -103,6 +111,7 @@ var accept = Proto.extend({
             query = this.getFromQuery(this.opt.keys.query),
             cookie = this.getFromCookie(this.opt.keys.cookie),
             url = this.getFromUrl(),
+            domain = this.getFromDomain(),
             subdomain = this.getFromSubdomain();
         _.forEach(this.opt.detect, function(value, key) {
             switch (key) {
@@ -115,6 +124,9 @@ var accept = Proto.extend({
                 case 'url':
                     if (value) this.locale = url;
                     break;
+                case 'domain':
+                    if (value) this.locale = domain;
+                    break;
                 case 'subdomain':
                     if (value) this.locale = subdomain;
                     break;
@@ -123,7 +135,6 @@ var accept = Proto.extend({
                     break;
             }
         }, this);
-        this.locale = this.locale ? this.locale : this.opt.default;
         return this.locale;
     },
     _options: function(opt) {
@@ -139,6 +150,7 @@ var accept = Proto.extend({
                 cookie: false,
                 query: false,
                 url: false,
+                domain: false,
                 subdomain: false
             })
         });

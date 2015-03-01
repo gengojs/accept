@@ -278,6 +278,99 @@ describe('Begin module "accept" tests with koa', function() {
         });
     });
 
+    describe('Test getFromDomain()', function() {
+        describe('with default options', function() {
+            var koa = require('koa');
+            var app = koa();
+            var subdomainOptions = {
+                base: 'localhost.com' //base is required, you'll get an error without it.
+            };
+
+            app.use(subdomain(subdomainOptions));
+            app.use(function*(next) {
+                var result = accept(this);
+
+                var filter = {
+                    getFromDomain: result.getFromDomain()
+                };
+                this.body = filter;
+                yield next;
+            });
+
+            it('Accept should !== "en"', function(done) {
+                request(app.listen())
+                    .get('/api/:localhost')
+                    .set('Host', 'api.localhost.com')
+                    .set('Accept-Language', 'en-US')
+                    .expect(function(res) {
+                        var result = res.body;
+                        assert.notStrictEqual(result.getFromDomain, 'en');
+
+                    })
+                    .end(done);
+            });
+
+            it('Accept should !== "ja"', function(done) {
+                request(app.listen())
+                    .get('/api/:localhost')
+                    .set('host', 'api.localhost.en')
+                    .set('Accept-Language', 'en-US')
+                    .expect(function(res) {
+                        var result = res.body;
+                        assert.notStrictEqual(result.getFromDomain, 'ja');
+                    })
+                    .end(done);
+            });
+        });
+        describe('with configured options', function() {
+            var koa = require('koa');
+            var app = koa();
+            var subdomainOptions = {
+                base: 'localhost.com' //base is required, you'll get an error without it.
+            };
+
+            app.use(subdomain(subdomainOptions));
+            app.use(function*(next) {
+                var opt = {
+                    supported: ['en-US', 'ja'],
+                    default: 'en'
+                };
+                var result = accept(this, opt);
+
+                var filter = {
+                    getFromDomain: result.getFromDomain(),
+                };
+                this.body = filter;
+                yield next;
+            });
+
+            it('Accept should === "en"', function(done) {
+                request(app.listen())
+                    .get('/api/:localhost')
+                    .set('Host', 'api.localhost.en')
+                    .set('Accept-Language', 'en-US')
+                    .expect(function(res) {
+                        var result = res.body;
+                        assert.strictEqual(result.getFromDomain, 'en');
+
+                    })
+                    .end(done);
+            });
+
+            it('Accept should === "ja"', function(done) {
+                request(app.listen())
+                    .get('/api/:localhost')
+                    .set('host', 'api.localhost.ja')
+                    .set('Accept-Language', 'en-US')
+                    .expect(function(res) {
+                        var result = res.body;
+                        assert.strictEqual(result.getFromDomain, 'ja');
+
+                    })
+                    .end(done);
+            });
+        });
+    });
 
     describe('Test getFromSubdomain()', function() {
         describe('with default options', function() {
