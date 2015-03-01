@@ -15,3 +15,6 @@
 * Updated readme
 * Fixes the `this.locale` to be set when whatever function is called.
 * Added more tests
+
+**0.0.5**
+* Updated readme
