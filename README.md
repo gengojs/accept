@@ -62,6 +62,18 @@ app.use(function*(next) {
 |<code>keys</code>| The keys to use for query and cookie | <code>{query:'locale', cookie:'locale'}</code>
 |<code>detect</code>|The method of parsing allowed to get locale.| <code>{header: true, cookie: false, query: false, url: false, subdomain: false}</code>|
 
+```js
+accept(req, opt);
+//example
+accept(req, {
+    default:'ja',
+    detect:{
+        header:false,
+        cookie:true
+    }
+})
+```
+
 ##Changelog
 
 For changelog, visit the [GitHub](https://github.com/iwatakeshi/gengojs-accept/blob/master/CHANGELOG.md) page.
