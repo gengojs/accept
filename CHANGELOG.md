@@ -18,3 +18,8 @@
 
 **0.0.5**
 * Updated readme
+
+**0.0.6**
+* Updated readme
+* Added `check` option
+* Updated code to reflect the new option (no breaking changes).

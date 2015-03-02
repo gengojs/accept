@@ -53,14 +53,30 @@ app.use(function*(next) {
 |detectLocale()|Return the locale by the specified detect options|    |
 |getLocale()|Returns the current locale|    |
 
+**Note:**
+
+The `req` Object for `getFromAcceptLanguage` and `getFromHeader` are optional. Therefore, you can pass `null` like the following to just get the value when fallback is needed:
+
+```js
+//example
+getFromHeader(null, true);
+//normally you would call like this since req 
+//has already been set internally:
+getFromHeader();
+```
+
+Also, if fallback is specified, gengojs-accept will fallback to your default locale. This fallback approach comes from ruby's [2.2 Optional: Custom I18n Configuration Setup](http://guides.rubyonrails.org/i18n.html#optional-custom-i18n-configuration-setup). If checking against the supported locales is not needed for your app, just set the `check` option to `false`.
+
 ##Options
 
 |Name  |Description | Default
 |---|---|---|
+|<code>check</code>| Compare against the supported locales | <code>true</code>
 |<code>default</code> | The default locale | <code>"en-US"</code>
 |<code>supported</code>| The supported locales | <code>["en-US"]</code>
 |<code>keys</code>| The keys to use for query and cookie | <code>{query:'locale', cookie:'locale'}</code>
-|<code>detect</code>|The method of parsing allowed to get locale.| <code>{header: true, cookie: false, query: false, url: false, subdomain: false}</code>|
+|<code>detect</code>|The method of parsing allowed to get locale.| <code>{header: true, cookie: false, query: false, url: false, domain:false, subdomain: false}</code>|
+
 
 ```js
 accept(req, opt);

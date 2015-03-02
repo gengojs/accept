@@ -43,7 +43,7 @@ var accept = Proto.extend({
     getAcceptLanguage: function(req) {
         if (req) this['accept-language'] = req.header['accept-language'] || req.headers['accept-language'] || '';
         else this['accept-language'] = this.request.header['accept-language'] || this.request.headers['accept-language'] || '';
-        return this['accept-language'];
+        return this['accept-language'] || null;
     },
     getLocale: function() {
         return this.locale;
@@ -60,7 +60,7 @@ var accept = Proto.extend({
         if (req) return result || null;
         else {
             this.locale = result = this._check(result);
-            return fallback ? result || this.opt.default : (result || null);
+            return fallback ? result || null : (result || null);
         }
     },
     // From query, 'lang=en'
@@ -70,7 +70,7 @@ var accept = Proto.extend({
         if (this.isKoa) query = this.request.query;
         else query = url.parse(this.request.url, true).query;
         this.locale = result = this._check(!_.isEmpty(query) ? query[key] : null);
-        return fallback ? result || this.getFromHeader() : (result || null);
+        return fallback ? result || null : (result || null);
 
     },
     //From domain
@@ -78,7 +78,7 @@ var accept = Proto.extend({
         var result;
         result = this.request.hostname.toString().toLowerCase().trim().split(':')[0].split(/\./gi).reverse()[0];
         this.locale = result = this._check(result);
-        return fallback ? result || this.getFromHeader() : (result || null);
+        return fallback ? result || null : (result || null);
 
     },
     // From subdomain, 'en.gengojs.com'
@@ -87,7 +87,7 @@ var accept = Proto.extend({
         if (this.isKoa) result = this.request.subdomains[0];
         else result = this.request.headers.host.split('.')[0];
         this.locale = result = this._check(result);
-        return fallback ? result || this.getFromHeader() : (result || null);
+        return fallback ? result || null : (result || null);
 
     },
     // From cookie, 'lang=ja'
@@ -95,14 +95,14 @@ var accept = Proto.extend({
         var result;
         result = this.cookie ? cookie.parse(this.cookie)[key] : null;
         this.locale = result = this._check(result);
-        return fallback ? result || this.getFromHeader() : (result || null);
+        return fallback ? result || null : (result || null);
 
     },
     // From URL, 'http://gengojs.com/en'
     getFromUrl: function(fallback) {
         var result;
         this.locale = result = this._check(this.request.path.substring(1).split('/').shift());
-        return fallback ? result || this.getFromHeader() : (result || null);
+        return fallback ? result || null : (result || null);
 
     },
     //From all, when specified in opt
@@ -139,6 +139,7 @@ var accept = Proto.extend({
     },
     _options: function(opt) {
         this.opt = _.defaults(opt || {}, {
+            check: true,
             default: 'en-US',
             supported: ['en-US'],
             keys: _.defaults(opt ? (opt.keys ? opt.keys : {}) : {}, {
@@ -156,10 +157,14 @@ var accept = Proto.extend({
         });
     },
     _check: function(result) {
-        var index = this.opt.supported.indexOf(result);
-        var locale = this.opt.supported[index];
-        locale = locale ? locale : this.opt.default;
-        return locale;
+        if (this.opt.check) {
+            var index = this.opt.supported.indexOf(result);
+            var locale = this.opt.supported[index];
+            locale = locale ? locale : this.opt.default;
+            return locale;
+        } else return result;
+
+
     }
 });
 
