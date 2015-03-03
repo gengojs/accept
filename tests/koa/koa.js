@@ -80,6 +80,31 @@ describe('Begin module "accept" tests with koa', function() {
         });
     });
 
+    describe('Test accept as middleware', function() {
+        var koa = require('koa');
+        var app = koa();
+        var route = require('koa-route');
+
+        var a = require('../../koa/')
+        app.use(a());
+        app.use(function*() {
+            this.body = {
+                result: this.request.accept.getFromHeader()
+            };
+        })
+
+        it('Accept should === "en-US"', function(done) {
+            request(app.listen())
+                .get('/')
+                .set('Accept-Language', 'en-US')
+                .expect(function(res) {
+                    assert.strictEqual(res.body.result, 'en-US');
+
+                })
+                .end(done);
+        });
+
+    });
 
     describe('Test getLocale()', function() {
         describe('with default options', function() {

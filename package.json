@@ -1,6 +1,6 @@
 {
     "name": "gengojs-accept",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "Express and Koa locale parser.",
     "main": "index.js",
     "directories": {
@@ -17,6 +17,8 @@
         "express": "^4.12.0",
         "feathers": "*",
         "koa": "^0.18.0",
+        "koa-bodyparser": "^1.4.0",
+        "koa-route": "^2.4.0",
         "mocha": "^2.1.0",
         "subdomain": "^1.2.0",
         "supertest": "^0.15.0"

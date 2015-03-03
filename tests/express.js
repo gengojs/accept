@@ -34,7 +34,30 @@ describe('Begin module "accept" tests with express', function() {
             done();
         });
     });
+    describe('Test accept as middleware', function() {
+        var a = require('../express/');
+        var express = require('express');
+        var app = express();
+        app.use(a());
+        app.get('/', function(req, res) {
+            res.send({
+                result: req.accept.getFromHeader()
+            });
+        });
 
+        it('Accept should === "en-US"', function(done) {
+            request(app)
+                .get('/')
+                .set('Accept-Language', 'en-US')
+                .expect(function(res) {
+                    assert.strictEqual(res.body.result, 'en-US');
+
+                })
+                .end(done);
+
+        });
+
+    });
     describe('Test getLocale()', function() {
         describe('with default options', function() {
             var express = require('express');

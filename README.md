@@ -17,6 +17,8 @@ This module parses the accept-language header from either express or koa and ret
 npm install --save gengojs-accept
 ```
 
+**As standalone:**
+
 ```js
 var accept = require('gengojs-accept')
 //In express
@@ -38,6 +40,46 @@ app.use(function*(next) {
     yield next;
 });
 ```
+
+**As middleware:**
+
+```js
+//koa example
+var koa = require('koa');
+var app = koa();
+//note the path to koa middleware!
+var accept = require('gengojs-accept/koa');
+
+app.use(accept());
+
+app.use(function*() {
+    var req = this.request;
+    this.body = req.accept.getFromHeader();
+});
+
+app.listen(3000);
+
+```
+
+```js
+//express example
+var express = require('express');
+var app = express();
+//note the path to express middleware!
+var accept = require('gengojs-accept/express');
+
+app.use(accept());
+
+app.get('/', function(req, res) {
+    res.send(req.accept.getFromHeader());
+});
+
+app.listen(3000);
+```
+
+**Note:**
+
+gengojs-accept will attach to both request and response object for both express and koa.
 
 ##API
 
