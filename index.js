@@ -163,8 +163,6 @@ var accept = Proto.extend({
             locale = locale ? locale : this.opt.default;
             return locale;
         } else return result;
-
-
     }
 });
 
