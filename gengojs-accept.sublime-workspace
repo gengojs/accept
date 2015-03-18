@@ -520,42 +520,10 @@
 	"buffers":
 	[
 		{
-			"file": "hapi/index.js",
-			"settings":
-			{
-				"buffer_size": 475,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "tests/hapi/hapi.js",
-			"settings":
-			{
-				"buffer_size": 21657,
-				"line_ending": "Windows"
-			}
-		},
-		{
-			"file": "package.json",
-			"settings":
-			{
-				"buffer_size": 1238,
-				"line_ending": "Unix"
-			}
-		},
-		{
-			"file": ".travis.yml",
-			"settings":
-			{
-				"buffer_size": 158,
-				"line_ending": "Windows"
-			}
-		},
-		{
 			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 5644,
+				"buffer_size": 1198,
 				"line_ending": "Windows"
 			}
 		},
@@ -563,7 +531,7 @@
 			"file": "CHANGELOG.md",
 			"settings":
 			{
-				"buffer_size": 730,
+				"buffer_size": 806,
 				"line_ending": "Windows"
 			}
 		}
@@ -576,6 +544,10 @@
 		[
 			[
 				"preview",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"preivew",
 				"Markdown Preview: Preview in Browser"
 			],
 			[
@@ -970,18 +942,28 @@
 	},
 	"expanded_folders":
 	[
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/hapi"
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept"
 	],
 	"file_history":
 	[
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/params.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/index.html",
+		"/C/Users/Takeshi/Downloads/Untitled Document.md.html",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/.gitignore",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/stylesheets/pygment_trac.css",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/Makefile",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/.travis.yml",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/README.md",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/CHANGELOG.md",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/hapi/hapi.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/out/index.html",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/koa/koa.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/feathers.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/express.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/package.json",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa/index.js",
@@ -1048,7 +1030,6 @@
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/static.api.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/accept-language.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract.js",
-		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/locales/locales.json",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/.gitignore",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/test.js",
@@ -1092,18 +1073,7 @@
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan/views/index.jade",
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_global.scss",
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/_settings.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_top-bar.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/index.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/app.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/dash/dash.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/index/index.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/signup/signup.scss",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/index.jade",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/app.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/signup.jade",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/dash.jade",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/public/js/app.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/routes/router.js"
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_top-bar.scss"
 	],
 	"find":
 	{
@@ -1128,6 +1098,9 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"&lt;code&gt;",
+			"&lt;/code&gt;",
+			"key in the",
 			"shot",
 			"log",
 			"getFromCookie",
@@ -1252,10 +1225,7 @@
 			"nav",
 			"main",
 			"#example",
-			"style",
-			"dir",
-			"destination",
-			"dest"
+			"style"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1263,6 +1233,10 @@
 		"regex": false,
 		"replace_history":
 		[
+			"<code>",
+			"<code/>",
+			"key for the",
+			"keyfor the",
 			"feathers",
 			"res.send({result:result})",
 			"body",
@@ -1335,146 +1309,24 @@
 	"groups":
 	[
 		{
-			"selected": 1,
+			"selected": 0,
 			"sheets":
 			[
 				{
 					"buffer": 0,
-					"file": "hapi/index.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 475,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								256,
-								256
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 1,
-					"type": "text"
-				},
-				{
-					"buffer": 1,
-					"file": "tests/hapi/hapi.js",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 21657,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								121,
-								121
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 0,
-					"type": "text"
-				},
-				{
-					"buffer": 2,
-					"file": "package.json",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 1238,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								49,
-								49
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/JavaScript/JSON.tmLanguage",
-							"tab_size": 2,
-							"translate_tabs_to_spaces": true
-						},
-						"translation.x": 0.0,
-						"translation.y": 114.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 2,
-					"type": "text"
-				},
-				{
-					"buffer": 3,
-					"file": ".travis.yml",
-					"semi_transient": false,
-					"settings":
-					{
-						"buffer_size": 158,
-						"regions":
-						{
-						},
-						"selection":
-						[
-							[
-								104,
-								104
-							]
-						],
-						"settings":
-						{
-							"syntax": "Packages/YAML/YAML.tmLanguage"
-						},
-						"translation.x": 0.0,
-						"translation.y": 0.0,
-						"zoom_level": 1.0
-					},
-					"stack_index": 3,
-					"type": "text"
-				},
-				{
-					"buffer": 4,
 					"file": "README.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 5644,
+						"buffer_size": 1198,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								5515,
-								5515
-							],
-							[
-								5519,
-								5519
+								860,
+								860
 							]
 						],
 						"settings":
@@ -1489,35 +1341,35 @@
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 4,
+					"stack_index": 0,
 					"type": "text"
 				},
 				{
-					"buffer": 5,
+					"buffer": 1,
 					"file": "CHANGELOG.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 730,
+						"buffer_size": 806,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								729,
-								729
+								806,
+								806
 							]
 						],
 						"settings":
 						{
 							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
 						},
-						"translation.x": 0.0,
-						"translation.y": 575.0,
+						"translation.x": -0.0,
+						"translation.y": 897.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 5,
+					"stack_index": 1,
 					"type": "text"
 				}
 			]
