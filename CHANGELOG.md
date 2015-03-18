@@ -42,3 +42,8 @@
 * Updated readme
 * Added and cleaned tests
 * Updated package
+
+**0.0.8**
+
+* Added beautiful comments
+* Fixed minor bug

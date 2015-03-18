@@ -5,7 +5,19 @@
 		[
 			[
 				"getFrom",
-				"getFromAcceptLanguage"
+				"getFromCookie"
+			],
+			[
+				"getfrom",
+				"getFromDomain"
+			],
+			[
+				"bdy",
+				"body"
+			],
+			[
+				"boy",
+				"body"
 			],
 			[
 				"Hapi",
@@ -86,10 +98,6 @@
 			[
 				"detect",
 				"detectLocale"
-			],
-			[
-				"getfrom",
-				"getFromSubdomain"
 			],
 			[
 				"subdoam",
@@ -506,32 +514,24 @@
 			[
 				"IO",
 				"IOException"
-			],
-			[
-				"cure",
-				"currentChar"
-			],
-			[
-				"note",
-				"note"
 			]
 		]
 	},
 	"buffers":
 	[
 		{
-			"file": "tests/hapi/hapi.js",
+			"file": "hapi/index.js",
 			"settings":
 			{
-				"buffer_size": 19425,
+				"buffer_size": 475,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "tests/koa/koa.js",
+			"file": "tests/hapi/hapi.js",
 			"settings":
 			{
-				"buffer_size": 25647,
+				"buffer_size": 21657,
 				"line_ending": "Windows"
 			}
 		},
@@ -539,23 +539,31 @@
 			"file": "package.json",
 			"settings":
 			{
-				"buffer_size": 1253,
+				"buffer_size": 1238,
 				"line_ending": "Unix"
 			}
 		},
 		{
-			"file": "hapi/index.js",
+			"file": ".travis.yml",
 			"settings":
 			{
-				"buffer_size": 528,
+				"buffer_size": 158,
 				"line_ending": "Windows"
 			}
 		},
 		{
-			"file": "index.js",
+			"file": "README.md",
 			"settings":
 			{
-				"buffer_size": 6222,
+				"buffer_size": 5644,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "CHANGELOG.md",
+			"settings":
+			{
+				"buffer_size": 730,
 				"line_ending": "Windows"
 			}
 		}
@@ -569,6 +577,10 @@
 			[
 				"preview",
 				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
 			],
 			[
 				"javascne",
@@ -935,7 +947,7 @@
 				"Package Control: Install Package"
 			]
 		],
-		"width": 856.0
+		"width": 893.0
 	},
 	"console":
 	{
@@ -959,13 +971,16 @@
 	"expanded_folders":
 	[
 		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/hapi",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/hapi",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/koa"
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/hapi"
 	],
 	"file_history":
 	[
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/hapi/hapi.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/koa/koa.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/feathers.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/express.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/package.json",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
 		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
@@ -1009,11 +1024,7 @@
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/filter.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/store.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/feathers.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/express/index.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/express.js",
-		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/koa/koa.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/koa/index.js",
 		"/C/Users/Takeshi/Documents/GitHub/gengomd/4deddfa9860e7dc25327/gengojs.md",
 		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/string/lib/string.js",
@@ -1092,8 +1103,7 @@
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/signup.jade",
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/dash.jade",
 		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/public/js/app.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/routes/router.js",
-		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/controllers/passport.js"
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/routes/router.js"
 	],
 	"find":
 	{
@@ -1118,6 +1128,17 @@
 		"case_sensitive": true,
 		"find_history":
 		[
+			"shot",
+			"log",
+			"getFromCookie",
+			"express",
+			"res.send(filter)",
+			"result",
+			"isHapi",
+			"log",
+			"_check",
+			"this.request.head",
+			"log",
 			"this.header",
 			"log",
 			"lg",
@@ -1234,18 +1255,7 @@
 			"style",
 			"dir",
 			"destination",
-			"dest",
-			"path",
-			"matt",
-			"img",
-			"example",
-			"examplme",
-			"#toc",
-			"#example",
-			"</>",
-			"				",
-			"hover",
-			"font"
+			"dest"
 		],
 		"highlight": true,
 		"in_selection": false,
@@ -1253,6 +1263,9 @@
 		"regex": false,
 		"replace_history":
 		[
+			"feathers",
+			"res.send({result:result})",
+			"body",
 			"",
 			"koa",
 			"jade",
@@ -1327,19 +1340,19 @@
 			[
 				{
 					"buffer": 0,
-					"file": "tests/hapi/hapi.js",
+					"file": "hapi/index.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 19425,
+						"buffer_size": 475,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								11975,
-								11975
+								256,
+								256
 							]
 						],
 						"settings":
@@ -1349,27 +1362,27 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 1231.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 3,
+					"stack_index": 1,
 					"type": "text"
 				},
 				{
 					"buffer": 1,
-					"file": "tests/koa/koa.js",
+					"file": "tests/hapi/hapi.js",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 25647,
+						"buffer_size": 21657,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								89,
-								89
+								121,
+								121
 							]
 						],
 						"settings":
@@ -1391,15 +1404,15 @@
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 1253,
+						"buffer_size": 1238,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								412,
-								412
+								49,
+								49
 							]
 						],
 						"settings":
@@ -1409,7 +1422,7 @@
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 228.0,
+						"translation.y": 114.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 2,
@@ -1417,62 +1430,94 @@
 				},
 				{
 					"buffer": 3,
-					"file": "hapi/index.js",
+					"file": ".travis.yml",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 528,
+						"buffer_size": 158,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								266,
-								266
+								104,
+								104
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
-							"tab_size": 4,
-							"translate_tabs_to_spaces": true
+							"syntax": "Packages/YAML/YAML.tmLanguage"
 						},
-						"translation.x": -0.0,
+						"translation.x": 0.0,
 						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
-					"stack_index": 1,
+					"stack_index": 3,
 					"type": "text"
 				},
 				{
 					"buffer": 4,
-					"file": "index.js",
+					"file": "README.md",
 					"semi_transient": false,
 					"settings":
 					{
-						"buffer_size": 6222,
+						"buffer_size": 5644,
 						"regions":
 						{
 						},
 						"selection":
 						[
 							[
-								1415,
-								1415
+								5515,
+								5515
+							],
+							[
+								5519,
+								5519
 							]
 						],
 						"settings":
 						{
-							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"parser": "github",
+							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage",
 							"tab_size": 4,
+							"target": "disk",
 							"translate_tabs_to_spaces": true
 						},
 						"translation.x": 0.0,
-						"translation.y": 456.0,
+						"translation.y": 0.0,
 						"zoom_level": 1.0
 					},
 					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "CHANGELOG.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 730,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								729,
+								729
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 575.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
 					"type": "text"
 				}
 			]
@@ -1524,7 +1569,7 @@
 	"project": "gengojs-accept.sublime-project",
 	"replace":
 	{
-		"height": 50.0
+		"height": 64.0
 	},
 	"save_all_on_build": true,
 	"select_file":
