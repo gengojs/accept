@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <title>JSDoc: Source: index.js</title>
+
+    <script src="scripts/prettify/prettify.js"> </script>
+    <script src="scripts/prettify/lang-css.js"> </script>
+    <!--[if lt IE 9]>
+      <script src="//html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+    <![endif]-->
+    <link type="text/css" rel="stylesheet" href="styles/prettify-tomorrow.css">
+    <link type="text/css" rel="stylesheet" href="styles/jsdoc-default.css">
+</head>
+
+<body>
+
+<div id="main">
+
+    <h1 class="page-title">Source: index.js</h1>
+
+    
+
+
+
+    
+    <section>
+        <article>
+            <pre class="prettyprint source linenums"><code>/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/
+/**
+ * Takeshi Iwana aka iwatakeshi
+ * MIT 2015
+ * gengojs-accept
+ * This module parses the accept-language header
+ * and returns the approriate locale.
+ * Credits to @fundon
+ * https://github.com/koa-modules/koa-locale/blob/master/index.js
+ */
+'use strict';
+var Proto = require('uberproto');
+var url = require('url');
+var cookie = require('cookie');
+var _ = require('lodash');
+
+/**
+ * @constructor Accept
+ */
+var Accept = Proto.extend({
+    /**
+     * @description Initializes Accept.
+     * @param  {Object} req  The request object.
+     * @param  {Object} opt The options to configure accept.
+     * @return {Accept}     Then Accept instance.
+     * @private
+     */
+    init: function(req, opt) {
+        //set options
+        this._options(opt);
+        if (req) this.set(req);
+        return this;
+    },
+    /** 
+     * @description Sets Accept.
+     * @param {Object} req The request Object.
+     * @private
+     */
+    set: function(req) {
+
+        this['accept-language'] = '';
+        //koa?
+        if (req.request) {
+            this.isKoa = true;
+            this.request = req.request;
+            this.headers = this.request.header;
+            this.cookie = this.headers.cookie || this.headers.cookies;
+        } else if (req.raw) {
+            //maybe it's hapi
+            this.isHapi = true;
+            this.request = req;
+            this.headers = this.request.headers;
+            this.cookie = this.headers['set-cookie'] || {};
+        } else {
+            //then it's express
+            this.isKoa = false;
+            this.request = req;
+            this.headers = this.request.headers;
+            this.cookie = this.headers.cookie || this.headers.cookies;
+        }
+        this.detectLocale();
+    },
+    /** 
+     * @description Parses the headers for the Accept-Language.
+     * @param  {Object} req The request object.
+     * @return {(String | null)}     The parsed Accept-Language.
+     * @public
+     */
+    getAcceptLanguage: function(req) {
+        if (req) this['accept-language'] = req.header['accept-language'] || req.headers['accept-language'] || '';
+        else this['accept-language'] = this.headers['accept-language'];
+        return this['accept-language'] || null;
+    },
+    /**
+     * @description Returns the current locale.
+     * @return {String} The current locale.
+     * @public
+     */
+    getLocale: function() {
+        return this.locale;
+    },
+    /** 
+     * @description Sets the locale.
+     * @param {String} locale The locale to override the current.
+     * @public
+     */
+    setLocale: function(locale) {
+        this.locale = this._check(locale);
+        return this.locale;
+    },
+    // From accept-language, `Accept-Language: ja`
+    /**
+     * @description Parses the Accept-Language.
+     * @param  {Object} req      The request object.
+     * @param  {Boolean} fallback Fallback to default.
+     * @return {(String | null)}          The parsed locale.
+     * @public
+     */
+    getFromHeader: function(req, fallback) {
+        this.getAcceptLanguage(req);
+        var reg = /(^|,\s*)([a-z-0-9-]+)/gi,
+            match, result;
+        while ((match = reg.exec(this['accept-language']))) {
+            if (!result) result = match[2];
+        }
+        if (req) return result || null;
+        else {
+            this.locale = result = this._check(result);
+            return fallback ? result || null : (result || null);
+        }
+    },
+    // From query, 'lang=en'
+    /**
+     * @description Parses the query.
+     * @param  {String} key      The key for the query.
+     * @param  {Boolean} fallback Fallback to default.
+     * @return {(String | null)}          The parsed locale.
+     * @public
+     */
+    getFromQuery: function(key, fallback) {
+        var result;
+        var query;
+        if (this.isKoa || this.isHapi) query = this.request.query;
+        else query = this.request.query || url.parse(this.request.url, true).query;
+        this.locale = result = this._check(!_.isEmpty(query) ? query[key] || query[this.opt.keys.query] : null);
+        return fallback ? result || null : (result || null);
+
+    },
+    //From domain
+    /**
+     * @description Parses the domain.
+     * @param  {Boolean} fallback Fallback to default.
+     * @return {(String | null)}          The parsed locale.
+     * @public
+     */
+    getFromDomain: function(fallback) {
+        var result, hostname = this.request.hostname || this.request.info.hostname;
+        result = hostname ? hostname.toString().toLowerCase().trim().split(':')[0].split(/\./gi).reverse()[0] : null;
+        this.locale = result = this._check(result);
+        return fallback ? result || null : (result || null);
+
+    },
+    // From subdomain, 'en.gengojs.com'
+    /**
+     * @description Parses the subdomain.
+     * @param  {Boolean} fallback Fallback to default.
+     * @return {(String | null)}          The parsed locale.
+     * @public
+     */
+    getFromSubdomain: function(fallback) {
+        var result;
+        if (this.isKoa) result = this.request.subdomains[0];
+        else result = this.headers.host.split('.')[0];
+        this.locale = result = this._check(result);
+        return fallback ? result || null : (result || null);
+
+    },
+    // From cookie, 'lang=ja'
+    /**
+     * @description Parses the cookie.
+     * @param  {String} key      The key for the cookie.
+     * @param  {Boolean} fallback Fallback to default.
+     * @return {(String | null)}          The parsed locale.
+     * @public
+     */
+    getFromCookie: function(key, fallback) {
+        var result;
+        result = this.cookie ? cookie.parse(this.cookie)[key] || cookie.parse(this.cookie)[this.opt.keys.cookie] : null;
+        this.locale = result = this._check(result);
+        return fallback ? result || null : (result || null);
+
+    },
+    // From URL, 'http://gengojs.com/en'
+    /**
+     * @description Parses the url.
+     * @param  {Boolean} fallback Fallback to default.
+     * @return {(String | null)}          The parsed locale.
+     * @public
+     */
+    getFromUrl: function(fallback) {
+        var result, path = this.request.path || this.request.url.path;
+        this.locale = result = this._check(path ? path.substring(1).split('/').shift() : '');
+        return fallback ? result || null : (result || null);
+
+    },
+    //From all, when specified in opt
+    /**
+     * @description Parses the locale by the specified type of parsing.
+     * @return {String} The parsed locale.
+     * @public
+     */
+    detectLocale: function() {
+        _.forEach(this.opt.detect, function(value, key) {
+            switch (key) {
+                case 'header':
+                    if (value) this.locale = this.getFromHeader();
+                    break;
+                case 'cookie':
+                    if (value) this.locale = this.getFromCookie(this.opt.keys.cookie);
+                    break;
+                case 'url':
+                    if (value) this.locale = this.getFromUrl();
+                    break;
+                case 'domain':
+                    if (value) this.locale = this.getFromDomain();
+                    break;
+                case 'subdomain':
+                    if (value) this.locale = this.getFromSubdomain();
+                    break;
+                case 'query':
+                    if (value) this.locale = this.getFromQuery(this.opt.keys.query);
+                    break;
+            }
+        }, this);
+        return this.locale;
+    },
+    /**
+     * @description Sets the options.
+     * @param  {Objject} opt The options.
+     * @private
+     */
+    _options: function(opt) {
+        this.opt = _.defaults(opt || {}, {
+            check: true,
+            default: 'en-US',
+            supported: ['en-US'],
+            keys: _.defaults(opt ? (opt.keys ? opt.keys : {}) : {}, {
+                cookie: 'locale',
+                query: 'locale'
+            }),
+            detect: _.defaults(opt ? (opt.detect ? opt.detect : {}) : {}, {
+                header: true,
+                cookie: false,
+                query: false,
+                url: false,
+                domain: false,
+                subdomain: false
+            })
+        });
+    },
+    /**
+     * @description Checks if the result is supported.
+     * @param  {String} result The locale to check
+     * @return {String}        The locale.
+     * @private
+     */
+    _check: function(result) {
+        if (this.opt.check) {
+            var index = this.opt.supported.indexOf(result);
+            var locale = this.opt.supported[index];
+            locale = locale ? locale : this.opt.default;
+            return locale;
+        } else return result;
+    }
+});
+
+/** 
+ * @method accept
+ * @description The main accept method
+ * @param  {Object} req The request object.
+ * @param  {Object} opt The options to configure accept.
+ * @return {Accept}     Then Accept instance.
+ */
+module.exports = function accept(req, opt) {
+    return Accept.create(req, opt);
+};</code></pre>
+        </article>
+    </section>
+
+
+
+
+</div>
+
+<nav>
+    <h2><a href="index.html">Home</a></h2><h3>Classes</h3><ul><li><a href="Accept.html">Accept</a></li></ul><h3>Global</h3><ul><li><a href="global.html#accept">accept</a></li><li><a href="global.html#detectLocale">detectLocale</a></li><li><a href="global.html#getAcceptLanguage">getAcceptLanguage</a></li><li><a href="global.html#getFromCookie">getFromCookie</a></li><li><a href="global.html#getFromDomain">getFromDomain</a></li><li><a href="global.html#getFromHeader">getFromHeader</a></li><li><a href="global.html#getFromQuery">getFromQuery</a></li><li><a href="global.html#getFromSubdomain">getFromSubdomain</a></li><li><a href="global.html#getFromUrl">getFromUrl</a></li><li><a href="global.html#getLocale">getLocale</a></li><li><a href="global.html#setLocale">setLocale</a></li></ul>
+</nav>
+
+<br class="clear">
+
+<footer>
+    Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.3.0-beta2</a> on Wed Mar 18 2015 11:23:41 GMT-0600 (Mountain Daylight Time)
+</footer>
+
+<script> prettyPrint(); </script>
+<script src="scripts/linenumber.js"> </script>
+</body>
+</html>

@@ -1,0 +1,1752 @@
+{
+	"auto_complete":
+	{
+		"selected_items":
+		[
+			[
+				"getFrom",
+				"getFromCookie"
+			],
+			[
+				"getfrom",
+				"getFromDomain"
+			],
+			[
+				"bdy",
+				"body"
+			],
+			[
+				"boy",
+				"body"
+			],
+			[
+				"Hapi",
+				"isHapi"
+			],
+			[
+				"parser",
+				"parsers"
+			],
+			[
+				"accept",
+				"accept-language"
+			],
+			[
+				"dette",
+				"detectLocale"
+			],
+			[
+				"locale",
+				"localizeID"
+			],
+			[
+				"const",
+				"constructor	@constructor"
+			],
+			[
+				"lcali",
+				"localizeID"
+			],
+			[
+				"global",
+				"globalID"
+			],
+			[
+				"local",
+				"localize"
+			],
+			[
+				"globa",
+				"globalize"
+			],
+			[
+				"format",
+				"formatter"
+			],
+			[
+				"moment",
+				"moment-timezone"
+			],
+			[
+				"Locale",
+				"Localize"
+			],
+			[
+				"plura",
+				"hasPlurality"
+			],
+			[
+				"Regex",
+				"Regex"
+			],
+			[
+				"_for",
+				"_forOwn	Iterates over own enumerable properties of an object, executing the callback for each property."
+			],
+			[
+				"bing",
+				"bingo"
+			],
+			[
+				"_ise",
+				"_isEmpty	Checks if value is empty."
+			],
+			[
+				"d",
+				"d"
+			],
+			[
+				"detect",
+				"detectLocale"
+			],
+			[
+				"subdoam",
+				"subdomain"
+			],
+			[
+				"parse",
+				"_parser"
+			],
+			[
+				"search",
+				"search"
+			],
+			[
+				"asserdeep",
+				"assert.deepEqual"
+			],
+			[
+				"getfr",
+				"getFromQuery"
+			],
+			[
+				"defau",
+				"defaults"
+			],
+			[
+				"acce",
+				"accepted"
+			],
+			[
+				"accpet",
+				"accept-language"
+			],
+			[
+				"accep",
+				"accept-language"
+			],
+			[
+				"_isob",
+				"_.isPlainObject	Checks if value is an object created by the Object constructor."
+			],
+			[
+				"strict",
+				"assert.strictEqual"
+			],
+			[
+				"asser",
+				"assert.strictEqual"
+			],
+			[
+				"_iso",
+				"_.isPlainObject	Checks if value is an object created by the Object constructor."
+			],
+			[
+				"eqal",
+				"assert.equal"
+			],
+			[
+				"assertdee",
+				"assert.deepEqual"
+			],
+			[
+				"assertnote",
+				"assert.notStrictEqual"
+			],
+			[
+				"filter",
+				"filterObject"
+			],
+			[
+				"middlw",
+				"middlwares"
+			],
+			[
+				"middle",
+				"middlwares"
+			],
+			[
+				"deep",
+				"assert.deepEqual"
+			],
+			[
+				"stric",
+				"assert.strictEqual"
+			],
+			[
+				"rq",
+				"req	Require"
+			],
+			[
+				"def",
+				"default"
+			],
+			[
+				"defa",
+				"default"
+			],
+			[
+				"set",
+				"settings"
+			],
+			[
+				"index",
+				"indexOf"
+			],
+			[
+				"ext",
+				"extension"
+			],
+			[
+				"defu",
+				"default"
+			],
+			[
+				"has",
+				"hasValues"
+			],
+			[
+				"argm",
+				"arguments"
+			],
+			[
+				"argu",
+				"arguments"
+			],
+			[
+				"pa",
+				"parsers"
+			],
+			[
+				"vi",
+				"vimeo"
+			],
+			[
+				"he",
+				"height"
+			],
+			[
+				"youtu",
+				"youtube"
+			],
+			[
+				"par",
+				"parsers"
+			],
+			[
+				"load",
+				"loadModules"
+			],
+			[
+				"DEFINE",
+				"defineParser"
+			],
+			[
+				"ob",
+				"object"
+			],
+			[
+				"wr",
+				"wrap"
+			],
+			[
+				"log",
+				"log	JS - Log to console"
+			],
+			[
+				"ar",
+				"articles"
+			],
+			[
+				"in",
+				"inline"
+			],
+			[
+				"table",
+				"table-row"
+			],
+			[
+				"inli",
+				"inline-table"
+			],
+			[
+				"b",
+				"background-color"
+			],
+			[
+				"scr",
+				"script"
+			],
+			[
+				"vide",
+				"video-js"
+			],
+			[
+				"scro",
+				"scoller"
+			],
+			[
+				"back",
+				"background-color"
+			],
+			[
+				"marg",
+				"margin-top"
+			],
+			[
+				"padd",
+				"padding-bottom"
+			],
+			[
+				"s",
+				"style"
+			],
+			[
+				"co",
+				"column"
+			],
+			[
+				"bower",
+				"bower_components"
+			],
+			[
+				"opt",
+				"options"
+			],
+			[
+				"for",
+				"fori	JS - For In loop"
+			],
+			[
+				"ren",
+				"render"
+			],
+			[
+				"margin",
+				"margin-left"
+			],
+			[
+				"sty",
+				"style	Tag"
+			],
+			[
+				"stick",
+				"sticky"
+			],
+			[
+				"bord",
+				"border-bottom-right-radius"
+			],
+			[
+				"mar",
+				"margin-top"
+			],
+			[
+				"dec",
+				"text-decoration"
+			],
+			[
+				"ma",
+				"margin-top"
+			],
+			[
+				"top",
+				"top-bar"
+			],
+			[
+				"box",
+				"box-shadow"
+			],
+			[
+				"include",
+				"include-html-top-bar-classes"
+			],
+			[
+				"topb",
+				"topbar-bg"
+			],
+			[
+				"topbar",
+				"include-html-top-bar-classes"
+			],
+			[
+				"topbar-",
+				"include-html-top-bar-classes"
+			],
+			[
+				"con",
+				"content"
+			],
+			[
+				"border-bo",
+				"border-bottom-left-radius"
+			],
+			[
+				"font",
+				"font-size"
+			],
+			[
+				"li",
+				"lin	link()"
+			],
+			[
+				"val",
+				"isValid"
+			],
+			[
+				"on",
+				"onSuccess"
+			],
+			[
+				"sing",
+				"signupForm"
+			],
+			[
+				"email",
+				"email"
+			],
+			[
+				"sin",
+				"signup"
+			],
+			[
+				"cr",
+				"crypto"
+			],
+			[
+				"valid",
+				"validSignup"
+			],
+			[
+				"vali",
+				"validateEmail"
+			],
+			[
+				"rqe",
+				"require"
+			],
+			[
+				"new",
+				"newUser"
+			],
+			[
+				"pad",
+				"padding"
+			],
+			[
+				"lo",
+				"locked"
+			],
+			[
+				"su",
+				"success"
+			],
+			[
+				"min",
+				"min-width"
+			],
+			[
+				"t",
+				"try"
+			],
+			[
+				"soc",
+				"SocialRouter"
+			],
+			[
+				"si",
+				"signup"
+			],
+			[
+				"signup",
+				"SignupView"
+			],
+			[
+				"mal",
+				"mailer"
+			],
+			[
+				"r",
+				"ractive-adaptors-backbone"
+			],
+			[
+				"rand",
+				"randomIndex"
+			],
+			[
+				"ht",
+				"https"
+			],
+			[
+				"stt",
+				"status"
+			],
+			[
+				"list",
+				"listeners"
+			],
+			[
+				"Mes",
+				"Message"
+			],
+			[
+				"re",
+				"recieve"
+			],
+			[
+				"E",
+				"EOF"
+			],
+			[
+				"Cur",
+				"currentChar"
+			],
+			[
+				"IO",
+				"IOException"
+			]
+		]
+	},
+	"buffers":
+	[
+		{
+			"contents": "var accept = require('../index');\nmodule.exports = function(opt) {\n    var register = function(plugin, options, next) {\n        plugin.ext('onPreHandler', function(request, reply) {\n            if(!request.accept) request.accept = accept(request, options);\n            reply.continue();\n        });\n        next();\n    };\n    register.attributes = {\n        name: require('../package').name\n    };\n    return {\n        register: register,\n        options: opt || {}\n    };\n}\n",
+			"file": "hapi/index.js",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 475,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "var Hapi = require('hapi');\nvar accept = require('../../index');\nvar assert = require('chai').assert;\n\ndescribe('Begin module \"accept\" tests with hapi', function() {\n    describe('Test options', function() {\n        it('The default \"default\" should === \"en-US\"', function(done) {\n            var result = accept();\n            assert.strictEqual(result.opt.default, 'en-US');\n            done();\n        });\n\n        it('The configured \"default\" should === \"ja\"', function(done) {\n            var result = accept(null, {\n                default: 'ja'\n            });\n            assert.strictEqual(result.opt.default, 'ja');\n            done();\n        });\n\n        it('The default \"supported\" should === \"[\"en-US\"]\"', function(done) {\n            var result = accept();\n            assert.deepEqual(result.opt.supported, ['en-US']);\n            done();\n        });\n\n        it('The configured \"default\" should === \"[\"en-US\", \"ja\"]\"', function(done) {\n            var result = accept(null, {\n                supported: ['en-US', 'ja']\n            });\n            assert.deepEqual(result.opt.supported, ['en-US', 'ja']);\n            done();\n        });\n    });\n    describe('Test accept as middleware', function() {\n\n        var server = new Hapi.Server();\n        server.connection({\n            host: 'localhost',\n            port: 3000\n        });\n\n        var handler = function(request, reply) {\n            return reply(request.accept.getLocale());\n        };\n        server.register(require('../../hapi/')(), function(err) {\n            if (err) console.log('an error occurred');\n        });\n        server.route({\n            method: 'GET',\n            path: '/',\n            handler: handler\n        });\n        server.start(function() {\n\n        });\n        it('Accept should === \"en-US\"', function(done) {\n            server.inject({\n                method: 'GET',\n                url: '/'\n            }, function(res) {\n                assert.isObject(res.request.accept);\n                assert.strictEqual(res.result, 'en-US');\n                assert.strictEqual(res.request.accept.getLocale(), 'en-US');\n\n                done();\n            });\n        });\n\n        server.stop(function() {\n\n        });\n    });\n\n    describe('Test getLocale()', function() {\n        describe('with default options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request).getLocale());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {\n\n            });\n            it('Accept should === \"en-US\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en-US');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n        describe('with configured options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request, {\n                    supported: ['ja', 'en-US']\n                }).getLocale());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"ja\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'ja');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n    });\n\n    describe('Test setLocale()', function() {\n        describe('with default options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request).setLocale('en'));\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"en-US\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en-US');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n        describe('with configured options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request, {\n                    supported: ['ja', 'en-US', 'en']\n                }).setLocale('en'));\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n    });\n\n    describe('Test getFromQuery()', function() {\n        describe('with default options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request).getFromQuery('locale'));\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should !== \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/?locale=en',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en-US');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n\n        describe('with configured options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request, {\n                    supported: ['en']\n                }).getFromQuery('locale'));\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/?locale=en',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n    });\n    describe('Test getAcceptLanguage()', function() {\n        describe('with default options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request).getAcceptLanguage());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"ja\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'ja');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n    });\n\n    describe('Test getFromDomain()', function() {\n        describe('with default options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request).getFromDomain());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should !== \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test',\n                        'Host': 'example.en'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en-US');\n                    assert.notStrictEqual(res.result, 'en');\n                    assert.strictEqual(res.statusCode, 200);\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n\n        describe('with configured options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request, {\n                    supported: ['en']\n                }).getFromDomain());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test',\n                        'Host': 'localhost.en'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n    });\n    describe('Test getFromSubdomain()', function() {\n        describe('with default options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request).getFromSubdomain());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should !== \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test',\n                        'Host': 'en.example.ja'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en-US');\n                    assert.notStrictEqual(res.result, 'en');\n                    assert.strictEqual(res.statusCode, 200);\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n\n        describe('with configured options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request, {\n                    supported: ['en']\n                }).getFromSubdomain());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'mycookie=test',\n                        'Host': 'en.localhost.ja'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en');\n                    assert.strictEqual(res.statusCode, 200);\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n    });\n\n    describe('Test getFromUrl()', function() {\n        describe('with default options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request).getFromUrl());\n            };\n            server.route({\n                method: 'GET',\n                path: '/en',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should !== \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/en',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'locale=ja'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en-US');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n        describe('with configured options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request, {\n                    supported: ['ja', 'en-US', 'en']\n                }).getFromUrl());\n            };\n            server.route({\n                method: 'GET',\n                path: '/en',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/en',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'locale=ja'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n    });\n    describe('Test getFromCookie()', function() {\n        describe('with default options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request).getFromCookie());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should !== \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/?locale=en',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'locale=en'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en-US');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n        describe('with configured options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request, {\n                    supported: ['ja', 'en-US', 'en']\n                }).getFromCookie());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'locale=en'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n    });\n\n    describe('Test detectLocale()', function() {\n        describe('with default options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request).detectLocale());\n            };\n            server.route({\n                method: 'GET',\n                path: '/',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should !== \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/?locale=en',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'locale=ja'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en-US');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n        describe('with configured options', function() {\n            var server = new Hapi.Server();\n            server.connection({\n                host: 'localhost',\n                port: 3000\n            });\n\n            var handler = function(request, reply) {\n                return reply(accept(request, {\n                    supported: ['ja', 'en-US', 'en'],\n                    default: 'en',\n                    detect: {\n                        header: false,\n                        url: true\n                    }\n                }).detectLocale());\n            };\n            server.route({\n                method: 'GET',\n                path: '/en',\n                handler: handler\n            });\n            server.start(function() {});\n            it('Accept should === \"en\"', function(done) {\n                server.inject({\n                    method: 'GET',\n                    url: '/en',\n                    headers: {\n                        'Accept-Language': 'ja',\n                        'Set-Cookie': 'locale=en'\n                    }\n                }, function(res) {\n                    assert.strictEqual(res.result, 'en');\n                    done();\n                });\n            });\n            server.stop(function() {});\n        });\n    });\n\n\n\n});",
+			"file": "tests/hapi/hapi.js",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 21657,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "/*jslint node: true, forin: true, jslint white: true, newcap: true, curly: false*/\n/**\n * Takeshi Iwana aka iwatakeshi\n * MIT 2015\n * gengojs-accept\n * This module parses the accept-language header\n * and returns the approriate locale.\n * Credits to @fundon\n * https://github.com/koa-modules/koa-locale/blob/master/index.js\n */\n'use strict';\nvar Proto = require('uberproto');\nvar url = require('url');\nvar cookie = require('cookie');\nvar _ = require('lodash');\n\n/**\n * @constructor Accept\n */\nvar Accept = Proto.extend({\n    /**\n     * @description Initializes Accept.\n     * @param  {Object} req  The request object.\n     * @param  {Object} opt The options to configure accept.\n     * @return {Accept}     Then Accept instance.\n     * @private\n     */\n    init: function(req, opt) {\n        //set options\n        this._options(opt);\n        if (req) this.set(req);\n        return this;\n    },\n    /** \n     * @description Sets Accept.\n     * @param {Object} req The request Object.\n     * @private\n     */\n    set: function(req) {\n\n        this['accept-language'] = '';\n        //koa?\n        if (req.request) {\n            this.isKoa = true;\n            this.request = req.request;\n            this.headers = this.request.header;\n            this.cookie = this.headers.cookie || this.headers.cookies;\n        } else if (req.raw) {\n            //maybe it's hapi\n            this.isHapi = true;\n            this.request = req;\n            this.headers = this.request.headers;\n            this.cookie = this.headers['set-cookie'] || {};\n        } else {\n            //then it's express\n            this.isKoa = false;\n            this.request = req;\n            this.headers = this.request.headers;\n            this.cookie = this.headers.cookie || this.headers.cookies;\n        }\n        this.detectLocale();\n    },\n    /** \n     * @description Parses the headers for the Accept-Language.\n     * @param  {Object} req The request object.\n     * @return {(String | null)}     The parsed Accept-Language.\n     * @public\n     */\n    getAcceptLanguage: function(req) {\n        if (req) this['accept-language'] = req.header['accept-language'] || req.headers['accept-language'] || '';\n        else this['accept-language'] = this.headers['accept-language'];\n        return this['accept-language'] || null;\n    },\n    /**\n     * @description Returns the current locale.\n     * @return {String} The current locale.\n     * @public\n     */\n    getLocale: function() {\n        return this.locale;\n    },\n    /** \n     * @description Sets the locale.\n     * @param {String} locale The locale to override the current.\n     * @public\n     */\n    setLocale: function(locale) {\n        this.locale = this._check(locale);\n        return this.locale;\n    },\n    // From accept-language, `Accept-Language: ja`\n    /**\n     * @description Parses the Accept-Language.\n     * @param  {Object} req      The request object.\n     * @param  {Boolean} fallback Fallback to default.\n     * @return {(String | null)}          The parsed locale.\n     * @public\n     */\n    getFromHeader: function(req, fallback) {\n        this.getAcceptLanguage(req);\n        var reg = /(^|,\\s*)([a-z-0-9-]+)/gi,\n            match, result;\n        while ((match = reg.exec(this['accept-language']))) {\n            if (!result) result = match[2];\n        }\n        if (req) return result || null;\n        else {\n            this.locale = result = this._check(result);\n            return fallback ? result || null : (result || null);\n        }\n    },\n    // From query, 'lang=en'\n    /**\n     * @description Parses the query.\n     * @param  {String} key      The key for the query.\n     * @param  {Boolean} fallback Fallback to default.\n     * @return {(String | null)}          The parsed locale.\n     * @public\n     */\n    getFromQuery: function(key, fallback) {\n        var result;\n        var query;\n        if (this.isKoa || this.isHapi) query = this.request.query;\n        else query = this.request.query || url.parse(this.request.url, true).query;\n        this.locale = result = this._check(!_.isEmpty(query) ? query[key] || query[this.opt.keys.query] : null);\n        return fallback ? result || null : (result || null);\n\n    },\n    //From domain\n    /**\n     * @description Parses the domain.\n     * @param  {Boolean} fallback Fallback to default.\n     * @return {(String | null)}          The parsed locale.\n     * @public\n     */\n    getFromDomain: function(fallback) {\n        var result, hostname = this.request.hostname || this.request.info.hostname;\n        result = hostname ? hostname.toString().toLowerCase().trim().split(':')[0].split(/\\./gi).reverse()[0] : null;\n        this.locale = result = this._check(result);\n        return fallback ? result || null : (result || null);\n\n    },\n    // From subdomain, 'en.gengojs.com'\n    /**\n     * @description Parses the subdomain.\n     * @param  {Boolean} fallback Fallback to default.\n     * @return {(String | null)}          The parsed locale.\n     * @public\n     */\n    getFromSubdomain: function(fallback) {\n        var result;\n        if (this.isKoa) result = this.request.subdomains[0];\n        else result = this.headers.host.split('.')[0];\n        this.locale = result = this._check(result);\n        return fallback ? result || null : (result || null);\n\n    },\n    // From cookie, 'lang=ja'\n    /**\n     * @description Parses the cookie.\n     * @param  {String} key      The key for the cookie.\n     * @param  {Boolean} fallback Fallback to default.\n     * @return {(String | null)}          The parsed locale.\n     * @public\n     */\n    getFromCookie: function(key, fallback) {\n        var result;\n        result = this.cookie ? cookie.parse(this.cookie)[key] || cookie.parse(this.cookie)[this.opt.keys.cookie] : null;\n        this.locale = result = this._check(result);\n        return fallback ? result || null : (result || null);\n\n    },\n    // From URL, 'http://gengojs.com/en'\n    /**\n     * @description Parses the url.\n     * @param  {Boolean} fallback Fallback to default.\n     * @return {(String | null)}          The parsed locale.\n     * @public\n     */\n    getFromUrl: function(fallback) {\n        var result, path = this.request.path || this.request.url.path;\n        this.locale = result = this._check(path ? path.substring(1).split('/').shift() : '');\n        return fallback ? result || null : (result || null);\n\n    },\n    //From all, when specified in opt\n    /**\n     * @description Parses the locale by the specified type of parsing.\n     * @return {String} The parsed locale.\n     * @public\n     */\n    detectLocale: function() {\n        _.forEach(this.opt.detect, function(value, key) {\n            switch (key) {\n                case 'header':\n                    if (value) this.locale = this.getFromHeader();\n                    break;\n                case 'cookie':\n                    if (value) this.locale = this.getFromCookie(this.opt.keys.cookie);\n                    break;\n                case 'url':\n                    if (value) this.locale = this.getFromUrl();\n                    break;\n                case 'domain':\n                    if (value) this.locale = this.getFromDomain();\n                    break;\n                case 'subdomain':\n                    if (value) this.locale = this.getFromSubdomain();\n                    break;\n                case 'query':\n                    if (value) this.locale = this.getFromQuery(this.opt.keys.query);\n                    break;\n            }\n        }, this);\n        return this.locale;\n    },\n    /**\n     * @description Sets the options.\n     * @param  {Objject} opt The options.\n     * @private\n     */\n    _options: function(opt) {\n        this.opt = _.defaults(opt || {}, {\n            check: true,\n            default: 'en-US',\n            supported: ['en-US'],\n            keys: _.defaults(opt ? (opt.keys ? opt.keys : {}) : {}, {\n                cookie: 'locale',\n                query: 'locale'\n            }),\n            detect: _.defaults(opt ? (opt.detect ? opt.detect : {}) : {}, {\n                header: true,\n                cookie: false,\n                query: false,\n                url: false,\n                domain: false,\n                subdomain: false\n            })\n        });\n    },\n    /**\n     * @description Checks if the result is supported.\n     * @param  {String} result The locale to check\n     * @return {String}        The locale.\n     * @private\n     */\n    _check: function(result) {\n        if (this.opt.check) {\n            var index = this.opt.supported.indexOf(result);\n            var locale = this.opt.supported[index];\n            locale = locale ? locale : this.opt.default;\n            return locale;\n        } else return result;\n    }\n});\n\n/** \n * @method accept\n * @description The main accept method\n * @param  {Object} req The request object.\n * @param  {Object} opt The options to configure accept.\n * @return {Accept}     Then Accept instance.\n */\nmodule.exports = function accept(req, opt) {\n    return Accept.create(req, opt);\n};",
+			"file": "index.js",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 9004,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"file": "out/index.html",
+			"settings":
+			{
+				"buffer_size": 1716,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "{\n  \"name\": \"gengojs-accept\",\n  \"version\": \"0.0.9\",\n  \"description\": \"Express, Koa, and Hapi locale parser.\",\n  \"main\": \"index.js\",\n  \"directories\": {\n    \"test\": \"tests\"\n  },\n  \"dependencies\": {\n    \"cookie\": \"^0.1.2\",\n    \"lodash\": \"^3.3.1\",\n    \"uberproto\": \"^1.1.2\"\n  },\n  \"devDependencies\": {\n    \"chai\": \"^2.1.0\",\n    \"cookie-parser\": \"^1.3.4\",\n    \"express\": \"^4.12.0\",\n    \"feathers\": \"*\",\n    \"hapi\": \"^8.4.0\",\n    \"koa\": \"^0.18.0\",\n    \"koa-bodyparser\": \"^1.4.0\",\n    \"koa-route\": \"^2.4.0\",\n    \"mocha\": \"^2.1.0\",\n    \"subdomain\": \"^1.2.0\",\n    \"supertest\": \"^0.15.0\"\n  },\n  \"scripts\": {\n    \"test\": \"mocha --harmony ./tests/koa/*.js && mocha ./tests/*.js && mocha ./tests/hapi/*.js\",\n    \"0.10\": \"mocha ./tests/*.js\"\n  },\n  \"repository\": {\n    \"type\": \"git\",\n    \"url\": \"https://github.com/iwatakeshi/gengojs-accept.git\"\n  },\n  \"keywords\": [\n    \"locale\",\n    \"i18n\",\n    \"accept-language\",\n    \"header\",\n    \"express\",\n    \"koa\",\n    \"feathers\",\n    \"hapi\",\n    \"international\",\n    \"accept-header\",\n    \"subdomain\",\n    \"domain\"\n  ],\n  \"author\": \"iwatakeshi\",\n  \"license\": \"MIT\",\n  \"bugs\": {\n    \"url\": \"https://github.com/iwatakeshi/gengojs-accept/issues\"\n  },\n  \"homepage\": \"https://github.com/iwatakeshi/gengojs-accept\"\n}\n",
+			"file": "package.json",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 1238,
+				"line_ending": "Unix"
+			}
+		},
+		{
+			"contents": "REPORTER = spec\n\ntest-gengo:\n		@./node_modules/.bin/mocha \\\n			--reporter $(REPORTER) \\\n			--ui gengojs-accept \\\n			tests/*.js\n\ntest-all: test-gengojs-accept\n\n.PHONY: test-all",
+			"file": "Makefile",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 175,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "language: node_js\n\nnode_js:\n  - 0.12\n  - 0.11\n  - 0.10\n\nscript:\n  nv=$(node -v);\n  if [[ $nv != v0.10.37 ]] ; then\n    npm test;\n  else\n    npm run 0.10;\n  fi",
+			"file": ".travis.yml",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 158,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "# gengojs-accept\n\n[![Build Status](https://travis-ci.org/iwatakeshi/gengojs-accept.svg?branch=master)](https://travis-ci.org/iwatakeshi/gengojs-accept)\n[![Dependency Status](https://david-dm.org/iwatakeshi/gengojs-accept.png)](https://github.com/iwatakeshi/gengojs-accept/blob/master/package.json) \n[![License Status](http://img.shields.io/npm/l/gengojs-accept.svg)](https://github.com/iwatakeshi/gengojs-accept/blob/master/LICENSE) \n[![Downloads](http://img.shields.io/npm/dm/gengojs-accept.svg)]() [![Version](http://img.shields.io/npm/v/gengojs-accept.svg)]()\n\n[![NPM](https://nodei.co/npm/gengojs-accept.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs-accept/)\n\nExpress, Koa, Hapi locale parser that powers (or will power) [gengo.js](https://github.com/iwatakeshi/gengojs).\n\nThis module parses the accept-language header from either Express, Koa, or Hapi and returns the appropriate locale.\n\n##Usage\n\n```bash\nnpm install --save gengojs-accept\n```\n\n**As standalone:**\n\n```js\nvar accept = require('gengojs-accept')\n//In express\napp.use(function(req, res, next){\n    //doens't have to be app.use.\n    //Just wherever 'req' or 'request'\n    //is avaible\n    var result = accept(req);\n    res.send({locale:result.getLocale(), detected:result.detectLocale()})\n})\n\n//In koa\napp.use(function*(next) {\n    var result = accept(this);\n    var body = {\n        locale: result.getLocale(), \n        detected:result.detectLocale()\n    };\n    this.body = body;\n    yield next;\n});\n\n//In hapi\nserver.route({\n    method:'GET',\n    path:'/',\n    handler:function(request, reply){\n        var result = accept(request);\n        reply({locale:result.getLocale(), detected:result.detectLocale()})\n    }\n})\n\n```\n\n**As middleware:**\n\n```js\n//koa example\nvar koa = require('koa');\nvar app = koa();\n//note the path to koa middleware!\nvar accept = require('gengojs-accept/koa');\n\napp.use(accept());\n\napp.use(function*() {\n    var req = this.request;\n    this.body = req.accept.getFromHeader();\n});\n\napp.listen(3000);\n\n```\n\n```js\n//express example\nvar express = require('express');\nvar app = express();\n//note the path to express middleware!\nvar accept = require('gengojs-accept/express');\n\napp.use(accept());\n\napp.get('/', function(req, res) {\n    res.send(req.accept.getFromHeader());\n});\n\napp.listen(3000);\n```\n\n```js\n//hapi example\nvar server = new Hapi.Server();\n//note the path to express middleware!\nvar accept = require('gengojs-accept/hapi');\n\nserver.connection({\n    host: 'localhost',\n    port: 3000\n});\n\nserver.register(accept(), function(err) {\n    if (err) console.log('an error occurred');\n});\n\nserver.route({\n    method: 'GET',\n    path: '/',\n    handler: function(request, reply) {\n        return reply(request.accept.getLocale());\n    }\n});\nserver.start(function() {\n\n});\n```\n\n**Note:**\n\ngengojs-accept will attach to both request and response object for both Express, Koa. For Hapi, it is only attached to request.\n\n##API\n\n| Function | Description | Option\n|---                |---                                     |--- |\n|getAcceptLanguage(req)|Returns the Accept-Language from header, otherwise <code>null</code>  | [Object request]   |\n|getFromHeader(req, fallback)|Returns the locale by parsing the header, otherwise <code>null</code>      | [Object request], [Boolean fallback]   |\n|getFromQuery(key, fallback)|Returns the locale by parsing the query string, otherwise <code>null</code>| [String key],[Boolean fallback]|\n|getFromDomain(fallback) |Returns the locale by parsing the domain in the url, otherwise <code>null</code>|[Boolean fallback]|\n|getFromSubdomain(fallback)|Returns the locale by parsing the subdomain in the url, otherwise <code>null</code> |[Boolean fallback]|\n|getFromCookie(key, fallback)|Returns the locale by parsing the cookies, otherwise <code>null</code> |[String key],[Boolean fallback]|\n|getFromUrl(fallback)|Return the locale by parsing the url, otherwise <code>null</code>|[Boolean fallback]|\n|detectLocale()|Return the locale by the specified detect options|    |\n|getLocale()|Returns the current locale|    |\n|setLocale(locale)|Overrides the locale| [String locale]\n\n**Note:**\n\nThe `req` Object for `getFromAcceptLanguage` and `getFromHeader` are optional. Therefore, you can pass `null` like the following to just get the value when fallback is needed:\n\n```js\n//example\ngetFromHeader(null, true);\n//normally you would call like this since req \n//has already been set internally:\ngetFromHeader();\n```\n\nAlso, if fallback is specified, gengojs-accept will fallback to your default locale. This fallback approach comes from ruby's [2.2 Optional: Custom I18n Configuration Setup](http://guides.rubyonrails.org/i18n.html#optional-custom-i18n-configuration-setup). If checking against the supported locales is not needed for your app, just set the `check` option to `false`.\n\n##Options\n\n|Name  |Description | Default\n|---|---|---|\n|<code>check</code>| Compare against the supported locales | <code>true</code>\n|<code>default</code> | The default locale | <code>\"en-US\"</code>\n|<code>supported</code>| The supported locales | <code>[\"en-US\"]</code>\n|<code>keys</code>| The keys to use for query and cookie | <code>{query:'locale', cookie:'locale'}</code>\n|<code>detect</code>|The method of parsing allowed to get locale.| <code>{header: true, cookie: false, query: false, url: false, domain:false, subdomain: false}</code>|\n\n\n```js\naccept(req, opt);\n//example\naccept(req, {\n    default:'ja',\n    detect:{\n        header:false,\n        cookie:true\n    }\n})\n```\n\n##Changelog\n\nFor changelog, visit the [GitHub](https://github.com/iwatakeshi/gengojs-accept/blob/master/CHANGELOG.md) page.",
+			"file": "README.md",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 5644,
+				"line_ending": "Windows"
+			}
+		},
+		{
+			"contents": "#Changelog\n\n**0.0.1**\n\n* Inital commit\n\n**0.0.2**\n\n* Fixed readme\n\n**0.0.3**\n\n* Patch fix to getAcceptLanguage and getFromHeader. Both are independent from the accept class.\n* Updated readme\n\n**0.0.4**\n\n* Added support for top level domain (aka domain). \n* Updated readme\n* Fixes the `this.locale` to be set when whatever function is called.\n* Added more tests\n\n**0.0.5**\n\n* Updated readme\n\n**0.0.6**\n\n* Updated readme\n* Added `check` option\n* Updated code to reflect the new option (no breaking changes).\n\n**0.0.7**\n\n* Accept can now work as a middleware for express and koa\n* Updated readme\n* Added more tests.\n\n**0.0.8**\n\n* Added support for Hapi including a plugin\n* Updated readme\n* Added and cleaned tests\n* Updated package\n\n**0.0.9**\n\n* Added beautiful comments\n* Fixed minor bug\n",
+			"file": "CHANGELOG.md",
+			"file_size": -1,
+			"file_write_time": -1,
+			"settings":
+			{
+				"buffer_size": 787,
+				"line_ending": "Windows"
+			}
+		}
+	],
+	"build_system": "",
+	"command_palette":
+	{
+		"height": 219.0,
+		"selected_items":
+		[
+			[
+				"preview",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"upp",
+				"Convert Case: Upper Case"
+			],
+			[
+				"javascne",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"templa",
+				"Snippet: template"
+			],
+			[
+				"jade",
+				"Set Syntax: Jade"
+			],
+			[
+				"swig",
+				"Set Syntax: Swig"
+			],
+			[
+				"install",
+				"Package Control: Install Package"
+			],
+			[
+				"jsne",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"previ",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"prev",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"preiv",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"pre",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"javas",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"javascript ne",
+				"Set Syntax: JavaScript Next"
+			],
+			[
+				"nex",
+				"Bookmarks: Select Next"
+			],
+			[
+				"side",
+				"View: Toggle Side Bar"
+			],
+			[
+				"",
+				"Convert Case: Upper Case"
+			],
+			[
+				"code folding",
+				"Code Folding: Unfold All"
+			],
+			[
+				"reverse",
+				"Permute Lines: Reverse"
+			],
+			[
+				"javasc",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"bea",
+				"Javascript Beautify"
+			],
+			[
+				"isntall",
+				"Package Control: Install Package"
+			],
+			[
+				"mark",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"min",
+				"Minify Javascript to file"
+			],
+			[
+				"view",
+				"View In Browser"
+			],
+			[
+				"viwe",
+				"View In Browser"
+			],
+			[
+				"viw",
+				"View In Browser"
+			],
+			[
+				"html",
+				"Snippet: html"
+			],
+			[
+				"prett",
+				"HTMLPrettify"
+			],
+			[
+				"remove",
+				"Package Control: Remove Package"
+			],
+			[
+				"instal",
+				"Package Control: Install Package"
+			],
+			[
+				"comme",
+				"Toggle Comment"
+			],
+			[
+				"beay",
+				"Javascript Beautify"
+			],
+			[
+				"remo",
+				"Package Control: Remove Package"
+			],
+			[
+				"beaut",
+				"Javascript Beautify"
+			],
+			[
+				"register",
+				"Snippet: grunt.registerTask"
+			],
+			[
+				"h",
+				"HTMLBeautify"
+			],
+			[
+				"vie",
+				"View In Browser"
+			],
+			[
+				"H",
+				"HTMLBeautify"
+			],
+			[
+				"ht",
+				"HTMLBeautify"
+			],
+			[
+				"hmt",
+				"HTMLBeautify"
+			],
+			[
+				"hml",
+				"HTMLBeautify"
+			],
+			[
+				"view in",
+				"View In Browser"
+			],
+			[
+				"htmlbe",
+				"HTMLBeautify"
+			],
+			[
+				"htm",
+				"HTMLBeautify"
+			],
+			[
+				"les",
+				"Set Syntax: LESS"
+			],
+			[
+				"less",
+				"Set Syntax: LESS"
+			],
+			[
+				"sasbe",
+				"SassBeautify"
+			],
+			[
+				"sass",
+				"Set Syntax: Sass"
+			],
+			[
+				"beau",
+				"Javascript Beautify"
+			],
+			[
+				"eba",
+				"Set Syntax: Batch File"
+			],
+			[
+				"be",
+				"Javascript Beautify"
+			],
+			[
+				"javascri",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"beat",
+				"Javascript Beautify"
+			],
+			[
+				"jad",
+				"Set Syntax: Jade"
+			],
+			[
+				"css",
+				"Set Syntax: CSS"
+			],
+			[
+				"ja",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"sort",
+				"Sort Lines"
+			],
+			[
+				"rev",
+				"Permute Selections: Reverse"
+			],
+			[
+				"rever",
+				"Permute Selections: Reverse"
+			],
+			[
+				"re",
+				"Permute Selections: Reverse"
+			],
+			[
+				"java",
+				"Set Syntax: Java"
+			],
+			[
+				"si",
+				"View: Toggle Side Bar"
+			],
+			[
+				"sid",
+				"View: Toggle Side Bar"
+			],
+			[
+				"isntl",
+				"Package Control: Install Package"
+			],
+			[
+				"c++",
+				"Set Syntax: C++"
+			],
+			[
+				"asty",
+				"SublimeAStyleFormatter: Format Current File"
+			],
+			[
+				"sublme",
+				"SublimeAStyleFormatter: Format Current File"
+			],
+			[
+				"revers",
+				"Permute Lines: Reverse"
+			],
+			[
+				"jsonpre",
+				"Pretty JSON: Format (Pretty Print) JSON"
+			],
+			[
+				"json",
+				"Set Syntax: JSON"
+			],
+			[
+				"ebat",
+				"Set Syntax: Batch File"
+			],
+			[
+				"beea",
+				"Bookmarks: Select All"
+			],
+			[
+				"minif",
+				"Minify Javascript to file"
+			],
+			[
+				"instla",
+				"Package Control: Install Package"
+			],
+			[
+				"mini",
+				"Minify::Minify File"
+			],
+			[
+				"previe",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"jav",
+				"Set Syntax: JavaScript"
+			],
+			[
+				"bet",
+				"Bookmarks: Select All"
+			],
+			[
+				"BEAT",
+				"Javascript Beautify"
+			],
+			[
+				"beta",
+				"Bookmarks: Select All"
+			],
+			[
+				"save",
+				"Project: Save As"
+			],
+			[
+				"toggle",
+				"View: Toggle Side Bar"
+			],
+			[
+				"inver",
+				"Permute Lines: Reverse"
+			],
+			[
+				"doc",
+				"DocBlockr: Decorate line comment"
+			],
+			[
+				"shell",
+				"Shell Command"
+			],
+			[
+				"she",
+				"Set Syntax: HTML (Erlang)"
+			],
+			[
+				"shee",
+				"Set Syntax: HTML (Erlang)"
+			],
+			[
+				"shel",
+				"Shell Command"
+			],
+			[
+				"prei",
+				"Markdown Preview: Preview in Browser"
+			],
+			[
+				"markdw",
+				"Set Syntax: Markdown"
+			],
+			[
+				"sty",
+				"Set Syntax: Stylus"
+			],
+			[
+				"insta",
+				"Package Control: Install Package"
+			]
+		],
+		"width": 893.0
+	},
+	"console":
+	{
+		"height": 126.0,
+		"history":
+		[
+			"import urllib.request,os; pr='Preferences.sublime-settings'; ip='ignored_packages'; n='Package Control'; s=sublime.load_settings(pr); ig=s.get(ip); ig.append(n); s.set(ip,ig); sublime.save_settings('Preferences.sublime-settings'); pf=n+'.sublime-package'; urllib.request.install_opener(urllib.request.build_opener(urllib.request.ProxyHandler())); by=urllib.request.urlopen('https://packagecontrol.io/'+pf.replace(' ','%20')).read(); open(os.path.join(sublime.installed_packages_path(),pf),'wb').write(by); ig.remove(n); s.set(ip,ig); sublime.save_settings(pr); print('Package Control: 3.0.0 upgrade successful!')",
+			"npm update",
+			"import urllib.request,os,hashlib; h = '7183a2d3e96f11eeadd761d777e62404' + 'e330c659d4bb41d3bdf022e94cab3cd0'; pf = 'Package Control.sublime-package'; ipp = sublime.installed_packages_path(); urllib.request.install_opener( urllib.request.build_opener( urllib.request.ProxyHandler()) ); by = urllib.request.urlopen( 'http://packagecontrol.io/' + pf.replace(' ', '%20')).read(); dh = hashlib.sha256(by).hexdigest(); print('Error validating download (got %s instead of %s), please try manual install' % (dh, h)) if dh != h else open(os.path.join( ipp, pf), 'wb' ).write(by)"
+		]
+	},
+	"distraction_free":
+	{
+		"menu_visible": true,
+		"show_minimap": false,
+		"show_open_files": false,
+		"show_tabs": false,
+		"side_bar_visible": false,
+		"status_bar_visible": false
+	},
+	"expanded_folders":
+	[
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept"
+	],
+	"file_history":
+	[
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/hapi/hapi.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/koa/koa.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/feathers.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/tests/express.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/package.json",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/Default/Preferences.sublime-settings",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/Preferences.sublime-settings",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/parsers/default/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express/index.js",
+		"/C/Users/Takeshi/Documents/cmder/bin/config/aliases",
+		"/C/Users/Takeshi/Documents/cmder/bin/config/settings",
+		"/C/Users/Takeshi/Downloads/cmder/Readme.md",
+		"/C/Users/Takeshi/Downloads/cmder/bin/Readme.md",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/template.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/gengojs-accept/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/hapi/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/hapi/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express.gengo.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/koa.gengo.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/io.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/index.jade",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/jade.koa.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/koa-jade/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/config.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/settings.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/configured.settings.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/localize/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/gengo.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/config.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/README.md",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/messageformat/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser/filter.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/utils.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/input.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/msgfmt/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/message format/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/regex.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/filter.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/parser.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/store.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/express/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs-accept/koa/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengomd/4deddfa9860e7dc25327/gengojs.md",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/node_modules/string/lib/string.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/rules/Unicode Terms of Use",
+		"/C/Users/Takeshi/Downloads/plurals.txt",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/ja.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/express.accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/models/schema.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/something.text",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/router.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/locales/en-US.yml",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/middleware.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/.travis.yml",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa/koa.accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa.accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/feathers.accept.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/router.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/koa.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/tests/static.api.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/accept-language.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/modules/extract.js",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/HTML-CSS-JS Prettify/HTMLPrettify.sublime-settings",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/locales/locales.json",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/.gitignore",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/test.js",
+		"/C/Users/Takeshi/Documents/GitHub/gengojs/Makefile",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/embed.video.min.js",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/package.json",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/index.js",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/index.html",
+		"/C/Users/Takeshi/Documents/GitHub/embed-video/parsers/soundcloud.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower.json",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/globals/site.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/dash.html",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/jade/index.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/jade/layout.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/package.json",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/server.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-backend/app/routes/router.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/Gruntfile.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/elements/header.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/js/colorsbg.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-backend/app/app.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/npm-debug.log",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/menu.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/.gitignore",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/main.html",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/message.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/theme.config",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/elements/button.overrides",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/collections/menu.variables",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/public/components/header.css",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/themes/nikchan/globals/site.variables",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/src/definitions/collections/menu.less",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/views/index.html",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan-frontend-semantic-ui/bower_components/semantic-ui/gulpfile.js",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/LESS.sublime-settings",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/User/View In Browser.sublime-settings",
+		"/C/Users/Takeshi/AppData/Roaming/Sublime Text 3/Packages/View In Browser/View In Browser.sublime-settings",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_panels.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/layout.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan/public/js/colorsbg.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan/views/index.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_global.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/_settings.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/bower_components/foundation/scss/foundation/components/_top-bar.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/index.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/app.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/dash/dash.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/index/index.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/scss/signup/signup.scss",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/index.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/app.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/signup.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/views/dash.jade",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/public/js/app.js",
+		"/C/Users/Takeshi/Documents/SourceTree/nikchan1.0.1/app/routes/router.js"
+	],
+	"find":
+	{
+		"height": 35.0
+	},
+	"find_in_files":
+	{
+		"height": 96.0,
+		"where_history":
+		[
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\tests",
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\modules",
+			"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs",
+			"C:\\Users\\Takeshi\\Documents\\SourceTree\\nikchan-frontend-semantic-ui\\bower_components\\semantic-ui\\src",
+			"C:\\Users\\Takeshi\\Documents\\SourceTree\\nikchan-frontend-semantic-ui\\bower_components\\semantic-ui",
+			"C:\\Users\\Takeshi\\Downloads\\Chapter2.src\\Chapter2",
+			""
+		]
+	},
+	"find_state":
+	{
+		"case_sensitive": true,
+		"find_history":
+		[
+			"key in the",
+			"shot",
+			"log",
+			"getFromCookie",
+			"express",
+			"res.send(filter)",
+			"result",
+			"isHapi",
+			"log",
+			"_check",
+			"this.request.head",
+			"log",
+			"this.header",
+			"log",
+			"lg",
+			"log",
+			"console",
+			"log",
+			"console",
+			"log",
+			"open",
+			"parsers",
+			"localiz",
+			"||",
+			"|",
+			"@api    private",
+			"route",
+			"host",
+			"log",
+			"req",
+			"log",
+			"this.koa",
+			"express",
+			"log",
+			"library",
+			"local",
+			"log",
+			"lo",
+			"log",
+			"test",
+			"Time",
+			"tokei",
+			"\"",
+			"log",
+			"();",
+			"utils",
+			"singular",
+			"read",
+			"log",
+			"dive",
+			"log",
+			"regex",
+			"this.phrase",
+			"this._super()",
+			"regex",
+			"this.regex",
+			"regex",
+			"this._super().ctx.",
+			"log",
+			"this.phrase",
+			"_parser",
+			"parser",
+			"save",
+			"_this",
+			"store",
+			"log",
+			"applicatio",
+			"#",
+			"pluralRule",
+			"pluralRules",
+			"-",
+			"-locales",
+			"-count",
+			"modify",
+			"log",
+			"、",
+			"：",
+			"」",
+			"「",
+			"console",
+			"log",
+			"self",
+			"ctx",
+			"search",
+			"log",
+			"}\n",
+			"};\n",
+			"console.log",
+			"log",
+			"cons",
+			"koa-locale",
+			"express",
+			"feathers",
+			"log",
+			"koa",
+			"__",
+			"isInteger",
+			"utils",
+			"+",
+			"log",
+			"mustache",
+			"Number",
+			"dir",
+			"this",
+			");\n",
+			"FB",
+			"toki",
+			"Toki",
+			"console.log(",
+			"load",
+			"defineParser",
+			"log",
+			"toki",
+			"main coredntainer",
+			"a( role",
+			"a(href=\"#\"",
+			"nice",
+			"node",
+			"'",
+			".inverted",
+			".menu",
+			".main.menu",
+			"nav",
+			"main",
+			"#example",
+			"style",
+			"dir",
+			"destination"
+		],
+		"highlight": true,
+		"in_selection": false,
+		"preserve_case": false,
+		"regex": false,
+		"replace_history":
+		[
+			"key for the",
+			"keyfor the",
+			"feathers",
+			"res.send({result:result})",
+			"body",
+			"",
+			"koa",
+			"jade",
+			"Localize",
+			"localize",
+			"'",
+			"route",
+			"self.patterns",
+			"regex",
+			"",
+			"parser",
+			"Parser",
+			"ctx",
+			"app",
+			"",
+			"rule",
+			"rules",
+			"",
+			"locales",
+			"count",
+			",",
+			":",
+			"\"",
+			"_this",
+			"self",
+			"koa",
+			"express",
+			"",
+			"gengo",
+			"embed",
+			"Embed",
+			"embed",
+			"a(role",
+			"a(",
+			"",
+			"User",
+			"error",
+			"User",
+			"callback",
+			"sform",
+			"moment",
+			"Moment",
+			"moments",
+			"getMoment",
+			"moments",
+			"moment",
+			"Moment",
+			"signup",
+			"Zepto",
+			"t.Month()",
+			"day_format",
+			"year_format",
+			"neo4j",
+			"model",
+			"user",
+			"error",
+			"nikchanIO",
+			"socketIO",
+			"io"
+		],
+		"reverse": false,
+		"show_context": true,
+		"use_buffer2": true,
+		"whole_word": false,
+		"wrap": true
+	},
+	"groups":
+	[
+		{
+			"selected": 3,
+			"sheets":
+			[
+				{
+					"buffer": 0,
+					"file": "hapi/index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 475,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								256,
+								256
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 7,
+					"type": "text"
+				},
+				{
+					"buffer": 1,
+					"file": "tests/hapi/hapi.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 21657,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								121,
+								121
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 8,
+					"type": "text"
+				},
+				{
+					"buffer": 2,
+					"file": "index.js",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 9004,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1778,
+								1778
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JavaScript.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 6,
+					"type": "text"
+				},
+				{
+					"buffer": 3,
+					"file": "out/index.html",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1716,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								591,
+								591
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/HTML/HTML.tmLanguage",
+							"tab_size": 4,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 0,
+					"type": "text"
+				},
+				{
+					"buffer": 4,
+					"file": "package.json",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 1238,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								49,
+								49
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/JavaScript/JSON.tmLanguage",
+							"tab_size": 2,
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 2,
+					"type": "text"
+				},
+				{
+					"buffer": 5,
+					"file": "Makefile",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 175,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								0,
+								0
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/Makefile/Makefile.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 4,
+					"type": "text"
+				},
+				{
+					"buffer": 6,
+					"file": ".travis.yml",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 158,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								104,
+								104
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/YAML/YAML.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 0.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 5,
+					"type": "text"
+				},
+				{
+					"buffer": 7,
+					"file": "README.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 5644,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								1317,
+								1317
+							]
+						],
+						"settings":
+						{
+							"parser": "github",
+							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage",
+							"tab_size": 4,
+							"target": "disk",
+							"translate_tabs_to_spaces": true
+						},
+						"translation.x": 0.0,
+						"translation.y": 1104.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 1,
+					"type": "text"
+				},
+				{
+					"buffer": 8,
+					"file": "CHANGELOG.md",
+					"semi_transient": false,
+					"settings":
+					{
+						"buffer_size": 787,
+						"regions":
+						{
+						},
+						"selection":
+						[
+							[
+								738,
+								738
+							]
+						],
+						"settings":
+						{
+							"syntax": "Packages/MarkdownEditing/Markdown.tmLanguage"
+						},
+						"translation.x": 0.0,
+						"translation.y": 759.0,
+						"zoom_level": 1.0
+					},
+					"stack_index": 3,
+					"type": "text"
+				}
+			]
+		}
+	],
+	"incremental_find":
+	{
+		"height": 27.0
+	},
+	"input":
+	{
+		"height": 31.0
+	},
+	"layout":
+	{
+		"cells":
+		[
+			[
+				0,
+				0,
+				1,
+				1
+			]
+		],
+		"cols":
+		[
+			0.0,
+			1.0
+		],
+		"rows":
+		[
+			0.0,
+			1.0
+		]
+	},
+	"menu_visible": false,
+	"output.find_results":
+	{
+		"height": 0.0
+	},
+	"output.markdown":
+	{
+		"height": 124.0
+	},
+	"output.unsaved_changes":
+	{
+		"height": 130.0
+	},
+	"project": "gengojs-accept.sublime-project",
+	"replace":
+	{
+		"height": 64.0
+	},
+	"save_all_on_build": true,
+	"select_file":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+			[
+				"",
+				".gitignore"
+			]
+		],
+		"width": 0.0
+	},
+	"select_project":
+	{
+		"height": 500.0,
+		"selected_items":
+		[
+			[
+				"",
+				"C:\\Users\\Takeshi\\Documents\\GitHub\\gengojs\\gengojs.sublime-project"
+			]
+		],
+		"width": 380.0
+	},
+	"select_symbol":
+	{
+		"height": 0.0,
+		"selected_items":
+		[
+		],
+		"width": 0.0
+	},
+	"selected_group": 0,
+	"settings":
+	{
+	},
+	"show_minimap": true,
+	"show_open_files": false,
+	"show_tabs": true,
+	"side_bar_visible": true,
+	"side_bar_width": 239.0,
+	"status_bar_visible": false,
+	"template_settings":
+	{
+	}
+}
