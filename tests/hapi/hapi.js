@@ -1,6 +1,5 @@
 var Hapi = require('hapi');
 var accept = require('../../index');
-var shot = require('shot');
 var assert = require('chai').assert;
 
 describe('Begin module "accept" tests with hapi', function() {
