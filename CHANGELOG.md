@@ -43,7 +43,7 @@
 * Added and cleaned tests
 * Updated package
 
-**0.0.8**
+**0.0.9**
 
 * Added beautiful comments
 * Fixed minor bug
