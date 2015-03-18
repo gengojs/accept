@@ -47,3 +47,4 @@
 
 * Added beautiful comments
 * Fixed minor bug
+* Updated comments.
