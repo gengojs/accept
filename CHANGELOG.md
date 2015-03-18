@@ -35,3 +35,10 @@
 * Accept can now work as a middleware for express and koa
 * Updated readme
 * Added more tests.
+
+**0.0.8**
+
+* Added support for Hapi including a plugin
+* Updated readme
+* Added and cleaned tests
+* Updated package

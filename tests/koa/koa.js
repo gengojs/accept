@@ -17,7 +17,7 @@ function subdomain(options) {
     };
 
     // return middleware
-    return function*(next) {
+    return function * (next) {
 
         // get host & protocol
         var host = this.request.headers.host,
@@ -87,7 +87,7 @@ describe('Begin module "accept" tests with koa', function() {
 
         var a = require('../../koa/')
         app.use(a());
-        app.use(function*() {
+        app.use(function * () {
             this.body = {
                 result: this.request.accept.getFromHeader()
             };
@@ -98,7 +98,8 @@ describe('Begin module "accept" tests with koa', function() {
                 .get('/')
                 .set('Accept-Language', 'en-US')
                 .expect(function(res) {
-                    assert.strictEqual(res.body.result, 'en-US');
+                    var body = res.body;
+                    assert.strictEqual(body.result, 'en-US');
 
                 })
                 .end(done);
@@ -110,12 +111,11 @@ describe('Begin module "accept" tests with koa', function() {
         describe('with default options', function() {
             var koa = require('koa');
             var app = koa();
-            app.use(function*() {
-                var result = accept(this);
-                var filter = {
-                    getLocale: result.getLocale()
+            app.use(function * () {
+                var result = accept(this).getLocale();
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
 
             });
             it('Accept should === "en-US"', function(done) {
@@ -123,8 +123,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .get('/')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getLocale, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
 
                     })
                     .end(done);
@@ -136,8 +136,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .get('/')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getLocale, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
 
                     })
                     .end(done);
@@ -148,16 +148,14 @@ describe('Begin module "accept" tests with koa', function() {
             var koa = require('koa');
             var app = koa();
 
-            app.use(function*(next) {
+            app.use(function * (next) {
                 var opt = {
                     supported: ['en-US', 'ja']
                 };
-                var result = accept(this, opt);
-
-                var filter = {
-                    getLocale: result.getLocale()
+                var result = accept(this, opt).getLocale();
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -166,8 +164,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .get('/')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getLocale, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
 
                     })
                     .end(done);
@@ -178,8 +176,74 @@ describe('Begin module "accept" tests with koa', function() {
                     .get('/')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getLocale, 'ja');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'ja');
+
+                    })
+                    .end(done);
+            });
+        });
+    });
+    describe('Test setLocale()', function() {
+        describe('with default options', function() {
+            var koa = require('koa');
+            var app = koa();
+            app.use(function * () {
+                var result = accept(this).setLocale('ja');
+                this.body = {
+                    result: result
+                };
+
+            });
+
+            it('Accept should === "en-US"', function(done) {
+                request(app.listen())
+                    .get('/')
+                    .set('Accept-Language', 'en-US')
+                    .expect(function(res) {
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
+
+                    })
+                    .end(done);
+
+            });
+
+            it('Accept should fallback to "en-US" (default)', function(done) {
+                request(app.listen())
+                    .get('/')
+                    .set('Accept-Language', 'ja')
+                    .expect(function(res) {
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
+
+                    })
+                    .end(done);
+            });
+
+        });
+        describe('with configured options', function() {
+            var koa = require('koa');
+            var app = koa();
+
+            app.use(function * (next) {
+                var opt = {
+                    supported: ['en-US', 'ja']
+                };
+                var result = accept(this, opt).setLocale('ja');
+                this.body = {
+                    result: result
+                };
+                yield next;
+            });
+
+            it('Accept should === "ja"', function(done) {
+                request(app.listen())
+                    .get('/')
+                    .set('Accept-Language', 'ja')
+                    .expect(function(res) {
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'ja');
 
                     })
                     .end(done);
@@ -191,20 +255,19 @@ describe('Begin module "accept" tests with koa', function() {
         describe('with default options', function() {
             var koa = require('koa');
             var app = koa();
-            app.use(function*(next) {
-                var result = accept(this);
-                var filter = {
-                    getFromQuery: result.getFromQuery('locale')
+            app.use(function * (next) {
+                var result = accept(this).getFromQuery('locale');
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
             it('Accept should !== "en"', function(done) {
                 request(app.listen())
                     .get('/?locale=en')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromQuery, 'en');
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -214,8 +277,8 @@ describe('Begin module "accept" tests with koa', function() {
                 request(app.listen())
                     .get('/en')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromQuery, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
 
                     })
                     .end(done);
@@ -225,15 +288,14 @@ describe('Begin module "accept" tests with koa', function() {
         describe('with configured options', function() {
             var koa = require('koa');
             var app = koa();
-            app.use(function*(next) {
+            app.use(function * (next) {
                 var result = accept(this, {
                     default: 'ja',
                     supported: ['en-US', 'en']
-                });
-                var filter = {
-                    getFromQuery: result.getFromQuery('locale'),
+                }).getFromQuery('locale');
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -241,8 +303,8 @@ describe('Begin module "accept" tests with koa', function() {
                 request(app.listen())
                     .get('/?locale=en')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromQuery, 'en');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -252,8 +314,8 @@ describe('Begin module "accept" tests with koa', function() {
                 request(app.listen())
                     .get('/')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromQuery, 'ja');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'ja');
                     })
                     .end(done);
             });
@@ -264,17 +326,11 @@ describe('Begin module "accept" tests with koa', function() {
     describe('Test getAcceptLanguage()', function() {
         var koa = require('koa');
         var app = koa();
-        app.use(function*(next) {
-            var result = accept(this);
-            var filter = {
-                getLocale: result.getLocale(),
-                getAcceptLanguage: result.getAcceptLanguage(),
-                getFromQuery: result.getFromQuery(),
-                getFromSubdomain: result.getFromSubdomain(),
-                getFromCookie: result.getFromCookie(),
-                getFromUrl: result.getFromUrl()
+        app.use(function * (next) {
+            var result = accept(this).getAcceptLanguage();
+            this.body = {
+                result: result
             };
-            this.body = filter;
             yield next;
         });
 
@@ -283,8 +339,8 @@ describe('Begin module "accept" tests with koa', function() {
                 .get('/')
                 .set('Accept-Language', 'en-US')
                 .expect(function(res) {
-                    var result = res.body;
-                    assert.include(result.getAcceptLanguage, "en-US");
+                    var body = res.body;
+                    assert.include(body.result, "en-US");
 
                 })
                 .end(done);
@@ -295,8 +351,8 @@ describe('Begin module "accept" tests with koa', function() {
                 .get('/')
                 .set('Accept-Language', 'ja')
                 .expect(function(res) {
-                    var result = res.body;
-                    assert.include(result.getAcceptLanguage, "ja");
+                    var body = res.body;
+                    assert.include(body.result, "ja");
 
                 })
                 .end(done);
@@ -312,13 +368,11 @@ describe('Begin module "accept" tests with koa', function() {
             };
 
             app.use(subdomain(subdomainOptions));
-            app.use(function*(next) {
-                var result = accept(this);
-
-                var filter = {
-                    getFromDomain: result.getFromDomain()
+            app.use(function * (next) {
+                var result = accept(this).getFromDomain();
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -328,8 +382,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('Host', 'api.localhost.com')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromDomain, 'en');
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -341,8 +395,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('host', 'api.localhost.en')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromDomain, 'ja');
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, 'ja');
                     })
                     .end(done);
             });
@@ -355,17 +409,15 @@ describe('Begin module "accept" tests with koa', function() {
             };
 
             app.use(subdomain(subdomainOptions));
-            app.use(function*(next) {
+            app.use(function * (next) {
                 var opt = {
                     supported: ['en-US', 'ja'],
                     default: 'en'
                 };
-                var result = accept(this, opt);
-
-                var filter = {
-                    getFromDomain: result.getFromDomain(),
+                var result = accept(this, opt).getFromDomain();
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -375,8 +427,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('Host', 'api.localhost.en')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromDomain, 'en');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -388,8 +440,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('host', 'api.localhost.ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromDomain, 'ja');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'ja');
 
                     })
                     .end(done);
@@ -406,13 +458,11 @@ describe('Begin module "accept" tests with koa', function() {
             };
 
             app.use(subdomain(subdomainOptions));
-            app.use(function*(next) {
-                var result = accept(this);
-
-                var filter = {
-                    getFromSubdomain: result.getFromSubdomain()
+            app.use(function * (next) {
+                var result = accept(this).getFromSubdomain;
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -422,8 +472,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('Host', 'en.localhost.com')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromSubdomain, 'en');
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -435,8 +485,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('host', 'ja.localhost.com')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromSubdomain, 'ja');
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, 'ja');
 
                     })
                     .end(done);
@@ -450,17 +500,15 @@ describe('Begin module "accept" tests with koa', function() {
             };
 
             app.use(subdomain(subdomainOptions));
-            app.use(function*(next) {
+            app.use(function * (next) {
                 var opt = {
                     supported: ['en-US', 'ja'],
                     default: 'en'
                 };
-                var result = accept(this, opt);
-
-                var filter = {
-                    getFromSubdomain: result.getFromSubdomain(),
+                var result = accept(this, opt).getFromSubdomain();
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -470,8 +518,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('Host', 'en.localhost.com')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromSubdomain, 'en');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -483,8 +531,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('host', 'ja.localhost.com')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromSubdomain, 'ja');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'ja');
 
                     })
                     .end(done);
@@ -497,12 +545,11 @@ describe('Begin module "accept" tests with koa', function() {
             var koa = require('koa');
             var app = koa();
 
-            app.use(function*(next) {
-                var result = accept(this);
-                var filter = {
-                    getFromUrl: result.getFromUrl()
+            app.use(function * (next) {
+                var result = accept(this).getFromUrl();
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -511,8 +558,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .get('/')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
                     }).end(done);
 
             });
@@ -522,8 +569,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .get('/ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
 
                     }).end(done);
             });
@@ -533,15 +580,13 @@ describe('Begin module "accept" tests with koa', function() {
             var koa = require('koa');
             var app = koa();
 
-            app.use(function*(next) {
+            app.use(function * (next) {
                 var result = accept(this, {
                     supported: ['en-US', 'ja']
-                });
-                var filter = {
-                    getFromUrl: result.getFromUrl()
+                }).getFromUrl();
+                this.body = {
+                    result: result
                 };
-
-                this.body = filter;
                 yield next;
             });
 
@@ -550,8 +595,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .get('/')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
                     }).end(done);
 
             });
@@ -561,8 +606,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .get('/ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "ja");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "ja");
 
                     }).end(done);
             });
@@ -572,8 +617,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .get('/fr')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
 
                     }).end(done);
             });
@@ -585,17 +630,11 @@ describe('Begin module "accept" tests with koa', function() {
             var koa = require('koa');
             var app = koa();
 
-            app.use(function*(next) {
-                var result = accept(this);
-                var filter = {
-                    getLocale: result.getLocale(),
-                    getAcceptLanguage: result.getAcceptLanguage(),
-                    getFromQuery: result.getFromQuery(),
-                    getFromSubdomain: result.getFromSubdomain(),
-                    getFromCookie: result.getFromCookie('locale'),
-                    getFromUrl: result.getFromUrl()
+            app.use(function * (next) {
+                var result = accept(this).getFromCookie('locale');
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -605,8 +644,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('Cookie', 'locale=ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromCookie, "ja");
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, "ja");
                     }).end(done);
 
             });
@@ -617,8 +656,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('Cookie', 'locale=ja')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromCookie, "ja");
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, "ja");
 
                     }).end(done);
             });
@@ -629,20 +668,14 @@ describe('Begin module "accept" tests with koa', function() {
             var koa = require('koa');
             var app = koa();
 
-            app.use(function*(next) {
+            app.use(function * (next) {
                 var result = accept(this, {
                     supported: ['en-US', 'ja'],
                     default: 'en'
-                });
-                var filter = {
-                    getLocale: result.getLocale(),
-                    getAcceptLanguage: result.getAcceptLanguage(),
-                    getFromQuery: result.getFromQuery(),
-                    getFromSubdomain: result.getFromSubdomain(),
-                    getFromCookie: result.getFromCookie('locale'),
-                    getFromUrl: result.getFromUrl()
+                }).getFromCookie('locale');
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -653,8 +686,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromCookie, "ja");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "ja");
                     }).end(done);
 
             });
@@ -665,8 +698,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromCookie, "ja");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "ja");
                     }).end(done);
             });
         });
@@ -676,12 +709,11 @@ describe('Begin module "accept" tests with koa', function() {
             var koa = require('koa');
             var app = koa();
 
-            app.use(function*(next) {
-                var result = accept(this);
-                var filter = {
-                    detectLocale: result.detectLocale()
+            app.use(function * (next) {
+                var result = accept(this).detectLocale();
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -691,8 +723,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.detectLocale, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
                     }).end(done);
 
             });
@@ -703,8 +735,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.detectLocale, "ja");
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, "ja");
 
                     }).end(done);
             });
@@ -714,7 +746,7 @@ describe('Begin module "accept" tests with koa', function() {
             var koa = require('koa');
             var app = koa();
 
-            app.use(function*(next) {
+            app.use(function * (next) {
                 var result = accept(this, {
                     supported: ['en-US', 'ja'],
                     default: 'en',
@@ -722,11 +754,10 @@ describe('Begin module "accept" tests with koa', function() {
                         header: false,
                         url: true
                     }
-                });
-                var filter = {
-                    detectLocale: result.detectLocale()
+                }).detectLocale();
+                this.body = {
+                    result: result
                 };
-                this.body = filter;
                 yield next;
             });
 
@@ -736,8 +767,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.detectLocale, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
                     }).end(done);
 
             });
@@ -748,8 +779,8 @@ describe('Begin module "accept" tests with koa', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.detectLocale, "en");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en");
                     }).end(done);
             });
         });

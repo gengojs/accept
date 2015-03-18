@@ -27,25 +27,34 @@ var accept = Proto.extend({
         //koa?
         if (req.request) {
             this.isKoa = true;
-            this.koa = req;
             this.request = req.request;
-            this.header = this.request.header;
-            this.cookie = this.header.cookie || this.header.cookies;
-        } else {
-            this.isKoa = false;
-            this.koa = null;
+            this.headers = this.request.header;
+            this.cookie = this.headers.cookie || this.headers.cookies;
+        } else if (req.raw) {
+            //maybe it's hapi
+            this.isHapi = true;
             this.request = req;
-            this.header = this.request.headers;
-            this.cookie = this.header.cookie || this.header.cookies;
+            this.headers = this.request.headers;
+            this.cookie = this.headers['set-cookie'] || {};
+        } else {
+            //then it's express
+            this.isKoa = false;
+            this.request = req;
+            this.headers = this.request.headers;
+            this.cookie = this.headers.cookie || this.headers.cookies;
         }
         this.detectLocale();
     },
     getAcceptLanguage: function(req) {
         if (req) this['accept-language'] = req.header['accept-language'] || req.headers['accept-language'] || '';
-        else this['accept-language'] = this.request.header['accept-language'] || this.request.headers['accept-language'] || '';
+        else this['accept-language'] = this.headers['accept-language'];
         return this['accept-language'] || null;
     },
     getLocale: function() {
+        return this.locale;
+    },
+    setLocale: function(locale) {
+        this.locale = this._check(locale);
         return this.locale;
     },
     // From accept-language, `Accept-Language: ja`
@@ -56,7 +65,7 @@ var accept = Proto.extend({
         while ((match = reg.exec(this['accept-language']))) {
             if (!result) result = match[2];
         }
-        this.locale = result;
+
         if (req) return result || null;
         else {
             this.locale = result = this._check(result);
@@ -67,16 +76,16 @@ var accept = Proto.extend({
     getFromQuery: function(key, fallback) {
         var result;
         var query;
-        if (this.isKoa) query = this.request.query;
-        else query = url.parse(this.request.url, true).query;
+        if (this.isKoa || this.isHapi) query = this.request.query;
+        else query = this.request.query || url.parse(this.request.url, true).query;
         this.locale = result = this._check(!_.isEmpty(query) ? query[key] : null);
         return fallback ? result || null : (result || null);
 
     },
     //From domain
     getFromDomain: function(fallback) {
-        var result;
-        result = this.request.hostname.toString().toLowerCase().trim().split(':')[0].split(/\./gi).reverse()[0];
+        var result, hostname = this.request.hostname || this.request.info.hostname;
+        result = hostname ? hostname.toString().toLowerCase().trim().split(':')[0].split(/\./gi).reverse()[0] : null;
         this.locale = result = this._check(result);
         return fallback ? result || null : (result || null);
 
@@ -85,7 +94,7 @@ var accept = Proto.extend({
     getFromSubdomain: function(fallback) {
         var result;
         if (this.isKoa) result = this.request.subdomains[0];
-        else result = this.request.headers.host.split('.')[0];
+        else result = this.headers.host.split('.')[0];
         this.locale = result = this._check(result);
         return fallback ? result || null : (result || null);
 
@@ -93,45 +102,39 @@ var accept = Proto.extend({
     // From cookie, 'lang=ja'
     getFromCookie: function(key, fallback) {
         var result;
-        result = this.cookie ? cookie.parse(this.cookie)[key] : null;
+        result = this.cookie ? cookie.parse(this.cookie)[key] || cookie.parse(this.cookie)[this.opt.keys.cookie]: null;
         this.locale = result = this._check(result);
         return fallback ? result || null : (result || null);
 
     },
     // From URL, 'http://gengojs.com/en'
     getFromUrl: function(fallback) {
-        var result;
-        this.locale = result = this._check(this.request.path.substring(1).split('/').shift());
+        var result, path = this.request.path || this.request.url.path;
+        this.locale = result = this._check(path ? path.substring(1).split('/').shift() : '');
         return fallback ? result || null : (result || null);
 
     },
     //From all, when specified in opt
     detectLocale: function() {
-        var header = this.getFromHeader(),
-            query = this.getFromQuery(this.opt.keys.query),
-            cookie = this.getFromCookie(this.opt.keys.cookie),
-            url = this.getFromUrl(),
-            domain = this.getFromDomain(),
-            subdomain = this.getFromSubdomain();
         _.forEach(this.opt.detect, function(value, key) {
             switch (key) {
                 case 'header':
-                    if (value) this.locale = header;
+                    if (value) this.locale = this.getFromHeader();
                     break;
                 case 'cookie':
-                    if (value) this.locale = cookie;
+                    if (value) this.locale = this.getFromCookie(this.opt.keys.cookie);
                     break;
                 case 'url':
-                    if (value) this.locale = url;
+                    if (value) this.locale = this.getFromUrl();
                     break;
                 case 'domain':
-                    if (value) this.locale = domain;
+                    if (value) this.locale = this.getFromDomain();
                     break;
                 case 'subdomain':
-                    if (value) this.locale = subdomain;
+                    if (value) this.locale = this.getFromSubdomain();
                     break;
                 case 'query':
-                    if (value) this.locale = query;
+                    if (value) this.locale = this.getFromQuery(this.opt.keys.query);
                     break;
             }
         }, this);

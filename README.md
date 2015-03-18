@@ -7,9 +7,9 @@
 
 [![NPM](https://nodei.co/npm/gengojs-accept.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/gengojs-accept/)
 
-Express and Koa locale parser that powers (or will power) [gengo.js](https://github.com/iwatakeshi/gengojs).
+Express, Koa, Hapi locale parser that powers (or will power) [gengo.js](https://github.com/iwatakeshi/gengojs).
 
-This module parses the accept-language header from either express or koa and returns the appropriate locale.
+This module parses the accept-language header from either Express, Koa, or Hapi and returns the appropriate locale.
 
 ##Usage
 
@@ -27,18 +27,30 @@ app.use(function(req, res, next){
     //Just wherever 'req' or 'request'
     //is avaible
     var result = accept(req);
-    res.send({locale:result.getLocale() || result.detectLocale()})
+    res.send({locale:result.getLocale(), detected:result.detectLocale()})
 })
 
 //In koa
 app.use(function*(next) {
     var result = accept(this);
-    var filter = {
-        locale: result.getLocale() || result.detectLocale()
+    var body = {
+        locale: result.getLocale(), 
+        detected:result.detectLocale()
     };
-    this.body = filter;
+    this.body = body;
     yield next;
 });
+
+//In hapi
+server.route({
+    method:'GET',
+    path:'/',
+    handler:function(request, reply){
+        var result = accept(request);
+        reply({locale:result.getLocale(), detected:result.detectLocale()})
+    }
+})
+
 ```
 
 **As middleware:**
@@ -77,9 +89,36 @@ app.get('/', function(req, res) {
 app.listen(3000);
 ```
 
+```js
+//hapi example
+var server = new Hapi.Server();
+//note the path to express middleware!
+var accept = require('gengojs-accept/hapi');
+
+server.connection({
+    host: 'localhost',
+    port: 3000
+});
+
+server.register(accept(), function(err) {
+    if (err) console.log('an error occurred');
+});
+
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function(request, reply) {
+        return reply(request.accept.getLocale());
+    }
+});
+server.start(function() {
+
+});
+```
+
 **Note:**
 
-gengojs-accept will attach to both request and response object for both express and koa.
+gengojs-accept will attach to both request and response object for both Express, Koa. For Hapi, it is only attached to request.
 
 ##API
 
@@ -94,6 +133,7 @@ gengojs-accept will attach to both request and response object for both express 
 |getFromUrl(fallback)|Return the locale by parsing the url, otherwise <code>null</code>|[Boolean fallback]|
 |detectLocale()|Return the locale by the specified detect options|    |
 |getLocale()|Returns the current locale|    |
+|setLocale(locale)|Overrides the locale| [String locale]
 
 **Note:**
 

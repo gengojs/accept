@@ -51,7 +51,6 @@ describe('Begin module "accept" tests with express', function() {
                 .set('Accept-Language', 'en-US')
                 .expect(function(res) {
                     assert.strictEqual(res.body.result, 'en-US');
-
                 })
                 .end(done);
 
@@ -63,11 +62,10 @@ describe('Begin module "accept" tests with express', function() {
             var express = require('express');
             var app = express();
             app.use(function(req, res, next) {
-                var result = accept(req);
-                var filter = {
-                    getLocale: result.getLocale()
-                };
-                res.send(filter);
+                var result = accept(req).getLocale();
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
             it('Accept should === "en-US"', function(done) {
@@ -75,8 +73,8 @@ describe('Begin module "accept" tests with express', function() {
                     .get('/')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getLocale, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
 
                     })
                     .end(done);
@@ -87,8 +85,8 @@ describe('Begin module "accept" tests with express', function() {
                     .get('/')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getLocale, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
 
                     })
                     .end(done);
@@ -102,17 +100,10 @@ describe('Begin module "accept" tests with express', function() {
                 var opt = {
                     supported: ['en-US', 'ja']
                 };
-                var result = accept(req, opt);
-
-                var filter = {
-                    getLocale: result.getLocale(),
-                    getAcceptLanguage: result.getAcceptLanguage(),
-                    getFromQuery: result.getFromQuery(),
-                    getFromSubdomain: result.getFromSubdomain(),
-                    getFromCookie: result.getFromCookie(),
-                    getFromUrl: result.getFromUrl()
-                };
-                res.send(filter);
+                var result = accept(req, opt).getLocale();
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
 
@@ -121,8 +112,8 @@ describe('Begin module "accept" tests with express', function() {
                     .get('/')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getLocale, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
 
                     })
                     .end(done);
@@ -133,8 +124,8 @@ describe('Begin module "accept" tests with express', function() {
                     .get('/')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getLocale, 'ja');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'ja');
 
                     })
                     .end(done);
@@ -147,11 +138,10 @@ describe('Begin module "accept" tests with express', function() {
             var express = require('express');
             var app = express();
             app.use(function(req, res, next) {
-                var result = accept(req);
-                var filter = {
-                    getFromQuery: result.getFromQuery('locale'),
-                };
-                res.send(filter);
+                var result = accept(req).getFromQuery('locale');
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
 
@@ -159,8 +149,8 @@ describe('Begin module "accept" tests with express', function() {
                 request(app)
                     .get('/?locale=en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromQuery, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
 
                     })
                     .end(done);
@@ -170,8 +160,8 @@ describe('Begin module "accept" tests with express', function() {
                 request(app)
                     .get('/?locale=en')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromQuery, 'en');
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -187,19 +177,18 @@ describe('Begin module "accept" tests with express', function() {
                 var result = accept(req, {
                     default: 'ja',
                     supported: ['en-US', 'en']
+                }).getFromQuery('locale', true);
+                res.send({
+                    result: result
                 });
-                var filter = {
-                    getFromQuery: result.getFromQuery('locale', true),
-                };
-                res.send(filter);
             });
             app.get('/');
             it('Accept should === "en"', function(done) {
                 request(app)
                     .get('/?locale=en')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromQuery, 'en');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -209,8 +198,8 @@ describe('Begin module "accept" tests with express', function() {
                 request(app)
                     .get('/')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromQuery, 'ja');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'ja');
 
                     })
                     .end(done);
@@ -223,11 +212,10 @@ describe('Begin module "accept" tests with express', function() {
         var express = require('express');
         var app = express();
         app.use(function(req, res, next) {
-            var result = accept(req);
-            var filter = {
-                getAcceptLanguage: result.getAcceptLanguage(),
-            };
-            res.send(filter);
+            var result = accept(req).getAcceptLanguage();
+            res.send({
+                result: result
+            });
         });
 
         app.get('/');
@@ -237,8 +225,8 @@ describe('Begin module "accept" tests with express', function() {
                 .get('/')
                 .set('Accept-Language', 'en-US')
                 .expect(function(res) {
-                    var result = res.body;
-                    assert.include(result.getAcceptLanguage, "en-US");
+                    var body = res.body;
+                    assert.include(body.result, "en-US");
 
                 })
                 .end(done);
@@ -249,8 +237,8 @@ describe('Begin module "accept" tests with express', function() {
                 .get('/')
                 .set('Accept-Language', 'ja')
                 .expect(function(res) {
-                    var result = res.body;
-                    assert.include(result.getAcceptLanguage, "ja");
+                    var body = res.body;
+                    assert.include(body.result, "ja");
 
                 })
                 .end(done);
@@ -267,11 +255,10 @@ describe('Begin module "accept" tests with express', function() {
 
             app.use(require('subdomain')(subdomainOptions));
             app.use(function(req, res, next) {
-                var result = accept(req, null, true)
-                var filter = {
-                    getFromDomain: result.getFromDomain()
-                };
-                res.send(filter);
+                var result = accept(req, null, true).getFromDomain();
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
 
@@ -281,8 +268,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('Host', 'api.localhost.com')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromDomain, 'en');
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -295,10 +282,10 @@ describe('Begin module "accept" tests with express', function() {
                     .set('Accept-Language', 'en-US')
 
                 .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromDomain, 'ja');
+                    var body = res.body;
+                    assert.notStrictEqual(body.result, 'ja');
 
-                    })
+                })
                     .end(done);
             });
         });
@@ -314,12 +301,10 @@ describe('Begin module "accept" tests with express', function() {
                 var opt = {
                     supported: ['en-US', 'ja', 'en']
                 };
-                var result = accept(req, opt);
-
-                var filter = {
-                    getFromDomain: result.getFromDomain()
-                };
-                res.send(filter);
+                var result = accept(req, opt).getFromDomain();
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
 
@@ -329,8 +314,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('Host', 'api.localhost.en')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromDomain, 'en');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -343,10 +328,10 @@ describe('Begin module "accept" tests with express', function() {
                     .set('Accept-Language', 'en-US')
 
                 .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromDomain, 'ja');
+                    var body = res.body;
+                    assert.strictEqual(body.result, 'ja');
 
-                    })
+                })
                     .end(done);
             });
         });
@@ -362,11 +347,10 @@ describe('Begin module "accept" tests with express', function() {
 
             app.use(require('subdomain')(subdomainOptions));
             app.use(function(req, res, next) {
-                var result = accept(req, null, true)
-                var filter = {
-                    getFromSubdomain: result.getFromSubdomain()
-                };
-                res.send(filter);
+                var result = accept(req, null, true).getFromSubdomain();
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
 
@@ -376,8 +360,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('Host', 'en.localhost.com')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromSubdomain, 'en');
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -390,10 +374,10 @@ describe('Begin module "accept" tests with express', function() {
                     .set('Accept-Language', 'en-US')
 
                 .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromSubdomain, 'ja');
+                    var body = res.body;
+                    assert.notStrictEqual(body.result, 'ja');
 
-                    })
+                })
                     .end(done);
             });
         });
@@ -409,12 +393,10 @@ describe('Begin module "accept" tests with express', function() {
                 var opt = {
                     supported: ['en-US', 'ja', 'en']
                 };
-                var result = accept(req, opt);
-
-                var filter = {
-                    getFromSubdomain: result.getFromSubdomain()
-                };
-                res.send(filter);
+                var result = accept(req, opt).getFromSubdomain();
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
 
@@ -424,8 +406,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('Host', 'en.localhost.com')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromSubdomain, 'en');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en');
 
                     })
                     .end(done);
@@ -438,10 +420,10 @@ describe('Begin module "accept" tests with express', function() {
                     .set('Accept-Language', 'en-US')
 
                 .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromSubdomain, 'ja');
+                    var body = res.body;
+                    assert.strictEqual(body.result, 'ja');
 
-                    })
+                })
                     .end(done);
             });
         });
@@ -453,11 +435,10 @@ describe('Begin module "accept" tests with express', function() {
             var app = express();
 
             app.use(function(req, res, next) {
-                var result = accept(req);
-                var filter = {
-                    getFromUrl: result.getFromUrl()
-                };
-                res.send(filter);
+                var result = accept(req).getFromUrl();
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
             app.get('/ja');
@@ -467,8 +448,8 @@ describe('Begin module "accept" tests with express', function() {
                     .get('/')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
                     }).end(done);
 
             });
@@ -478,8 +459,8 @@ describe('Begin module "accept" tests with express', function() {
                     .get('/ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
 
                     }).end(done);
             });
@@ -492,12 +473,11 @@ describe('Begin module "accept" tests with express', function() {
             app.use(function(req, res, next) {
                 var result = accept(req, {
                     supported: ['en-US', 'ja']
-                });
-                var filter = {
-                    getFromUrl: result.getFromUrl()
-                };
+                }).getFromUrl();
 
-                res.send(filter);
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
             app.get('/ja');
@@ -507,8 +487,8 @@ describe('Begin module "accept" tests with express', function() {
                     .get('/')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
                     }).end(done);
 
             });
@@ -518,8 +498,8 @@ describe('Begin module "accept" tests with express', function() {
                     .get('/ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "ja");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "ja");
 
                     }).end(done);
             });
@@ -529,8 +509,8 @@ describe('Begin module "accept" tests with express', function() {
                     .get('/fr')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromUrl, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
 
                     }).end(done);
             });
@@ -545,11 +525,10 @@ describe('Begin module "accept" tests with express', function() {
             app.use(cookieParser());
 
             app.use(function(req, res, next) {
-                var result = accept(req);
-                var filter = {
-                    getFromCookie: result.getFromCookie('locale'),
-                };
-                res.send(filter);
+                var result = accept(req).getFromCookie('locale');
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
 
@@ -559,8 +538,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.getFromCookie, "ja");
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, "ja");
                     }).end(done);
 
             });
@@ -576,11 +555,10 @@ describe('Begin module "accept" tests with express', function() {
                 var result = accept(req, {
                     supported: ['en-US', 'ja'],
                     default: 'en'
+                }).getFromCookie('locale');
+                res.send({
+                    result: result
                 });
-                var filter = {
-                    getFromCookie: result.getFromCookie('locale'),
-                };
-                res.send(filter);
             });
             app.get('/');
 
@@ -590,8 +568,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromCookie, "ja");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "ja");
                     }).end(done);
 
             });
@@ -602,8 +580,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.getFromCookie, "ja");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "ja");
                     }).end(done);
             });
         });
@@ -616,11 +594,10 @@ describe('Begin module "accept" tests with express', function() {
             app.use(cookieParser());
 
             app.use(function(req, res, next) {
-                var result = accept(req);
-                var filter = {
-                    detectLocale: result.detectLocale()
-                };
-                res.send(filter);
+                var result = accept(req).detectLocale();
+                res.send({
+                    result: result
+                });
             });
             app.get('/');
 
@@ -630,8 +607,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.detectLocale, 'en-US');
+                        var body = res.body;
+                        assert.strictEqual(body.result, 'en-US');
                     }).end(done);
 
             });
@@ -642,8 +619,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.notStrictEqual(result.detectLocale, "ja");
+                        var body = res.body;
+                        assert.notStrictEqual(body.result, "ja");
 
                     }).end(done);
             });
@@ -663,11 +640,10 @@ describe('Begin module "accept" tests with express', function() {
                         header: false,
                         url: true
                     }
+                }).detectLocale();
+                res.send({
+                    result: result
                 });
-                var filter = {
-                    detectLocale: result.detectLocale()
-                };
-                res.send(filter);
             });
             app.get('/');
 
@@ -677,8 +653,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'en-US')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.detectLocale, "en-US");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en-US");
                     }).end(done);
 
             });
@@ -689,8 +665,8 @@ describe('Begin module "accept" tests with express', function() {
                     .set('cookie', 'locale=ja')
                     .set('Accept-Language', 'ja')
                     .expect(function(res) {
-                        var result = res.body;
-                        assert.strictEqual(result.detectLocale, "en");
+                        var body = res.body;
+                        assert.strictEqual(body.result, "en");
                     }).end(done);
             });
         });
