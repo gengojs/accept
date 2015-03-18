@@ -1,2 +1,4 @@
 gengojs-accept.sublime-project
+*.sublime-project
+*.sublime-workspace
 node_modules/
