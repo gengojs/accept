@@ -26,6 +26,7 @@ var Accept = Proto.extend({
      * @private
      */
     init: function(req, opt) {
+        this.override = false;
         //set options
         this._options(opt);
         if (req) this.set(req);
@@ -85,6 +86,7 @@ var Accept = Proto.extend({
      * @public
      */
     setLocale: function(locale) {
+        this.override = true;
         this.locale = this._check(locale);
         return this.locale;
     },
@@ -186,32 +188,39 @@ var Accept = Proto.extend({
     //From all, when specified in opt
     /**
      * @description Parses the locale by the specified type of parsing.
+     * @param {String} locale The locale to override.
      * @return {String} The parsed locale.
      * @public
      */
-    detectLocale: function() {
+    detectLocale: function(locale) {
         _.forEach(this.opt.detect, function(value, key) {
             switch (key) {
                 case 'header':
-                    if (value) this.locale = this.getFromHeader();
+                    if (value && !this.override) this.locale = this.getFromHeader();
                     break;
                 case 'cookie':
-                    if (value) this.locale = this.getFromCookie(this.opt.keys.cookie);
+                    if (value && !this.override) this.locale = this.getFromCookie(this.opt.keys.cookie);
                     break;
                 case 'url':
-                    if (value) this.locale = this.getFromUrl();
+                    if (value && !this.override) this.locale = this.getFromUrl();
                     break;
                 case 'domain':
-                    if (value) this.locale = this.getFromDomain();
+                    if (value && !this.override) this.locale = this.getFromDomain();
                     break;
                 case 'subdomain':
-                    if (value) this.locale = this.getFromSubdomain();
+                    if (value && !this.override) this.locale = this.getFromSubdomain();
                     break;
                 case 'query':
-                    if (value) this.locale = this.getFromQuery(this.opt.keys.query);
+                    if (value && !this.override) this.locale = this.getFromQuery(this.opt.keys.query);
                     break;
             }
         }, this);
+
+        /*override?*/
+        if(locale) this.locale = this._check(locale) || this.locale;
+        //reset the override
+        if(this.override) this.override = false;
+        
         return this.locale;
     },
     /**

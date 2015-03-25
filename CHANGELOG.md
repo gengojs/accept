@@ -48,3 +48,9 @@
 * Added beautiful comments
 * Fixed minor bug
 * Updated comments.
+
+**0.0.10**
+
+* Now `setLocale` will actually override the `detectLocale` method
+* You can now override directly in detectLocale
+* Updated and fixed tests
