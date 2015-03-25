@@ -7,7 +7,7 @@ node_js:
 
 script:
   nv=$(node -v);
-  if [[ $nv != v0.10.37 ]] ; then
+  if [[ $nv != v0.10.38 ]] ; then
     npm test;
   else
     npm run 0.10;
