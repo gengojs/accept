@@ -54,3 +54,8 @@
 * Now `setLocale` will actually override the `detectLocale` method
 * You can now override directly in detectLocale
 * Updated and fixed tests
+
+**0.0.11**
+
+* Updated dependencies.
+* Fixed Hapi tests.

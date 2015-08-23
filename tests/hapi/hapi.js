@@ -1,3 +1,4 @@
+/*global it should*/
 var Hapi = require('hapi');
 var accept = require('../../index');
 var assert = require('chai').assert;
@@ -61,7 +62,7 @@ describe('hapi', function() {
       path: '/',
       handler: handler
     });
-    server.start(function() {});
+    
     describe('request "/"', function() {
       it('should === "en-US"', function(done) {
         server.inject({
@@ -76,7 +77,6 @@ describe('hapi', function() {
         });
       });
     });
-    server.stop(function() {});
   });
 
   describe('getLocale()', function() {
@@ -96,9 +96,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {
-
-        });
+        
         it('should === "en-US"', function(done) {
           server.inject({
             method: 'GET',
@@ -112,7 +110,6 @@ describe('hapi', function() {
             done();
           });
         });
-        server.stop(function() {});
       });
 
       describe('configured', function() {
@@ -132,7 +129,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should === "ja"', function(done) {
           server.inject({
             method: 'GET',
@@ -146,7 +143,6 @@ describe('hapi', function() {
             done();
           });
         });
-        server.stop(function() {});
       });
     });
   });
@@ -174,7 +170,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should === "en-US"', function(done) {
           server.inject({
             method: 'GET',
@@ -189,7 +185,6 @@ describe('hapi', function() {
             done();
           });
         });
-        server.stop(function() {});
       });
       describe('configured', function() {
         var server = new Hapi.Server();
@@ -214,7 +209,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should === "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -229,7 +224,6 @@ describe('hapi', function() {
             done();
           });
         });
-        server.stop(function() {});
       });
     });
   });
@@ -251,7 +245,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should !== "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -284,7 +278,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should === "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -318,7 +312,7 @@ describe('hapi', function() {
       path: '/',
       handler: handler
     });
-    server.start(function() {});
+    
     it('should === "ja"', function(done) {
       server.inject({
         method: 'GET',
@@ -352,7 +346,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should !== "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -389,7 +383,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should === "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -426,7 +420,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should !== "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -462,7 +456,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should === "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -500,7 +494,7 @@ describe('hapi', function() {
           path: '/en',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should !== "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -533,7 +527,7 @@ describe('hapi', function() {
           path: '/en',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should === "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -568,7 +562,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should !== "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -601,7 +595,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should === "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -637,7 +631,7 @@ describe('hapi', function() {
           path: '/',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should !== "en"', function(done) {
           server.inject({
             method: 'GET',
@@ -675,7 +669,7 @@ describe('hapi', function() {
           path: '/en',
           handler: handler
         });
-        server.start(function() {});
+        
         it('should === "en"', function(done) {
           server.inject({
             method: 'GET',
