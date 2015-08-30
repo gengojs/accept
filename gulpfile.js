@@ -46,10 +46,13 @@ gulp.task('doc', function() {
 gulp.task('watch', function () {
     return gulp.watch('./lib/**/**/*.js', ['lib:entry']);
 });
-gulp.task('test', ['lib:entry'], function() {
+gulp.task('test', function() {
   return gulp.src('./tests/**/**/*.js', {read: false})
         // gulp-mocha needs filepaths so you can't have any plugins before it
-        .pipe(mocha());
+        .pipe(mocha())
+        .once('end', function () {
+          process.exit();
+        });
 });
 
 gulp.task("default", ['format','lib:entry','doc','watch']);
