@@ -97,8 +97,11 @@ describe('koa', function() {
     var a = require('../../koa/')
     app.use(a());
     app.use(function * () {
+      console.log(this.accept);
       this.body = {
-        result: this.request.accept.getFromHeader()
+        result: this.accept? 
+        this.accept.getFromHeader() :
+        this.request.accept.getFromHeader()
       };
     })
     describe('request "/"', function() {
