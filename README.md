@@ -10,6 +10,112 @@ Express, Koa, Hapi locale parser that powers [gengo.js](https://github.com/iwata
 
 This module parses the accept-language header from Express, Koa, or Hapi and returns the appropriate locale.
 
+## Usage
+
+```bash
+$ npm i --save gengojs-accept
+```
+
+### Express
+
+```javascript
+import express from 'express';
+import accept from 'gengojs-accept/express';
+
+let app = express();
+
+app.use(accept());
+
+app.use('/', function(req, res, next){
+	console.log(req.getLocale());
+});
+
+// ...
+```
+
+### Hapi
+
+```javascript
+import Hapi from 'hapi';
+import accept from 'gengojs-accept/hapi';
+
+let server = new Hapi.Server();
+server.connection({
+	port:3000
+})
+ 
+server.register(accept(), function(error){
+ 	if(error) console.log(error);
+});
+
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        console.log(request.accept.getLocale());
+        reply();
+    }
+});
+
+// ...
+```
+
+### Koa
+
+```javascript
+import koa from 'koa';
+import accept from 'gengojs-accept/koa';
+
+let app = koa();
+
+app.use(accept());
+
+app.use('/', function *(){
+	console.log(this.accept.getLocale());
+    // or
+    console.log(this.request.accept.getLocale());
+    // or
+    console.log(this.response.accept.getLocale());
+});
+
+// ...
+```
+
+### Standalone
+
+```javascript
+import accept from 'gengojs-accept';
+
+// pass the request object from express or hapi 
+// or the 'this' context from koa;
+let currentLocale = accept(req || this, options).getLocale();
+```
+
+## Options
+
+```json
+{
+    "check": true,
+    "default": "en-US",
+    "supported": [
+        "en-US"
+    ],
+    "keys": {
+        "cookie": "locale",
+        "query": "locale"
+    },
+    "detect": {
+        "header": true,
+        "cookie": false,
+        "query": false,
+        "url": false,
+        "domain": false,
+        "subdomain": false
+    }
+}  
+
+```
+
 ## Documentation
 
 See the beautifully generated documenation at [GitHub](http://iwatakeshi.github.io/gengojs-accept/index.html).

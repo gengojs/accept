@@ -46,7 +46,7 @@ gulp.task('doc', function() {
 gulp.task('watch', function () {
     return gulp.watch('./lib/**/**/*.js', ['lib:entry']);
 });
-gulp.task('test', function() {
+gulp.task('test', ['lib:entry'],function() {
   if(isHarmony)
     return gulp.src('./tests/**/**/*.js', {read: false})
           // gulp-mocha needs filepaths so you can't have any plugins before it
