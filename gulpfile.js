@@ -8,7 +8,7 @@ var format = require('gulp-esformatter');
 var semver = require('semver');
 var version = require('node-version').long;
 var doc = require('gulp-doxx');
-var isNotHarmony = !semver.lt(version.toString(), '0.11.0');
+var isHarmony = !semver.lt(version.toString(), '0.11.0');
 if(!semver.lt(version.toString(), '0.11.0')){
       require("harmonize")(["harmony-generators"]);
 }
@@ -47,7 +47,7 @@ gulp.task('watch', function () {
     return gulp.watch('./lib/**/**/*.js', ['lib:entry']);
 });
 gulp.task('test', function() {
-  if(!isNotHarmony)
+  if(isHarmony)
     return gulp.src('./tests/**/**/*.js', {read: false})
           // gulp-mocha needs filepaths so you can't have any plugins before it
           .pipe(mocha())
