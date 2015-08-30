@@ -1,79 +1,35 @@
-var accept = require('../../index');
+var accept = require('../../');
 var request = require('supertest');
-var assert = require('chai').assert;
+var chai = require('chai');
+chai.config.includeStack = true;
+var assert = chai.assert;
 
-function subdomain(options) {
-
-  // options?
-  options = options || {};
-
-  if (!options.base) {
-    throw new Error('options.base required!');
-  } else {
-    options.removeWWW = options.removeWWW || false;
-    options.debug = options.debug || false;
-    options.ignoreWWW = options.ignoreWWW || false;
-    options.prefix = options.prefix || 'subdomain';
-  };
-
-  // return middleware
-  return function * (next) {
-
-    // get host & protocol
-    var host = this.request.headers.host,
-      protocol = this.request.socket.encrypted ? 'https' : 'http';
-
-    // remove 'www' prefix from URL? (tacky, right?)
-    if (options.removeWWW === true) {
-      if (/^www/.test(host)) {
-        return this.response.redirect(protocol + '://' + host.replace(/^www\./, '') + this.request.url);
-      };
-    };
-
-    // subdomain specific middleware
-    if (host === options.base || host === 'localhost:8000' || (options.ignoreWWW && /^www\./.test(host))) {
-      // not a subdomain or ignoring www subdomain
-      yield next;
-    } else {
-      // test for subdomain
-      var matches = host.match(new RegExp('(.*)\.' + options.base));
-      // subdomain
-      if (matches && matches.length === 2) {
-        this.request.url = '/' + options.prefix + '/' + matches[1] + this.request.url;
-        yield next;
-      } else {
-        yield next;
-      }
-    };
-  };
-
-};
-
-describe('koa', function() {
+describe('express', function() {
   describe('options', function() {
     describe('default', function() {
       describe('"default"', function() {
         it('should === "en-US"', function(done) {
           var result = accept();
-          assert.strictEqual(result.opt.default, 'en-US');
+          assert.strictEqual(result.options.default, 'en-US');
           done();
         });
+
       });
       describe('supported', function() {
         it('should === "["en-US"]"', function(done) {
           var result = accept();
-          assert.deepEqual(result.opt.supported, ['en-US']);
+          assert.deepEqual(result.options.supported, ['en-US']);
           done();
         });
       });
     });
     describe('configured', function() {
-      describe('default', function() {
+      describe('"default"', function() {
         it('should === "ja"', function(done) {
           var result = accept(null, {
             default: 'ja'
           });
-          assert.strictEqual(result.opt.default, 'ja');
+          assert.strictEqual(result.options.default, 'ja');
           done();
         });
       });
@@ -82,53 +38,49 @@ describe('koa', function() {
           var result = accept(null, {
             supported: ['en-US', 'ja']
           });
-          assert.deepEqual(result.opt.supported, ['en-US', 'ja']);
+          assert.deepEqual(result.options.supported, ['en-US', 'ja']);
           done();
         });
       });
     });
   });
-
   describe('middleware', function() {
-    var koa = require('koa');
-    var app = koa();
-    var route = require('koa-route');
-
-    var a = require('../../koa/')
+    var a = require('../../express/');
+    var express = require('express');
+    var app = express();
     app.use(a());
-    app.use(function * () {
-      this.body = {
-        result: this.request.accept.getFromHeader()
-      };
-    })
-    describe('request "/"', function() {
-      it('should === "en-US"', function(done) {
-        request(app.listen())
-          .get('/')
-          .set('Accept-Language', 'en-US')
-          .expect(function(res) {
-            var body = res.body;
-            assert.strictEqual(body.result, 'en-US');
-          })
-          .end(done);
+    app.get('/', function(req, res) {
+      res.send({
+        result: req.accept.getFromHeader()
       });
+    });
+
+    it('should === "en-US"', function(done) {
+      request(app)
+        .get('/')
+        .set('Accept-Language', 'en-US')
+        .expect(function(res) {
+          assert.strictEqual(res.body.result, 'en-US');
+        })
+        .end(done);
+
     });
   });
 
   describe('getLocale()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
-        app.use(function * () {
-          var result = accept(this).getLocale();
-          this.body = {
+        var express = require('express');
+        var app = express();
+        app.use(function(req, res, next) {
+          var result = accept(req).getLocale();
+          res.send({
             result: result
-          };
-
+          });
         });
+        app.get('/');
         it('should === "en-US"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('Accept-Language', 'en-US')
             .expect(function(res) {
@@ -139,8 +91,8 @@ describe('koa', function() {
             .end(done);
         });
 
-        it('should fallback to "en-US" (default)', function(done) {
-          request(app.listen())
+        it('should fallback to "en-US"', function(done) {
+          request(app)
             .get('/')
             .set('Accept-Language', 'ja')
             .expect(function(res) {
@@ -152,22 +104,22 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
 
-        app.use(function * (next) {
-          var opt = {
+        app.use(function(req, res, next) {
+          var options = {
             supported: ['en-US', 'ja']
           };
-          var result = accept(this, opt).getLocale();
-          this.body = {
+          var result = accept(req, options).getLocale();
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
 
         it('should === "en-US"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('Accept-Language', 'en-US')
             .expect(function(res) {
@@ -179,12 +131,13 @@ describe('koa', function() {
         });
 
         it('should === "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('Accept-Language', 'ja')
             .expect(function(res) {
               var body = res.body;
               assert.strictEqual(body.result, 'ja');
+
             })
             .end(done);
         });
@@ -194,22 +147,22 @@ describe('koa', function() {
   describe('setLocale()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
-        app.use(function * () {
-           var result = accept(this);
+        var express = require('express');
+        var app = express();
+        app.use(function(req, res) {
+          var result = accept(req);
           var set = result.setLocale('en');
           var detect = result.detectLocale();
-          this.body = {
+          res.send({
             result: {
-                set:set,
-                detect:detect
+              set: set,
+              detect: detect
             }
-          };
+          });
         });
 
         it('should === "en-US"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('Accept-Language', 'en-US')
             .expect(function(res) {
@@ -223,7 +176,7 @@ describe('koa', function() {
         });
 
         it('should fallback to "en-US" (default)', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('Accept-Language', 'ja')
             .expect(function(res) {
@@ -236,27 +189,26 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
 
-        app.use(function * (next) {
-          var opt = {
+        app.use(function(req, res) {
+          var options = {
             supported: ['en-US', 'ja']
           };
-          var result = accept(this, opt);
+          var result = accept(req, options);
           var set = result.setLocale('ja');
           var detect = result.detectLocale();
-          this.body = {
+          res.send({
             result: {
-                set:set,
-                detect:detect
+              set: set,
+              detect: detect
             }
-          };
-          yield next;
+          });
         });
 
         it('should === "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('Accept-Language', 'ja')
             .expect(function(res) {
@@ -271,20 +223,33 @@ describe('koa', function() {
     });
   });
 
+
   describe('getFromQuery()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
-        app.use(function * (next) {
-          var result = accept(this).getFromQuery('locale');
-          this.body = {
+        var express = require('express');
+        var app = express();
+        app.use(function(req, res, next) {
+          var result = accept(req).getFromQuery('locale');
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
+
+        it('should === "en-US"', function(done) {
+          request(app)
+            .get('/?locale=en-US')
+            .expect(function(res) {
+              var body = res.body;
+              assert.strictEqual(body.result, 'en-US');
+
+            })
+            .end(done);
+        });
+
         it('should !== "en"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/?locale=en')
             .expect(function(res) {
               var body = res.body;
@@ -293,34 +258,22 @@ describe('koa', function() {
             })
             .end(done);
         });
-
-        it('should fallback to "en-US" (default)', function(done) {
-          request(app.listen())
-            .get('/en')
-            .expect(function(res) {
-              var body = res.body;
-              assert.strictEqual(body.result, 'en-US');
-
-            })
-            .end(done);
-        });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
-        app.use(function * (next) {
-          var result = accept(this, {
+        var express = require('express');
+        var app = express();
+        app.use(function(req, res, next) {
+          var result = accept(req, {
             default: 'ja',
             supported: ['en-US', 'en']
-          }).getFromQuery('locale');
-          this.body = {
+          }).getFromQuery('locale', true);
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
-
+        app.get('/');
         it('should === "en"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/?locale=en')
             .expect(function(res) {
               var body = res.body;
@@ -331,30 +284,34 @@ describe('koa', function() {
         });
 
         it('should fallback to "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .expect(function(res) {
               var body = res.body;
               assert.strictEqual(body.result, 'ja');
+
             })
             .end(done);
         });
       });
     });
   });
+
+
   describe('getAcceptLanguage()', function() {
-    var koa = require('koa');
-    var app = koa();
-    app.use(function * (next) {
-      var result = accept(this).getAcceptLanguage();
-      this.body = {
+    var express = require('express');
+    var app = express();
+    app.use(function(req, res, next) {
+      var result = accept(req).getAcceptLanguage();
+      res.send({
         result: result
-      };
-      yield next;
+      });
     });
 
+    app.get('/');
+
     it('should include "en-US"', function(done) {
-      request(app.listen())
+      request(app)
         .get('/')
         .set('Accept-Language', 'en-US')
         .expect(function(res) {
@@ -366,7 +323,7 @@ describe('koa', function() {
     });
 
     it('should include "ja"', function(done) {
-      request(app.listen())
+      request(app)
         .get('/')
         .set('Accept-Language', 'ja')
         .expect(function(res) {
@@ -381,23 +338,23 @@ describe('koa', function() {
   describe('getFromDomain()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
         var subdomainOptions = {
           base: 'localhost.com' //base is required, you'll get an error without it.
         };
 
-        app.use(subdomain(subdomainOptions));
-        app.use(function * (next) {
-          var result = accept(this).getFromDomain();
-          this.body = {
+        app.use(require('subdomain')(subdomainOptions));
+        app.use(function(req, res, next) {
+          var result = accept(req, null, true).getFromDomain();
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
 
         it('should !== "en"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/api/:localhost')
             .set('Host', 'api.localhost.com')
             .set('Accept-Language', 'en-US')
@@ -410,39 +367,40 @@ describe('koa', function() {
         });
 
         it('should !== "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/api/:localhost')
-            .set('host', 'api.localhost.en')
+            .set('host', 'api.localhost.ja')
             .set('Accept-Language', 'en-US')
-            .expect(function(res) {
-              var body = res.body;
-              assert.notStrictEqual(body.result, 'ja');
-            })
+
+          .expect(function(res) {
+            var body = res.body;
+            assert.notStrictEqual(body.result, 'ja');
+
+          })
             .end(done);
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
         var subdomainOptions = {
           base: 'localhost.com' //base is required, you'll get an error without it.
         };
 
-        app.use(subdomain(subdomainOptions));
-        app.use(function * (next) {
-          var opt = {
-            supported: ['en-US', 'ja'],
-            default: 'en'
+        app.use(require('subdomain')(subdomainOptions));
+        app.use(function(req, res, next) {
+          var options = {
+            supported: ['en-US', 'ja', 'en']
           };
-          var result = accept(this, opt).getFromDomain();
-          this.body = {
+          var result = accept(req, options).getFromDomain();
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
 
         it('should === "en"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/api/:localhost')
             .set('Host', 'api.localhost.en')
             .set('Accept-Language', 'en-US')
@@ -455,15 +413,16 @@ describe('koa', function() {
         });
 
         it('should === "ja"', function(done) {
-          request(app.listen())
-            .get('/api/:localhost')
-            .set('host', 'api.localhost.ja')
+          request(app)
+            .get('/ja/:localhost')
+            .set('host', 'ja.localhost.ja')
             .set('Accept-Language', 'en-US')
-            .expect(function(res) {
-              var body = res.body;
-              assert.strictEqual(body.result, 'ja');
 
-            })
+          .expect(function(res) {
+            var body = res.body;
+            assert.strictEqual(body.result, 'ja');
+
+          })
             .end(done);
         });
       });
@@ -473,23 +432,23 @@ describe('koa', function() {
   describe('getFromSubdomain()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
         var subdomainOptions = {
           base: 'localhost.com' //base is required, you'll get an error without it.
         };
 
-        app.use(subdomain(subdomainOptions));
-        app.use(function * (next) {
-          var result = accept(this).getFromSubdomain;
-          this.body = {
+        app.use(require('subdomain')(subdomainOptions));
+        app.use(function(req, res, next) {
+          var result = accept(req, null, true).getFromSubdomain();
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
 
         it('should !== "en"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/en/:localhost')
             .set('Host', 'en.localhost.com')
             .set('Accept-Language', 'en-US')
@@ -502,40 +461,40 @@ describe('koa', function() {
         });
 
         it('should !== "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/ja/:localhost')
             .set('host', 'ja.localhost.com')
             .set('Accept-Language', 'en-US')
-            .expect(function(res) {
-              var body = res.body;
-              assert.notStrictEqual(body.result, 'ja');
 
-            })
+          .expect(function(res) {
+            var body = res.body;
+            assert.notStrictEqual(body.result, 'ja');
+
+          })
             .end(done);
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
         var subdomainOptions = {
           base: 'localhost.com' //base is required, you'll get an error without it.
         };
 
-        app.use(subdomain(subdomainOptions));
-        app.use(function * (next) {
-          var opt = {
-            supported: ['en-US', 'ja'],
-            default: 'en'
+        app.use(require('subdomain')(subdomainOptions));
+        app.use(function(req, res, next) {
+          var options = {
+            supported: ['en-US', 'ja', 'en']
           };
-          var result = accept(this, opt).getFromSubdomain();
-          this.body = {
+          var result = accept(req, options).getFromSubdomain();
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
 
         it('should === "en"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/en/:localhost')
             .set('Host', 'en.localhost.com')
             .set('Accept-Language', 'en-US')
@@ -548,15 +507,16 @@ describe('koa', function() {
         });
 
         it('should === "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/ja/:localhost')
             .set('host', 'ja.localhost.com')
             .set('Accept-Language', 'en-US')
-            .expect(function(res) {
-              var body = res.body;
-              assert.strictEqual(body.result, 'ja');
 
-            })
+          .expect(function(res) {
+            var body = res.body;
+            assert.strictEqual(body.result, 'ja');
+
+          })
             .end(done);
         });
       });
@@ -566,19 +526,20 @@ describe('koa', function() {
   describe('getFromUrl()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
 
-        app.use(function * (next) {
-          var result = accept(this).getFromUrl();
-          this.body = {
+        app.use(function(req, res, next) {
+          var result = accept(req).getFromUrl();
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
+        app.get('/ja');
 
         it('should === "en-US"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('Accept-Language', 'en-US')
             .expect(function(res) {
@@ -589,7 +550,7 @@ describe('koa', function() {
         });
 
         it('should === "en-US"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/ja')
             .set('Accept-Language', 'en-US')
             .expect(function(res) {
@@ -600,21 +561,23 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
 
-        app.use(function * (next) {
-          var result = accept(this, {
+        app.use(function(req, res, next) {
+          var result = accept(req, {
             supported: ['en-US', 'ja']
           }).getFromUrl();
-          this.body = {
+
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
+        app.get('/ja');
 
         it('should === "en-US"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('Accept-Language', 'en-US')
             .expect(function(res) {
@@ -625,7 +588,7 @@ describe('koa', function() {
         });
 
         it('should === "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/ja')
             .set('Accept-Language', 'en-US')
             .expect(function(res) {
@@ -636,7 +599,7 @@ describe('koa', function() {
         });
 
         it('should === "en-US"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/fr')
             .set('Accept-Language', 'en-US')
             .expect(function(res) {
@@ -653,21 +616,23 @@ describe('koa', function() {
   describe('getFromCookie()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
+        var cookieParser = require('cookie-parser');
+        app.use(cookieParser());
 
-        app.use(function * (next) {
-          var result = accept(this).getFromCookie('locale');
-          this.body = {
+        app.use(function(req, res, next) {
+          var result = accept(req).getFromCookie('locale');
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
 
         it('should !== "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
-            .set('Cookie', 'locale=ja')
+            .set('cookie', 'locale=ja')
             .set('Accept-Language', 'en-US')
             .expect(function(res) {
               var body = res.body;
@@ -675,37 +640,26 @@ describe('koa', function() {
             }).end(done);
 
         });
-
-        it('should !== "ja"', function(done) {
-          request(app.listen())
-            .get('/')
-            .set('Cookie', 'locale=ja')
-            .set('Accept-Language', 'ja')
-            .expect(function(res) {
-              var body = res.body;
-              assert.notStrictEqual(body.result, "ja");
-
-            }).end(done);
-        });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
+        var cookieParser = require('cookie-parser');
+        app.use(cookieParser());
 
-        app.use(function * (next) {
-          var result = accept(this, {
+        app.use(function(req, res, next) {
+          var result = accept(req, {
             supported: ['en-US', 'ja'],
             default: 'en'
           }).getFromCookie('locale');
-          this.body = {
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
-
+        app.get('/');
 
         it('should === "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('cookie', 'locale=ja')
             .set('Accept-Language', 'en-US')
@@ -713,11 +667,10 @@ describe('koa', function() {
               var body = res.body;
               assert.strictEqual(body.result, "ja");
             }).end(done);
-
         });
 
         it('should === "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('cookie', 'locale=ja')
             .set('Accept-Language', 'ja')
@@ -728,23 +681,26 @@ describe('koa', function() {
         });
       });
     });
+
   });
   describe('detectLocale()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
+        var cookieParser = require('cookie-parser');
+        app.use(cookieParser());
 
-        app.use(function * (next) {
-          var result = accept(this).detectLocale();
-          this.body = {
+        app.use(function(req, res, next) {
+          var result = accept(req).detectLocale();
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
 
         it('should === "en-US"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('cookie', 'locale=ja')
             .set('Accept-Language', 'en-US')
@@ -756,7 +712,7 @@ describe('koa', function() {
         });
 
         it('should !== "ja"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/')
             .set('cookie', 'locale=ja')
             .set('Accept-Language', 'ja')
@@ -768,11 +724,13 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var express = require('express');
+        var app = express();
+        var cookieParser = require('cookie-parser');
+        app.use(cookieParser());
 
-        app.use(function * (next) {
-          var result = accept(this, {
+        app.use(function(req, res, next) {
+          var result = accept(req, {
             supported: ['en-US', 'ja'],
             default: 'en',
             detect: {
@@ -780,14 +738,14 @@ describe('koa', function() {
               url: true
             }
           }).detectLocale();
-          this.body = {
+          res.send({
             result: result
-          };
-          yield next;
+          });
         });
+        app.get('/');
 
         it('should === "en-US"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/en-US')
             .set('cookie', 'locale=ja')
             .set('Accept-Language', 'en-US')
@@ -799,7 +757,7 @@ describe('koa', function() {
         });
 
         it('should === "en"', function(done) {
-          request(app.listen())
+          request(app)
             .get('/en')
             .set('cookie', 'locale=ja')
             .set('Accept-Language', 'ja')
