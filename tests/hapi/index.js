@@ -1,6 +1,5 @@
-/*global it should*/
 var Hapi = require('hapi');
-var accept = require('../../index');
+var accept = require('../../');
 var assert = require('chai').assert;
 
 describe('hapi', function() {
@@ -9,14 +8,14 @@ describe('hapi', function() {
       describe('"default"', function() {
         it('should === "en-US"', function(done) {
           var result = accept();
-          assert.strictEqual(result.opt.default, 'en-US');
+          assert.strictEqual(result.options.default, 'en-US');
           done();
         });
       });
       describe('supported', function() {
         it('should === "["en-US"]"', function(done) {
           var result = accept();
-          assert.deepEqual(result.opt.supported, ['en-US']);
+          assert.deepEqual(result.options.supported, ['en-US']);
           done();
         });
       });
@@ -28,7 +27,7 @@ describe('hapi', function() {
           var result = accept(null, {
             default: 'ja'
           });
-          assert.strictEqual(result.opt.default, 'ja');
+          assert.strictEqual(result.options.default, 'ja');
           done();
         });
       });
@@ -37,7 +36,7 @@ describe('hapi', function() {
           var result = accept(null, {
             supported: ['en-US', 'ja']
           });
-          assert.deepEqual(result.opt.supported, ['en-US', 'ja']);
+          assert.deepEqual(result.options.supported, ['en-US', 'ja']);
           done();
         });
       });
