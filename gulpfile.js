@@ -9,6 +9,8 @@ var semver = require('semver');
 var version = require('node-version').long;
 var doc = require('gulp-doxx');
 var isHarmony = !semver.lt(version.toString(), '0.11.0');
+var changelog = require('./node_modules/gulp-changelog/lib/');
+
 if(!semver.lt(version.toString(), '0.11.0')){
       require("harmonize")(["harmony-generators"]);
 }
@@ -43,6 +45,12 @@ gulp.task('doc', function() {
     .pipe(gulp.dest('docs'));
 });
 
+gulp.task('changelog', function(cb){
+  changelog(require('./package.json')).then(function(stream){
+    stream.pipe(gulp.dest('./')).on('end', cb);
+  });
+})
+
 gulp.task('watch', function () {
     return gulp.watch('./lib/**/**/*.js', ['lib:entry']);
 });
@@ -64,6 +72,6 @@ gulp.task('test', ['lib:entry'],function() {
       });
 });
 
-gulp.task("default", ['format','lib:entry','doc','watch']);
+gulp.task("default", ['format','lib:entry','doc','changelog','watch']);
 
-gulp.task('build', ['format','lib:entry','doc','test']);
+gulp.task('build', ['format','lib:entry','changelog','doc','test']);
