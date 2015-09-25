@@ -1,77 +1,113 @@
-var gulp = require("gulp");
-var sourcemaps = require("gulp-sourcemaps");
-var babel = require("gulp-babel");
-var dest = require('gulp-dest');
-var mocha  = require('gulp-mocha');
-var jshint = require('gulp-jshint');
-var format = require('gulp-esformatter');
-var semver = require('semver');
-var version = require('node-version').long;
-var doc = require('gulp-doxx');
-var isHarmony = !semver.lt(version.toString(), '0.11.0');
-var changelog = require('./node_modules/gulp-changelog/lib/');
+/* Dev-Dependencies */
+var 
+  gulp = require('gulp'),
+  sourcemaps = require('gulp-sourcemaps'),
+  babel = require('gulp-babel'),
+  mocha = require('gulp-mocha'),
+  jshint = require('gulp-jshint'),
+  beautify = require('gulp-jsbeautify'),
+  shell = require('gulp-shell'),
+  ghPages = require('gulp-gh-pages'),
+  rimraf = require('rimraf'),
+  config = require('./config'),
+  semver = require('semver'),
+  version = require('node-version').long,
+  isHarmony = !semver.lt(version.toString(), '0.11.0'),
+  changelog = require('gulp-changelog');
 
-if(!semver.lt(version.toString(), '0.11.0')){
-      require("harmonize")(["harmony-generators"]);
+if (!isHarmony) {
+  require("harmonize")(["harmony-generators"]);
 }
 
-gulp.task('format', function() {
-  return gulp.src('./lib/**/**/*.js')
-    .pipe(format(require('./esformatrc')))
-    .pipe(gulp.dest(function(file){
-      return file.base;
-     }));
+/** Backs up the files in case of emergency! */
+gulp.task('backup', function () {
+  return gulp
+    .src('lib/**/**/**.js')
+    .pipe(gulp.dest('./.backup'));
 });
 
-gulp.task("lib:entry", function () {
+gulp.task('recover', function () {
+  return gulp
+    .src('./.backup/**/**/*.js')
+    .pipe(gulp.dest('lib/'));
+});
+
+/* Formats the files */
+gulp.task('beautify', ['backup'], function () {
   return gulp.src('./lib/**/**/*.js')
-    .pipe(jshint({esnext:true}))
+    .pipe(beautify(config.beautify))
+    .pipe(gulp.dest('./lib'));
+});
+
+/*
+ * Clean the docs themes folder
+ */
+gulp.task('clean-docs', ['gh-pages'], function (cb) {
+  rimraf('./docs/themes', cb);
+});
+
+/*
+ * Create the gh-pages branch - wont push automatically
+ */
+gulp.task('gh-pages', ['doc'], function () {
+  return gulp.src('./docs/**/*')
+    .pipe(ghPages());
+});
+
+
+/* Checks the coding style and builds from ES6 to ES5*/
+gulp.task('lib', ['beautify'], function () {
+  return gulp.src('./lib/**/**/*.js')
+    .pipe(jshint(config.jshint))
     .pipe(jshint.reporter('jshint-stylish'))
     .pipe(jshint.reporter('fail'))
     .pipe(sourcemaps.init())
     .pipe(babel())
-    .pipe(sourcemaps.write("./source maps/"))
-    .pipe(gulp.dest(function(file){
-      return file.base.replace('lib/','');
-     }));
+    .pipe(sourcemaps.write('./source maps/'))
+    .pipe(gulp.dest('./'));
 });
 
-gulp.task('doc', function() {
-  return gulp.src('./lib/index.js')
-    .pipe(doc({
-      title: 'gengojs-accept',
-      urlPrefix: '/'
-    }))
-    .pipe(gulp.dest('docs'));
-});
-
-gulp.task('changelog', function(cb){
-  changelog(require('./package.json')).then(function(stream){
-    stream.pipe(gulp.dest('./')).on('end', cb);
-  });
-})
-
+/* Watches for changes and applies the build task*/
 gulp.task('watch', function () {
-    return gulp.watch('./lib/**/**/*.js', ['lib:entry']);
+  return gulp.watch('./lib/**/**/*.js', ['build']);
 });
-gulp.task('test', ['lib:entry'],function() {
-  if(isHarmony)
-    return gulp.src('./tests/**/**/*.js', {read: false})
-          // gulp-mocha needs filepaths so you can't have any plugins before it
-          .pipe(mocha())
-          .once('end', function () {
-            process.exit();
-          });
-   else return gulp.src([
-      './tests/express/index.js', 
-      './tests/hapi/index.js'
-     ], {read:false})
+
+/* Runs tests */
+
+gulp.task('test', ['lib'], function () {
+  if (isHarmony)
+    return gulp.src('./tests/**/**/*.js', { read: false })
+    // gulp-mocha needs filepaths so you can't have any plugins before it
       .pipe(mocha())
       .once('end', function () {
         process.exit();
       });
+  else return gulp.src([
+    './tests/express/index.js',
+    './tests/hapi/index.js'
+  ], { read: false })
+    .pipe(mocha())
+    .once('end', function () {
+      process.exit();
+    });
 });
 
-gulp.task("default", ['format','lib:entry','doc','changelog','watch']);
+gulp.task('changelog', function (cb) {
+  changelog(require('./package.json')).then(function (stream) {
+    stream.pipe(gulp.dest('./')).on('end', cb);
+  });
+});
 
-gulp.task('build', ['format','lib:entry','changelog','doc','test']);
+/* 
+ * Runs the doxx command and builds the docs 
+* Install other themes here, generate docs for each.
+*/
+gulp.task('doc', ['build'], shell.task([
+  './bin/mr-doc --source lib --output docs/themes/doxx-theme-default --name Mr. Doc'
+]));
+
+gulp.task('default', ['backup', 'beautify', 'lib', 'watch']);
+
+gulp.task('build', ['backup', 'beautify', 'lib', 'test']);
+
+gulp.task('docs', ['build', 'doc', 'gh-pages', 'clean-docs']);

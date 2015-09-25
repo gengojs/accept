@@ -1,3 +1,4 @@
+/* global describe, it */
 var accept = require('../../');
 var request = require('supertest');
 var assert = require('chai').assert;
@@ -14,7 +15,7 @@ function subdomain(options) {
     options.debug = options.debug || false;
     options.ignoreWWW = options.ignoreWWW || false;
     options.prefix = options.prefix || 'subdomain';
-  };
+  }
 
   // return middleware
   return function * (next) {
@@ -27,8 +28,8 @@ function subdomain(options) {
     if (options.removeWWW === true) {
       if (/^www/.test(host)) {
         return this.response.redirect(protocol + '://' + host.replace(/^www\./, '') + this.request.url);
-      };
-    };
+      }
+    }
 
     // subdomain specific middleware
     if (host === options.base || host === 'localhost:8000' || (options.ignoreWWW && /^www\./.test(host))) {
@@ -44,10 +45,9 @@ function subdomain(options) {
       } else {
         yield next;
       }
-    };
+    }
   };
-
-};
+}
 
 describe('koa', function() {
   describe('options', function() {
@@ -94,7 +94,7 @@ describe('koa', function() {
     var app = koa();
     var route = require('koa-route');
 
-    var a = require('../../koa/')
+    var a = require('../../koa/');
     app.use(a());
     app.use(function * () {
       this.body = {
@@ -102,7 +102,7 @@ describe('koa', function() {
         this.accept.getFromHeader() :
         this.request.accept.getFromHeader()
       };
-    })
+    });
     describe('request "/"', function() {
       it('should === "en-US"', function(done) {
         request(app.listen())
