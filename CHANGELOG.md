@@ -1,3 +1,11 @@
+0.2.1 / 2015-08-31
+==================
+
+  * Merge pull request [#9](https://github.com/iwatakeshi/gengojs-accept/issues/9) from iwatakeshi/add-change-log
+    Update
+  * Update
+    Updated gulp file to automate the change log.
+
 0.2.0 / 2015-08-30
 ==================
 
@@ -111,3 +119,31 @@
     Added new method.
     Fixed a few inconsistencies.
     Added tests.
+
+0.0.3 / 2015-02-27
+==================
+
+  * Patch
+    Updated readme
+    Fixed unused request object.
+  * Update index.js
+  * Fixed Travis
+  * Removed io.js from Travis
+  * Try to fix Travis
+
+0.0.2 / 2015-02-26
+==================
+
+  * Fixed readme
+
+0.0.1 / 2015-02-26
+==================
+
+  * Update
+    Updated readme to add badges.
+    Added changelog
+  * Added keywords to package.json
+  * Added files
+    Added tests and the initial files.
+    Updated readme
+  * Initial commit

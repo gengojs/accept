@@ -78,18 +78,12 @@ gulp.task('test', ['lib'], function () {
   if (isHarmony)
     return gulp.src('./tests/**/**/*.js', { read: false })
     // gulp-mocha needs filepaths so you can't have any plugins before it
-      .pipe(mocha())
-      .once('end', function () {
-        process.exit();
-      });
+      .pipe(mocha());
   else return gulp.src([
     './tests/express/index.js',
     './tests/hapi/index.js'
   ], { read: false })
-    .pipe(mocha())
-    .once('end', function () {
-      process.exit();
-    });
+    .pipe(mocha());
 });
 
 gulp.task('changelog', function (cb) {
@@ -103,7 +97,16 @@ gulp.task('changelog', function (cb) {
 * Install other themes here, generate docs for each.
 */
 gulp.task('doc', ['build'], shell.task([
-  './bin/mr-doc --source lib --output docs/themes/doxx-theme-default --name Mr. Doc'
+  (function(){
+    var doc = 'node_modules/mr-doc/bin/mr-doc',
+        cmd = {
+          source: ' -s lib/',
+          output: ' -o docs/',
+          name:' -n "gengo.js/accept"',
+          theme:' -t cayman'
+        };
+    return doc + cmd.source + cmd.output + cmd.name + cmd.theme;
+  })()
 ]));
 
 gulp.task('default', ['backup', 'beautify', 'lib', 'watch']);
