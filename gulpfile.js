@@ -41,7 +41,7 @@ var child_process = require("child_process");
         if (!isHarmony) return;
         
         var features = ['--harmony', '--harmony-proxies'];
-
+        console.log('Enabled Harmony');
         var node = child_process.spawn(process.argv[0], features.concat(process.argv.slice(1)), { stdio: 'inherit' });
         node.on("close", function(code) {
             process.exit(code);
