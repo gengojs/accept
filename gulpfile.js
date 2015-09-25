@@ -109,14 +109,19 @@ gulp.task('watch', function () {
 /* Runs tests */
 
 gulp.task('test', ['lib'], function (cb) {
-  var source;
   if (isHarmony)
-    source = gulp.src('./tests/**/*.js');
-  else source = gulp.src([
+    return gulp.src('./tests/**/*.js')
+    .pipe(mocha());
+  else return gulp.src([
     './tests/express/index.js',
     './tests/hapi/index.js'
-  ]);
-  return source.pipe(mocha());
+  ]).pipe(mocha({
+    bin:(function(){
+      var bin ='./node_modules/gulp-spawn-mocha/node_modules/.bin/mocha';
+       var flag = '--harmony';
+       return bin + flag;
+    })()
+  }));
 });
 
 gulp.task('changelog', function (cb) {
