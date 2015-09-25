@@ -116,7 +116,7 @@ gulp.task('test', ['lib'], function (cb) {
     './tests/express/index.js',
     './tests/hapi/index.js'
   ]).pipe(mocha({
-    harmony:'harmony'
+    env:'node --harmony'
   }));
 });
 
