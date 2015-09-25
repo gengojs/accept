@@ -3,7 +3,7 @@ var
   gulp = require('gulp'),
   sourcemaps = require('gulp-sourcemaps'),
   babel = require('gulp-babel'),
-  mocha = require('gulp-mocha'),
+  mocha = require('gulp-spawn-mocha'),
   jshint = require('gulp-jshint'),
   beautify = require('gulp-jsbeautify'),
   shell = require('gulp-shell'),
@@ -74,16 +74,15 @@ gulp.task('watch', function () {
 
 /* Runs tests */
 
-gulp.task('test', ['lib'], function () {
+gulp.task('test', ['lib'], function (cb) {
+  var source;
   if (isHarmony)
-    return gulp.src('./tests/**/**/*.js', { read: false })
-    // gulp-mocha needs filepaths so you can't have any plugins before it
-      .pipe(mocha());
-  else return gulp.src([
+    source = gulp.src('./tests/**/*.js');
+  else source = gulp.src([
     './tests/express/index.js',
     './tests/hapi/index.js'
-  ], { read: false })
-    .pipe(mocha());
+  ]);
+  return source.pipe(mocha());
 });
 
 gulp.task('changelog', function (cb) {
