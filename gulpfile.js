@@ -111,11 +111,11 @@ gulp.task('watch', function () {
 gulp.task('test', ['lib'], function (cb) {
   if (isHarmony)
     return gulp.src('./tests/**/*.js')
-    .pipe(mocha());
+    .pipe(shell(['mocha <%= file.path %>']));
   else return gulp.src([
     './tests/express/index.js',
     './tests/hapi/index.js'
-  ]).pipe(shell(['mocha --harmony <%= file.path %>']));
+  ]).pipe(mocha());
 });
 
 gulp.task('changelog', function (cb) {
