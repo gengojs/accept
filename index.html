@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta name="viewport" content="width=device-width" charset="utf-8">
+    <title>gengo.js/accept</title>
+    <link rel="stylesheet" href="css/bootstrap.min.css">
+    <link rel="stylesheet" href="css/cayman.min.css">
+    <link rel="stylesheet" href="css/prism.min.css">
+    <link rel="stylesheet" href="css/index.min.css">
+    <link rel="stylesheet" href="css/docs.min.css">
+    <link rel="stylesheet" href="css/bootstrap-responsive.min.css">
+  </head>
+  <body data-spy="scroll" data-target=".scrollspy">
+    <div class="navbar navbar-inverse navbar-fixed-top">
+      <div class="navbar-inner">
+        <div class="container"><a class="brand">Doxx</a>
+          <div class="nav-collapse collapse">
+            <ul class="nav pull-right sponsored"></ul>
+          </div>
+        </div>
+      </div>
+    </div>
+    <header id="overview" class="jumbotron subhead">
+      <div class="container">
+        <h1>gengo.js/accept</h1>
+        <p class="lead"></p>
+      </div>
+    </header>
+    <div class="container">
+      <div class="row">
+        <div class="span3 bs-docs-sidebar">
+          <ul class="nav nav-list bs-docs-sidenav affix-top">
+            <li class="active"><a href="index.html">Main</a></li>
+            <li><a href="express/index.js.html">express/index.js</a></li>
+            <li><a href="hapi/index.js.html">hapi/index.js</a></li>
+            <li><a href="index.js.html">index.js</a></li>
+            <li><a href="koa/index.js.html">koa/index.js</a></li>
+          </ul>
+          <div class="scrollspy">
+            <ul class="nav nav-list bs-docs-sidenav affix-top">
+            </ul>
+          </div>
+        </div>
+        <div class="span9">
+          <section id="Main" class="readme"><h1>gengojs-accept</h1>
+<p>Express, Koa, Hapi locale parser that powers <a href="https://github.com/iwatakeshi/gengojs">gengo.js</a>.</p>
+<p><a href="https://gitter.im/iwatakeshi/gengojs-accept?utm_source=badge&amp;utm_medium=badge&amp;utm_campaign=pr-badge&amp;utm_content=badge"><img src="https://badges.gitter.im/Join%20Chat.svg" alt="Gitter"></a></p>
+<p><a href="https://travis-ci.org/iwatakeshi/gengojs-accept"><img src="https://travis-ci.org/iwatakeshi/gengojs-accept.svg?branch=master" alt="Build Status"></a>
+<a href="https://github.com/iwatakeshi/gengojs-accept/blob/master/package.json"><img src="https://david-dm.org/iwatakeshi/gengojs-accept.png" alt="Dependency Status"></a>
+<a href="https://github.com/iwatakeshi/gengojs-accept/blob/master/LICENSE"><img src="http://img.shields.io/npm/l/gengojs-accept.svg" alt="License Status"></a>
+<a href=""><img src="http://img.shields.io/npm/dm/gengojs-accept.svg" alt="Downloads"></a> <a href=""><img src="http://img.shields.io/npm/v/gengojs-accept.svg" alt="Version"></a></p>
+<p>This module parses the accept-language header from Express, Koa, or Hapi and returns the appropriate locale.</p>
+<h2>Usage</h2>
+<pre><code class="language-bash">$ npm i --save gengojs-accept
+</code></pre>
+<h3>Express</h3>
+<pre><code class="language-javascript">import express from 'express';
+import accept from 'gengojs-accept/express';
+
+let app = express();
+
+app.use(accept());
+
+app.use('/', function(req, res, next){
+    console.log(req.getLocale());
+});
+
+// ...
+</code></pre>
+<h3>Hapi</h3>
+<pre><code class="language-javascript">import Hapi from 'hapi';
+import accept from 'gengojs-accept/hapi';
+
+let server = new Hapi.Server();
+server.connection({
+    port:3000
+})
+ 
+server.register(accept(), function(error){
+    if(error) console.log(error);
+});
+
+server.route({
+    method: 'GET',
+    path: '/',
+    handler: function (request, reply) {
+        console.log(request.accept.getLocale());
+        reply();
+    }
+});
+
+// ...
+</code></pre>
+<h3>Koa</h3>
+<pre><code class="language-javascript">import koa from 'koa';
+import accept from 'gengojs-accept/koa';
+
+let app = koa();
+
+app.use(accept());
+
+app.use('/', function *(){
+    console.log(this.accept.getLocale());
+    // or
+    console.log(this.request.accept.getLocale());
+    // or
+    console.log(this.response.accept.getLocale());
+});
+
+// ...
+</code></pre>
+<h3>Standalone</h3>
+<pre><code class="language-javascript">import accept from 'gengojs-accept';
+
+// pass the request object from express or hapi 
+// or the 'this' context from koa;
+let currentLocale = accept(req || this, options).getLocale();
+</code></pre>
+<h2>Options</h2>
+<pre><code class="language-json">{
+    &quot;check&quot;: true,
+    &quot;default&quot;: &quot;en-US&quot;,
+    &quot;supported&quot;: [
+        &quot;en-US&quot;
+    ],
+    &quot;keys&quot;: {
+        &quot;cookie&quot;: &quot;locale&quot;,
+        &quot;query&quot;: &quot;locale&quot;
+    },
+    &quot;detect&quot;: {
+        &quot;header&quot;: true,
+        &quot;cookie&quot;: false,
+        &quot;query&quot;: false,
+        &quot;url&quot;: false,
+        &quot;domain&quot;: false,
+        &quot;subdomain&quot;: false
+    }
+}  
+
+</code></pre>
+<h2>Documentation</h2>
+<p>See the beautifully generated documenation at <a href="http://iwatakeshi.github.io/gengojs-accept/index.html">GitHub</a>.</p>
+</section>
+        </div>
+      </div>
+    </div>
+    <footer class="footer">
+      <div class="container">
+        <p>Documentation generated with <a href="https://github.com/mr-doc/mr-doc">Mr. Doc </a> created by <a href="https://twitter.com/FGRibreau" data-show-count="false" class="twitter-follow-button">Francois-Guillaume Ribreau </a></p>
+        <p>Doxx is sponsored by <a href="http://bringr.net/?btt" title="Outil d'analyse des réseaux sociaux" class="bringr">Bringr </a> and <a href="https://redsmin.com/?btt" title="Full Redis GUI" class="redsmin">Redsmin</a></p>
+        <p>Theme borrowed from Twitter Bootstrap</p>
+      </div>
+    </footer>
+    <script src="js/twitter-widget.min.js"></script>
+    <script src="js/jquery.min.js"></script>
+    <script src="js/bootstrap-transition.min.js"></script>
+    <script src="js/bootstrap-scrollspy.min.js"></script>
+    <script src="js/bootstrap-dropdown.min.js"></script>
+    <script src="js/bootstrap-collapse.min.js"></script>
+    <script src="js/bootstrap-affix.min.js"></script>
+    <script src="js/prism.min.js"></script>
+    <script src="js/index.min.js"></script>
+  </body>
+</html>
