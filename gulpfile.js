@@ -115,9 +115,7 @@ gulp.task('test', ['lib'], function (cb) {
   else return gulp.src([
     './tests/express/index.js',
     './tests/hapi/index.js'
-  ]).pipe(mocha({
-    env:'node --harmony'
-  }));
+  ]).pipe(shell(['mocha --harmony <%= file.path %>']));
 });
 
 gulp.task('changelog', function (cb) {
