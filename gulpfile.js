@@ -15,9 +15,43 @@ var
   isHarmony = !semver.lt(version.toString(), '0.11.0'),
   changelog = require('gulp-changelog');
 
-if (!isHarmony) {
-  require("harmonize")(["harmony-generators"]);
-}
+
+/*
+ Copyright 2013 Daniel Wirtz <dcode@dcode.io>
+ Licensed under the Apache License, Version 2.0 (the "License");
+ you may not use this file except in compliance with the License.
+ You may obtain a copy of the License at
+ http://www.apache.org/licenses/LICENSE-2.0
+ Unless required by applicable law or agreed to in writing, software
+ distributed under the License is distributed on an "AS IS" BASIS,
+ WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ See the License for the specific language governing permissions and
+ limitations under the License.
+ */
+
+/**
+ * node-harmonize (c) 2013 Daniel Wirtz <dcode@dcode.io>
+ * Released under the Apache License, Version 2.0
+ * see: https://github.com/dcodeIO/node-harmonize for details
+ */
+var child_process = require("child_process");
+
+(function harmony() {
+    if (typeof Proxy == 'undefined') { // We take direct proxies as our marker
+        if (!isHarmony) return;
+        
+        var features = ['--harmony', '--harmony-proxies'];
+
+        var node = child_process.spawn(process.argv[0], features.concat(process.argv.slice(1)), { stdio: 'inherit' });
+        node.on("close", function(code) {
+            process.exit(code);
+        });
+
+        // Interrupt process flow in the parent
+        process.once("uncaughtException", function(e) {});
+        throw "harmony";
+    }
+})();
 
 /** Backs up the files in case of emergency! */
 gulp.task('backup', function () {
