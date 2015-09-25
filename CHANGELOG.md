@@ -1,3 +1,17 @@
+0.2.2 / 2015-09-25
+==================
+
+  * Update
+    Updated docs.
+    Updated readme.
+  * Update
+    Added docs.
+    Updated gulp file.
+    Updated change log.
+  * Update
+    Updated gulp file.
+    Updated package.
+
 0.2.1 / 2015-08-31
 ==================
 
