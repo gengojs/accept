@@ -118,7 +118,7 @@ gulp.task('test', ['lib'], function (cb) {
   ]).pipe(mocha({
     bin:(function(){
       var bin ='./node_modules/gulp-spawn-mocha/node_modules/.bin/mocha';
-       var flag = '--harmony';
+       var flag = ' --harmony';
        return bin + flag;
     })()
   }));
