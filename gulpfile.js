@@ -39,7 +39,7 @@ gulp.task('beautify', ['backup'], function () {
  * Clean the docs themes folder
  */
 gulp.task('clean-docs', ['gh-pages'], function (cb) {
-  rimraf('./docs/themes', cb);
+  rimraf('./docs/', cb);
 });
 
 /*
