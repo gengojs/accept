@@ -1,3 +1,32 @@
+0.2.5 / 2015-09-27
+==================
+
+  * Release v0.2.5.
+  * Update
+    Updated docs.
+  * Update
+    Removed harmonize from package.
+
+0.2.4 / 2015-09-27
+==================
+
+  * Release v0.2.4.
+  * Update
+    Updated package
+
+0.2.3 / 2015-09-27
+==================
+
+  * Release v0.2.3.
+  * Update
+    Updated readme and docs.
+  * Update
+    Updated docs.
+  * Update README.md
+  * Test Update
+  * Update
+    Updated change log.
+
 0.2.2 / 2015-09-25
 ==================
 
@@ -15,7 +44,7 @@
 0.2.1 / 2015-08-31
 ==================
 
-  * Merge pull request [#9](https://github.com/iwatakeshi/gengojs-accept/issues/9) from iwatakeshi/add-change-log
+  * Merge pull request [#9](https://github.com/gengojs/accept/issues/9) from iwatakeshi/add-change-log
     Update
   * Update
     Updated gulp file to automate the change log.
@@ -23,7 +52,7 @@
 0.2.0 / 2015-08-30
 ==================
 
-  * Merge pull request [#8](https://github.com/iwatakeshi/gengojs-accept/issues/8) from iwatakeshi/readme
+  * Merge pull request [#8](https://github.com/gengojs/accept/issues/8) from iwatakeshi/readme
     Update
   * Update
     Updated koa.
@@ -33,25 +62,25 @@
 0.1.0 / 2015-08-30
 ==================
 
-  * Merge pull request [#6](https://github.com/iwatakeshi/gengojs-accept/issues/6) from iwatakeshi/patch
+  * Merge pull request [#6](https://github.com/gengojs/accept/issues/6) from iwatakeshi/patch
     Fix
   * Fix
     Fixed README.
-  * Merge pull request [#5](https://github.com/iwatakeshi/gengojs-accept/issues/5) from iwatakeshi/gitter-badger-gitter-badge
+  * Merge pull request [#5](https://github.com/gengojs/accept/issues/5) from iwatakeshi/gitter-badger-gitter-badge
     Gitter badger gitter badge
   * Merge branch 'master' into gitter-badger-gitter-badge
     Conflicts:
     README.md
   * Fix
-  * Merge pull request [#3](https://github.com/iwatakeshi/gengojs-accept/issues/3) from iwatakeshi/iwatakeshi-patch-2
+  * Merge pull request [#3](https://github.com/gengojs/accept/issues/3) from iwatakeshi/iwatakeshi-patch-2
     Patch
-  * Merge pull request [#2](https://github.com/iwatakeshi/gengojs-accept/issues/2) from iwatakeshi/iwatakeshi-patch-1
+  * Merge pull request [#2](https://github.com/gengojs/accept/issues/2) from iwatakeshi/iwatakeshi-patch-1
     Create README.md
   * Added Gitter badge
   * Patch
     Add license.
   * Create README.md
-  * Merge pull request [#1](https://github.com/iwatakeshi/gengojs-accept/issues/1) from iwatakeshi/0.1.0
+  * Merge pull request [#1](https://github.com/gengojs/accept/issues/1) from iwatakeshi/0.1.0
     Minor Update
   * Fix
     Fix gulp file.
@@ -133,31 +162,3 @@
     Added new method.
     Fixed a few inconsistencies.
     Added tests.
-
-0.0.3 / 2015-02-27
-==================
-
-  * Patch
-    Updated readme
-    Fixed unused request object.
-  * Update index.js
-  * Fixed Travis
-  * Removed io.js from Travis
-  * Try to fix Travis
-
-0.0.2 / 2015-02-26
-==================
-
-  * Fixed readme
-
-0.0.1 / 2015-02-26
-==================
-
-  * Update
-    Updated readme to add badges.
-    Added changelog
-  * Added keywords to package.json
-  * Added files
-    Added tests and the initial files.
-    Updated readme
-  * Initial commit
