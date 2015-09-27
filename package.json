@@ -40,7 +40,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "https://github.com/iwatakeshi/gengojs-accept.git"
+    "url": "https://github.com/gengojs/accept.git"
   },
   "keywords": [
     "locale",
@@ -59,7 +59,7 @@
   "author": "iwatakeshi",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/iwatakeshi/gengojs-accept/issues"
+    "url": "https://github.com/gengojs/accept/issues"
   },
-  "homepage": "https://github.com/iwatakeshi/gengojs-accept"
+  "homepage": "https://github.com/gengojs/accept"
 }
