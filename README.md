@@ -10,15 +10,16 @@ Express, Koa, Hapi locale parser that powers [gengo.js](https://github.com/gengo
 
 This module parses the accept-language header from Express, Koa, or Hapi and returns the appropriate locale.
 
+
+## Documentation
+
+See the beautifully generated documenation at [GitHub](http://gengojs.github.io/accept/index.html).
+
 ## Usage
 
 ```bash
 $ npm i --save gengojs-accept
 ```
-
-## Documentation
-
-See the beautifully generated documenation at [GitHub](http://gengojs.github.io/accept/index.html).
 
 ### Express
 
