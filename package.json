@@ -1,6 +1,6 @@
 {
   "name": "gengojs-accept",
-  "version": "0.2.3",
+  "version": "0.2.4",
   "description": "Express, Koa, and Hapi locale parser.",
   "main": "index.js",
   "dependencies": {
