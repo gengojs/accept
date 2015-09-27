@@ -16,6 +16,10 @@ This module parses the accept-language header from Express, Koa, or Hapi and ret
 $ npm i --save gengojs-accept
 ```
 
+## Documentation
+
+See the beautifully generated documenation at [GitHub](http://gengojs.github.io/accept/index.html).
+
 ### Express
 
 ```javascript
@@ -115,7 +119,3 @@ let currentLocale = accept(req || this, options).getLocale();
 }  
 
 ```
-
-## Documentation
-
-See the beautifully generated documenation at [GitHub](http://gengojs.github.io/accept/index.html).
