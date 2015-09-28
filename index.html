@@ -17,7 +17,7 @@
     </section>
     <section data-spy="scroll" data-target=".scrollspy" class="main-content">
       <div class="row">
-        <div class="col-md-3 bs-docs-sidebar">
+        <div class="col-md-3 col-xs-3 bs-docs-sidebar">
           <ul id="sidebar" class="nav nav-stacked fixed">
             <li class="active"><a href="index.html">Main
                 <ul class="nav nav-stacked">
@@ -147,6 +147,11 @@ let currentLocale = accept(req || this, options).getLocale();
         $('body').scrollspy({
           target: ".bs-docs-sidebar",
           offset: 40
+        });
+        $('#sidebar').affix({
+          offset:{
+            bottom:60
+          }
         }) 
       });
     </script>

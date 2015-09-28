@@ -17,7 +17,7 @@
     </section>
     <section data-spy="scroll" data-target=".scrollspy" class="main-content">
       <div class="row">
-        <div class="col-md-3 bs-docs-sidebar">
+        <div class="col-md-3 col-xs-3 bs-docs-sidebar">
           <ul id="sidebar" class="nav nav-stacked fixed">
             <li><a href="index.html">Main</a></li>
             <li><a href="express/index.js.html">express/index.js</a></li>
@@ -520,6 +520,11 @@ import _ from 'lodash';</code></pre>
         $('body').scrollspy({
           target: ".bs-docs-sidebar",
           offset: 40
+        });
+        $('#sidebar').affix({
+          offset:{
+            bottom:60
+          }
         }) 
       });
     </script>
