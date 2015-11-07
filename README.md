@@ -67,20 +67,22 @@ server.route({
 
 ### Koa
 
+Note: I have not tested Koa's v1.0.0 API but in theory it should work. Please report any bugs if encountered or create a pull request to add tests.
+
 ```javascript
-import koa from 'koa';
+import Koa from 'koa';
 import accept from 'gengojs-accept/koa';
 
-let app = koa();
+let app = new Koa();
 
 app.use(accept());
 
-app.use('/', function *(){
-	console.log(this.accept.getLocale());
+app.use('/', function (self, next){
+	console.log(self.accept.getLocale());
     // or
-    console.log(this.request.accept.getLocale());
+    console.log(self.request.accept.getLocale());
     // or
-    console.log(this.response.accept.getLocale());
+    console.log(self.response.accept.getLocale());
 });
 
 // ...
@@ -92,8 +94,8 @@ app.use('/', function *(){
 import accept from 'gengojs-accept';
 
 // pass the request object from express or hapi 
-// or the 'this' context from koa;
-let currentLocale = accept(req || this, options).getLocale();
+// or the 'ctx'/'self' context from koa;
+let currentLocale = accept(req || ctx, options).getLocale();
 ```
 
 ## Options

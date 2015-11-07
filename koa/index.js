@@ -1,47 +1,57 @@
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
 
 var _2 = require('../');
 
 var _3 = _interopRequireDefault(_2);
 
-require('babel/polyfill');
-
 var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
 
-exports['default'] = function (opt) {
+var _koaConvert = require('koa-convert');
+
+var _koaConvert2 = _interopRequireDefault(_koaConvert);
+
+require('babel-polyfill');
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+exports.default = function (opt) {
   'use strict';
-  return regeneratorRuntime.mark(function callee$1$0(next) {
-    var methods, a;
-    return regeneratorRuntime.wrap(function callee$1$0$(context$2$0) {
-      var _this = this;
 
-      while (1) switch (context$2$0.prev = context$2$0.next) {
+  var methods = ['getAcceptLanguage', 'getLocale', 'getFromHeader', 'getFromQuery', 'getFromDomain', 'getFromSubdomain', 'getFromCookie', 'getFromUrl', 'detectLocale', 'isSupported'];
+  return _koaConvert2.default.compose(regeneratorRuntime.mark(function _callee(next) {
+    var _this = this;
+
+    var a;
+    return regeneratorRuntime.wrap(function _callee$(_context) {
+      while (1) switch (_context.prev = _context.next) {
         case 0:
-          methods = ['getAcceptLanguage', 'getLocale', 'getFromHeader', 'getFromQuery', 'getFromDomain', 'getFromSubdomain', 'getFromCookie', 'getFromUrl', 'detectLocale', 'isSupported'];
-          a = (0, _3['default'])(this, opt);
+          a = (0, _3.default)(this, opt);
 
-          _lodash2['default'].forEach(methods, function (method) {
+          _lodash2.default.forEach(methods, function (method) {
             _this.accept[method] = a[method].bind(a);
           });
-          this.request.accept = this.response.accept = (0, _3['default'])(this, opt);
-          context$2$0.next = 6;
+          this.request.accept = this.response.accept = (0, _3.default)(this, opt);
+          _context.next = 5;
           return next;
 
-        case 6:
+        case 5:
         case 'end':
-          return context$2$0.stop();
+          return _context.stop();
       }
-    }, callee$1$0, this);
+    }, _callee, this);
+  }), function (self, next) {
+    var a = (0, _3.default)(self, opt);
+    _lodash2.default.forEach(methods, function (method) {
+      self.accept[method] = a[method].bind(a);
+    });
+    self.request.accept = self.response.accept = (0, _3.default)(self, opt);
+    return next();
   });
 };
-
-module.exports = exports['default'];
 //# sourceMappingURL=../source maps/koa/index.js.map

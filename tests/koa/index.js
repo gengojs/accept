@@ -1,5 +1,5 @@
 /* global describe, it */
-var accept = require('../../');
+var accept = require('../../').default;
 var request = require('supertest');
 var assert = require('chai').assert;
 
@@ -18,32 +18,32 @@ function subdomain(options) {
   }
 
   // return middleware
-  return function * (next) {
+  return function (self, next) {
 
     // get host & protocol
-    var host = this.request.headers.host,
-      protocol = this.request.socket.encrypted ? 'https' : 'http';
+    var host = self.request.headers.host,
+      protocol = self.request.socket.encrypted ? 'https' : 'http';
 
     // remove 'www' prefix from URL? (tacky, right?)
     if (options.removeWWW === true) {
       if (/^www/.test(host)) {
-        return this.response.redirect(protocol + '://' + host.replace(/^www\./, '') + this.request.url);
+        return self.response.redirect(protocol + '://' + host.replace(/^www\./, '') + self.request.url);
       }
     }
 
     // subdomain specific middleware
     if (host === options.base || host === 'localhost:8000' || (options.ignoreWWW && /^www\./.test(host))) {
       // not a subdomain or ignoring www subdomain
-      yield next;
+      return next();
     } else {
       // test for subdomain
       var matches = host.match(new RegExp('(.*)\.' + options.base));
       // subdomain
       if (matches && matches.length === 2) {
-        this.request.url = '/' + options.prefix + '/' + matches[1] + this.request.url;
-        yield next;
+        self.request.url = '/' + options.prefix + '/' + matches[1] + self.request.url;
+        return next();
       } else {
-        yield next;
+        return next();
       }
     }
   };
@@ -90,18 +90,19 @@ describe('koa', function() {
   });
 
   describe('middleware', function() {
-    var koa = require('koa');
-    var app = koa();
+    var Koa = require('koa');
+    var app = new Koa();
     var route = require('koa-route');
 
-    var a = require('../../koa/');
+    var a = require('../../koa/').default;
     app.use(a());
-    app.use(function * () {
-      this.body = {
-        result: this.accept? 
-        this.accept.getFromHeader() :
-        this.request.accept.getFromHeader()
+    app.use(function (self, next) {
+      self.body = {
+        result: self.accept? 
+        self.accept.getFromHeader() :
+        self.request.accept.getFromHeader()
       };
+      return next();
     });
     describe('request "/"', function() {
       it('should === "en-US"', function(done) {
@@ -120,14 +121,14 @@ describe('koa', function() {
   describe('getLocale()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
-        app.use(function * () {
-          var result = accept(this).getLocale();
-          this.body = {
+        var Koa = require('koa');
+        var app = new Koa();
+        app.use(function (self, next) {
+          var result = accept(self).getLocale();
+          self.body = {
             result: result
           };
-
+          return next();
         });
         it('should === "en-US"', function(done) {
           request(app.listen())
@@ -154,18 +155,18 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
 
-        app.use(function * (next) {
+        app.use(function (self, next) {
           var options = {
             supported: ['en-US', 'ja']
           };
-          var result = accept(this, options).getLocale();
-          this.body = {
+          var result = accept(self, options).getLocale();
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should === "en-US"', function(done) {
@@ -196,18 +197,19 @@ describe('koa', function() {
   describe('setLocale()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
-        app.use(function * () {
-           var result = accept(this);
+        var Koa = require('koa');
+        var app = new Koa();
+        app.use(function (self, next) {
+           var result = accept(self);
           var set = result.setLocale('en');
           var detect = result.detectLocale();
-          this.body = {
+          self.body = {
             result: {
                 set:set,
                 detect:detect
             }
           };
+          return next();
         });
 
         it('should === "en-US"', function(done) {
@@ -238,23 +240,23 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
 
-        app.use(function * (next) {
+        app.use(function (self, next) {
           var options = {
             supported: ['en-US', 'ja']
           };
-          var result = accept(this, options);
+          var result = accept(self, options);
           var set = result.setLocale('ja');
           var detect = result.detectLocale();
-          this.body = {
+          self.body = {
             result: {
                 set:set,
                 detect:detect
             }
           };
-          yield next;
+          return next();
         });
 
         it('should === "ja"', function(done) {
@@ -276,14 +278,14 @@ describe('koa', function() {
   describe('getFromQuery()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
-        app.use(function * (next) {
-          var result = accept(this).getFromQuery('locale');
-          this.body = {
+        var Koa = require('koa');
+        var app = new Koa();
+        app.use(function (self, next) {
+          var result = accept(self).getFromQuery('locale');
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
         it('should !== "en"', function(done) {
           request(app.listen())
@@ -308,17 +310,17 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
-        app.use(function * (next) {
-          var result = accept(this, {
+        var Koa = require('koa');
+        var app = new Koa();
+        app.use(function (self, next) {
+          var result = accept(self, {
             default: 'ja',
             supported: ['en-US', 'en']
           }).getFromQuery('locale');
-          this.body = {
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should === "en"', function(done) {
@@ -345,14 +347,14 @@ describe('koa', function() {
     });
   });
   describe('getAcceptLanguage()', function() {
-    var koa = require('koa');
-    var app = koa();
-    app.use(function * (next) {
-      var result = accept(this).getAcceptLanguage();
-      this.body = {
+    var Koa = require('koa');
+    var app = new Koa();
+    app.use(function (self, next) {
+      var result = accept(self).getAcceptLanguage();
+      self.body = {
         result: result
       };
-      yield next;
+      return next();
     });
 
     it('should include "en-US"', function(done) {
@@ -383,19 +385,19 @@ describe('koa', function() {
   describe('getFromDomain()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
         var subdomainOptions = {
           base: 'localhost.com' //base is required, you'll get an error without it.
         };
 
         app.use(subdomain(subdomainOptions));
-        app.use(function * (next) {
-          var result = accept(this).getFromDomain();
-          this.body = {
+        app.use(function (self, next) {
+          var result = accept(self).getFromDomain();
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should !== "en"', function(done) {
@@ -424,23 +426,23 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
         var subdomainOptions = {
           base: 'localhost.com' //base is required, you'll get an error without it.
         };
 
         app.use(subdomain(subdomainOptions));
-        app.use(function * (next) {
+        app.use(function (self, next) {
           var options = {
             supported: ['en-US', 'ja'],
             default: 'en'
           };
-          var result = accept(this, options).getFromDomain();
-          this.body = {
+          var result = accept(self, options).getFromDomain();
+          self.body = {
             result: result
           };
-          yield next;
+          return next;
         });
 
         it('should === "en"', function(done) {
@@ -475,19 +477,19 @@ describe('koa', function() {
   describe('getFromSubdomain()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
         var subdomainOptions = {
           base: 'localhost.com' //base is required, you'll get an error without it.
         };
 
         app.use(subdomain(subdomainOptions));
-        app.use(function * (next) {
-          var result = accept(this).getFromSubdomain;
-          this.body = {
+        app.use(function (self, next) {
+          var result = accept(self).getFromSubdomain;
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should !== "en"', function(done) {
@@ -517,23 +519,23 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
         var subdomainOptions = {
           base: 'localhost.com' //base is required, you'll get an error without it.
         };
 
         app.use(subdomain(subdomainOptions));
-        app.use(function * (next) {
+        app.use(function (self, next) {
           var options = {
             supported: ['en-US', 'ja'],
             default: 'en'
           };
-          var result = accept(this, options).getFromSubdomain();
-          this.body = {
+          var result = accept(self, options).getFromSubdomain();
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should === "en"', function(done) {
@@ -568,15 +570,15 @@ describe('koa', function() {
   describe('getFromUrl()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
 
-        app.use(function * (next) {
-          var result = accept(this).getFromUrl();
-          this.body = {
+        app.use(function (self, next) {
+          var result = accept(self).getFromUrl();
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should === "en-US"', function(done) {
@@ -602,17 +604,17 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
 
-        app.use(function * (next) {
-          var result = accept(this, {
+        app.use(function (self, next) {
+          var result = accept(self, {
             supported: ['en-US', 'ja']
           }).getFromUrl();
-          this.body = {
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should === "en-US"', function(done) {
@@ -655,15 +657,15 @@ describe('koa', function() {
   describe('getFromCookie()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
 
-        app.use(function * (next) {
-          var result = accept(this).getFromCookie('locale');
-          this.body = {
+        app.use(function (self, next) {
+          var result = accept(self).getFromCookie('locale');
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should !== "ja"', function(done) {
@@ -691,18 +693,18 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
 
-        app.use(function * (next) {
-          var result = accept(this, {
+        app.use(function (self, next) {
+          var result = accept(self, {
             supported: ['en-US', 'ja'],
             default: 'en'
           }).getFromCookie('locale');
-          this.body = {
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
 
@@ -734,15 +736,15 @@ describe('koa', function() {
   describe('detectLocale()', function() {
     describe('options', function() {
       describe('default', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
 
-        app.use(function * (next) {
-          var result = accept(this).detectLocale();
-          this.body = {
+        app.use(function (self, next) {
+          var result = accept(self).detectLocale();
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should === "en-US"', function(done) {
@@ -770,11 +772,11 @@ describe('koa', function() {
         });
       });
       describe('configured', function() {
-        var koa = require('koa');
-        var app = koa();
+        var Koa = require('koa');
+        var app = new Koa();
 
-        app.use(function * (next) {
-          var result = accept(this, {
+        app.use(function (self, next) {
+          var result = accept(self, {
             supported: ['en-US', 'ja'],
             default: 'en',
             detect: {
@@ -782,10 +784,10 @@ describe('koa', function() {
               url: true
             }
           }).detectLocale();
-          this.body = {
+          self.body = {
             result: result
           };
-          yield next;
+          return next();
         });
 
         it('should === "en-US"', function(done) {

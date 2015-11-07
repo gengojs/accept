@@ -1,23 +1,18 @@
-/**
- * @author Takeshi Iwana aka iwatakeshi
- * @license MIT 2015
- * gengojs-accept
- * This module parses the accept-language header
- * and returns the approriate locale.
- * Credits to @fundon
- * https://github.com/koa-modules/koa-locale/blob/master/index.js
- */
 'use strict';
 
-Object.defineProperty(exports, '__esModule', {
+var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })(); /**
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @author Takeshi Iwana aka iwatakeshi
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * @license MIT 2015
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * gengojs-accept
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * This module parses the accept-language header
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * and returns the approriate locale.
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * Credits to @fundon
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        * https://github.com/koa-modules/koa-locale/blob/master/index.js
+                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                        */
+
+Object.defineProperty(exports, "__esModule", {
   value: true
 });
-
-var _createClass = (function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ('value' in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; })();
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { 'default': obj }; }
-
-function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError('Cannot call a class as a function'); } }
 
 var _url = require('url');
 
@@ -30,6 +25,10 @@ var _cookie2 = _interopRequireDefault(_cookie);
 var _lodash = require('lodash');
 
 var _lodash2 = _interopRequireDefault(_lodash);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 /**
  * @class Accept
@@ -53,15 +52,6 @@ var Accept = (function () {
     if (req) this.set(req);
     return this;
   }
-
-  /** 
-   * @export accept
-   * The main accept function,
-   * @param  {object} req The request object.
-   * @param  {object} options The options to configure accept.
-   * @return {Accept}     The Accept instance.
-   */
-
   /** 
    * @private
    * Sets Accept.
@@ -95,36 +85,36 @@ var Accept = (function () {
       }
       this.detectLocale();
     }
-
     /** 
      * @public
      * Parses the headers for the Accept-Language.
      * @param  {object} req The request object.
      * @return {string|undefined}     The parsed Accept-Language.
      */
+
   }, {
     key: 'getAcceptLanguage',
     value: function getAcceptLanguage(req) {
       if (req) this['accept-language'] = req.header['accept-language'] || req.headers['accept-language'] || '';else this['accept-language'] = this.headers['accept-language'];
       return this['accept-language'] || undefined;
     }
-
     /**
      * @public
      * Returns the current locale.
      * @return {string} The current locale.
      */
+
   }, {
     key: 'getLocale',
     value: function getLocale() {
       return this.locale;
     }
-
     /** 
      * Sets the locale.
      * @param {string} locale The locale to override the current.
      * @public
      */
+
   }, {
     key: 'setLocale',
     value: function setLocale(locale) {
@@ -132,7 +122,6 @@ var Accept = (function () {
       this.locale = this.isSupported(locale);
       return this.locale;
     }
-
     // From accept-language, `Accept-Language: ja`
     /**
      * Parses the Accept-Language.
@@ -141,6 +130,7 @@ var Accept = (function () {
      * @return {string|string}          The parsed locale.
      * @public
      */
+
   }, {
     key: 'getFromHeader',
     value: function getFromHeader(req, fallback) {
@@ -156,7 +146,6 @@ var Accept = (function () {
         return fallback ? result || undefined : result || undefined;
       }
     }
-
     // From query, 'lang=en'
     /**
      * Parses the query.
@@ -165,16 +154,16 @@ var Accept = (function () {
      * @return {string|undefined}          The parsed locale.
      * @public
      */
+
   }, {
     key: 'getFromQuery',
     value: function getFromQuery(key, fallback) {
       var result;
       var query;
-      if (this.isKoa || this.isHapi) query = this.request.query;else query = this.request.query || _url2['default'].parse(this.request.url, true).query;
-      this.locale = result = this.isSupported(!_lodash2['default'].isEmpty(query) ? query[key] || query[this.options.keys.query] : undefined);
+      if (this.isKoa || this.isHapi) query = this.request.query;else query = this.request.query || _url2.default.parse(this.request.url, true).query;
+      this.locale = result = this.isSupported(!_lodash2.default.isEmpty(query) ? query[key] || query[this.options.keys.query] : undefined);
       return fallback ? result || undefined : result || undefined;
     }
-
     // From domain
     /**
      * Parses the domain.
@@ -182,6 +171,7 @@ var Accept = (function () {
      * @return {string|undefined}          The parsed locale.
      * @public
      */
+
   }, {
     key: 'getFromDomain',
     value: function getFromDomain(fallback) {
@@ -191,7 +181,6 @@ var Accept = (function () {
       this.locale = result = this.isSupported(result);
       return fallback ? result || undefined : result || undefined;
     }
-
     // From subdomain, 'en.gengojs.com'
     /**
      * Parses the subdomain.
@@ -199,6 +188,7 @@ var Accept = (function () {
      * @return {string|undefined}          The parsed locale.
      * @public
      */
+
   }, {
     key: 'getFromSubdomain',
     value: function getFromSubdomain(fallback) {
@@ -207,7 +197,6 @@ var Accept = (function () {
       this.locale = result = this.isSupported(result);
       return fallback ? result || undefined : result || undefined;
     }
-
     // From cookie, 'lang=ja'
     /**
      * Parses the cookie.
@@ -216,15 +205,15 @@ var Accept = (function () {
      * @return {string|undefined}          The parsed locale.
      * @public
      */
+
   }, {
     key: 'getFromCookie',
     value: function getFromCookie(key, fallback) {
       var result;
-      result = this.cookie ? _cookie2['default'].parse(this.cookie)[key] || _cookie2['default'].parse(this.cookie)[this.options.keys.cookie] : undefined;
+      result = this.cookie ? _cookie2.default.parse(this.cookie)[key] || _cookie2.default.parse(this.cookie)[this.options.keys.cookie] : undefined;
       this.locale = result = this.isSupported(result);
       return fallback ? result || undefined : result || undefined;
     }
-
     // From URL, 'http://gengojs.com/en'
     /**
      * Parses the url.
@@ -232,6 +221,7 @@ var Accept = (function () {
      * @return {string|undefined}          The parsed locale.
      * @public
      */
+
   }, {
     key: 'getFromUrl',
     value: function getFromUrl(fallback) {
@@ -240,7 +230,6 @@ var Accept = (function () {
       this.locale = result = this.isSupported(path ? path.substring(1).split('/').shift() : '');
       return fallback ? result || undefined : result || undefined;
     }
-
     // From all, when specified in options
     /**
      * Parses the locale by the specified type of parsing.
@@ -248,10 +237,11 @@ var Accept = (function () {
      * @return {string} The parsed locale.
      * @public
      */
+
   }, {
     key: 'detectLocale',
     value: function detectLocale(locale) {
-      _lodash2['default'].forEach(this.options.detect, function (value, key) {
+      _lodash2.default.forEach(this.options.detect, function (value, key) {
         switch (key) {
           case 'header':
             if (value && !this.override) this.locale = this.getFromHeader();
@@ -281,24 +271,24 @@ var Accept = (function () {
 
       return this.locale;
     }
-
     /**
      * @private
      * Sets the options.
      * @param  {object} options The options.
      */
+
   }, {
     key: '_options',
     value: function _options(options) {
-      this.options = _lodash2['default'].defaults(options || {}, {
+      this.options = _lodash2.default.defaults(options || {}, {
         check: true,
-        'default': 'en-US',
+        default: 'en-US',
         supported: ['en-US'],
-        keys: _lodash2['default'].defaults(options ? options.keys ? options.keys : {} : {}, {
+        keys: _lodash2.default.defaults(options ? options.keys ? options.keys : {} : {}, {
           cookie: 'locale',
           query: 'locale'
         }),
-        detect: _lodash2['default'].defaults(options ? options.detect ? options.detect : {} : {}, {
+        detect: _lodash2.default.defaults(options ? options.detect ? options.detect : {} : {}, {
           header: true,
           cookie: false,
           query: false,
@@ -308,7 +298,6 @@ var Accept = (function () {
         })
       });
     }
-
     /**
      * @public
      * Checks if the result is supported.
@@ -316,13 +305,14 @@ var Accept = (function () {
      * @return {string}        The locale.
      * @private
      */
+
   }, {
     key: 'isSupported',
     value: function isSupported(result) {
       if (this.options.check) {
         var index = this.options.supported.indexOf(result);
         var locale = this.options.supported[index];
-        locale = locale ? locale : this.options['default'];
+        locale = locale ? locale : this.options.default;
         return locale;
       } else return result;
     }
@@ -331,10 +321,17 @@ var Accept = (function () {
   return Accept;
 })();
 
-exports['default'] = function (req, options) {
+/** 
+ * @export accept
+ * The main accept function,
+ * @param  {object} req The request object.
+ * @param  {object} options The options to configure accept.
+ * @return {Accept}     The Accept instance.
+ */
+
+exports.default = function (req, options) {
   'use strict';
+
   return new Accept(req, options);
 };
-
-module.exports = exports['default'];
 //# sourceMappingURL=source maps/index.js.map
