@@ -1,4 +1,4 @@
-var accept = require('../../');
+var accept = require('../../').default;
 var request = require('supertest');
 var chai = require('chai');
 chai.config.includeStack = true;
@@ -45,7 +45,7 @@ describe('express', function() {
     });
   });
   describe('middleware', function() {
-    var a = require('../../express/');
+    var a = require('../../express/').default;
     var express = require('express');
     var app = express();
     app.use(a());

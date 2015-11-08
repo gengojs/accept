@@ -1,5 +1,5 @@
 var Hapi = require('hapi');
-var accept = require('../../');
+var accept = require('../../').default;
 var assert = require('chai').assert;
 
 describe('hapi', function() {
@@ -53,7 +53,7 @@ describe('hapi', function() {
     var handler = function(request, reply) {
       return reply(request.accept.getLocale());
     };
-    server.register(require('../../hapi/')(), function(err) {
+    server.register((require('../../hapi/').default)(), function(err) {
       if (err) console.log('an error occurred');
     });
     server.route({
